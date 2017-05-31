@@ -1,8 +1,7 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom'
+
 import Footer from '../component/Footer';
 import Header from '../component/Header';
-import Login from './Login'
 
 export default class Dashboard extends React.Component {
   constructor() {
@@ -10,16 +9,26 @@ export default class Dashboard extends React.Component {
     this.state = { title: 'Ajaps Franklin that BOSS!!'};
   }
 
+  logout() {
+    firebase.auth().signOut().then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+      alert(error);
+    });
+  }
+
   changeTitle(title) {
     this.setState({ title });
   }
 
   render() {
-    return(
+    return (
+      <div>
+        <Header />
         <button onClick={this.logout}>SignOut </button>
-      )
-  }
-  logout(){
-    firebase.auth().signOut();
+        <Footer />
+      </div>
+    );
   }
 }
