@@ -11676,8 +11676,8 @@ var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import {Router, Route, IndexRoute, History } from 'react-router';
 var mountNode = document.getElementById('mountNode');
+
 _reactDom2.default.render(_react2.default.createElement(
   _reactRouterDom.BrowserRouter,
   null,
@@ -11715,7 +11715,7 @@ _reactDom2.default.render(_react2.default.createElement(
         )
       )
     ),
-    _react2.default.createElement('hr', null),
+    _react2.default.createElement('div', null),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Login2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/SignUp', component: _SignUp2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/Dashboard', component: _Dashboard2.default })
