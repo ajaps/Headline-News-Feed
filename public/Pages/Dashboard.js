@@ -1,13 +1,13 @@
 import React from 'react';
-
+import {Redirect} from 'react-router-dom'
 import Footer from '../component/Footer';
 import Header from '../component/Header';
+import Login from './Login'
 
-
-export default class Layout extends React.Component {
+export default class Dashboard extends React.Component {
   constructor() {
     super();
-    this.state = { title: 'Ajaps Franklin that BOSS!!' };
+    this.state = { title: 'Ajaps Franklin that BOSS!!'};
   }
 
   changeTitle(title) {
@@ -15,15 +15,11 @@ export default class Layout extends React.Component {
   }
 
   render() {
-    /*
-    setTimeout(() => {
-      this.setState({ name: 'Tunde Abiola' });
-    }, 6000);
-    */
-    return <div>
-      <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
-      <h4>Dashboard from {this.state.title}</h4>
-      <Footer />
-    </div>;
+    return(
+        <button onClick={this.logout}>SignOut </button>
+      )
+  }
+  logout(){
+    firebase.auth().signOut();
   }
 }

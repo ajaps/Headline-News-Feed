@@ -4,7 +4,7 @@ import Footer from '../component/Footer';
 import Header from '../component/Header';
 
 
-export default class Layout extends React.Component {
+export default class SignUp extends React.Component {
   constructor() {
     super();
     this.state = { title: 'Ajaps Franklin that BOSS!!' };
@@ -15,11 +15,6 @@ export default class Layout extends React.Component {
   }
 
   render() {
-    /*
-    setTimeout(() => {
-      this.setState({ name: 'Tunde Abiola' });
-    }, 6000);
-    */
     return <div>
       <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
       <h4>SignUp from {this.state.title}</h4>

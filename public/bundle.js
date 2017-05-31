@@ -11277,6 +11277,8 @@ var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(104);
+
 var _Footer = __webpack_require__(29);
 
 var _Footer2 = _interopRequireDefault(_Footer);
@@ -11284,6 +11286,10 @@ var _Footer2 = _interopRequireDefault(_Footer);
 var _Header = __webpack_require__(30);
 
 var _Header2 = _interopRequireDefault(_Header);
+
+var _Login = __webpack_require__(100);
+
+var _Login2 = _interopRequireDefault(_Login);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11293,19 +11299,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Layout = function (_React$Component) {
-  _inherits(Layout, _React$Component);
+var Dashboard = function (_React$Component) {
+  _inherits(Dashboard, _React$Component);
 
-  function Layout() {
-    _classCallCheck(this, Layout);
+  function Dashboard() {
+    _classCallCheck(this, Dashboard);
 
-    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
+    var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this));
 
     _this.state = { title: 'Ajaps Franklin that BOSS!!' };
     return _this;
   }
 
-  _createClass(Layout, [{
+  _createClass(Dashboard, [{
     key: 'changeTitle',
     value: function changeTitle(title) {
       this.setState({ title: title });
@@ -11313,30 +11319,23 @@ var Layout = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      /*
-      setTimeout(() => {
-        this.setState({ name: 'Tunde Abiola' });
-      }, 6000);
-      */
       return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_Header2.default, { changeTitle: this.changeTitle.bind(this), title: this.state.title }),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'Dashboard from ',
-          this.state.title
-        ),
-        _react2.default.createElement(_Footer2.default, null)
+        'button',
+        { onClick: this.logout },
+        'SignOut '
       );
+    }
+  }, {
+    key: 'logout',
+    value: function logout() {
+      firebase.auth().signOut();
     }
   }]);
 
-  return Layout;
+  return Dashboard;
 }(_react2.default.Component);
 
-exports.default = Layout;
+exports.default = Dashboard;
 
 /***/ }),
 /* 100 */
@@ -11371,31 +11370,49 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Layout = function (_React$Component) {
-  _inherits(Layout, _React$Component);
+var Login = function (_React$Component) {
+  _inherits(Login, _React$Component);
 
-  function Layout() {
-    _classCallCheck(this, Layout);
+  function Login() {
+    _classCallCheck(this, Login);
 
-    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
+    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
 
     _this.state = { title: 'Ajaps Franklin that BOSS!!' };
     return _this;
   }
 
-  _createClass(Layout, [{
+  _createClass(Login, [{
     key: 'changeTitle',
     value: function changeTitle(title) {
       this.setState({ title: title });
     }
   }, {
+    key: 'signIn',
+    value: function signIn() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        console.log(user);
+        // ...
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      /*
-      setTimeout(() => {
-        this.setState({ name: 'Tunde Abiola' });
-      }, 6000);
-      */
       return _react2.default.createElement(
         'div',
         null,
@@ -11404,97 +11421,31 @@ var Layout = function (_React$Component) {
           'h4',
           null,
           'Login from ',
-          this.state.title
+          this.state.title,
+          ' islogged IN ',
+          this.state.isLoggedIN
         ),
-        _react2.default.createElement(_Footer2.default, null)
-      );
-    }
-  }]);
-
-  return Layout;
-}(_react2.default.Component);
-
-exports.default = Layout;
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(6);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Footer = __webpack_require__(29);
-
-var _Footer2 = _interopRequireDefault(_Footer);
-
-var _Header = __webpack_require__(30);
-
-var _Header2 = _interopRequireDefault(_Header);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Layout = function (_React$Component) {
-  _inherits(Layout, _React$Component);
-
-  function Layout() {
-    _classCallCheck(this, Layout);
-
-    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
-
-    _this.state = { title: 'Ajaps Franklin that BOSS!!' };
-    return _this;
-  }
-
-  _createClass(Layout, [{
-    key: 'changeTitle',
-    value: function changeTitle(title) {
-      this.setState({ title: title });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      /*
-      setTimeout(() => {
-        this.setState({ name: 'Tunde Abiola' });
-      }, 6000);
-      */
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_Header2.default, { changeTitle: this.changeTitle.bind(this), title: this.state.title }),
         _react2.default.createElement(
-          'h4',
+          'p',
           null,
-          'SignUp from ',
-          this.state.title
+          _react2.default.createElement(
+            'button',
+            { onClick: this.signIn },
+            'Log IN '
+          )
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
 
-  return Layout;
+  return Login;
 }(_react2.default.Component);
 
-exports.default = Layout;
+exports.default = Login;
 
 /***/ }),
+/* 101 */,
 /* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11511,13 +11462,19 @@ var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Footer = __webpack_require__(29);
+var _reactRouterDom = __webpack_require__(104);
 
-var _Footer2 = _interopRequireDefault(_Footer);
+var _reactSpinner = __webpack_require__(231);
 
-var _Header = __webpack_require__(30);
+var _reactSpinner2 = _interopRequireDefault(_reactSpinner);
 
-var _Header2 = _interopRequireDefault(_Header);
+var _Login = __webpack_require__(100);
+
+var _Login2 = _interopRequireDefault(_Login);
+
+var _Dashboard = __webpack_require__(99);
+
+var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11540,6 +11497,15 @@ var Layout = function (_React$Component) {
   }
 
   _createClass(Layout, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        _this2.setState({ user: user });
+      });
+    }
+  }, {
     key: 'changeTitle',
     value: function changeTitle(title) {
       this.setState({ title: title });
@@ -11547,22 +11513,57 @@ var Layout = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      /*
-      setTimeout(() => {
-        this.setState({ name: 'Tunde Abiola' });
-      }, 6000);
-      */
-      return _react2.default.createElement(
-        'div',
+      var user = this.state.user;
+
+      console.log('moi     ' + user);
+      return user === undefined ? _react2.default.createElement(_reactSpinner2.default, null) : _react2.default.createElement(
+        _reactRouterDom.BrowserRouter,
         null,
-        _react2.default.createElement(_Header2.default, { changeTitle: this.changeTitle.bind(this), title: this.state.title }),
         _react2.default.createElement(
-          'h4',
+          'div',
           null,
-          'Hello from ',
-          this.state.title
-        ),
-        _react2.default.createElement(_Footer2.default, null)
+          _react2.default.createElement(
+            'ul',
+            null,
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/' },
+                'Home'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/Login' },
+                'Login'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/Dashboard' },
+                'Dashboard'
+              )
+            )
+          ),
+          _react2.default.createElement('div', null),
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render() {
+              return user ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/Dashboard' }) : _react2.default.createElement(_Login2.default, null);
+            } }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/Login', render: function render() {
+              return user ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/Dashboard' }) : _react2.default.createElement(_Login2.default, null);
+            } }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/Dashboard', render: function render() {
+              return user ? _react2.default.createElement(_Dashboard2.default, null) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/Login' });
+            } })
+        )
       );
     }
   }]);
@@ -11656,71 +11657,15 @@ var _reactDom = __webpack_require__(103);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(104);
-
 var _Layout = __webpack_require__(102);
 
 var _Layout2 = _interopRequireDefault(_Layout);
-
-var _Login = __webpack_require__(100);
-
-var _Login2 = _interopRequireDefault(_Login);
-
-var _SignUp = __webpack_require__(101);
-
-var _SignUp2 = _interopRequireDefault(_SignUp);
-
-var _Dashboard = __webpack_require__(99);
-
-var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mountNode = document.getElementById('mountNode');
 
-_reactDom2.default.render(_react2.default.createElement(
-  _reactRouterDom.BrowserRouter,
-  null,
-  _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'ul',
-      null,
-      _react2.default.createElement(
-        'li',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/' },
-          'Home'
-        )
-      ),
-      _react2.default.createElement(
-        'li',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/SignUp' },
-          'Sign Up'
-        )
-      ),
-      _react2.default.createElement(
-        'li',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/Dashboard' },
-          'Dashboard'
-        )
-      )
-    ),
-    _react2.default.createElement('div', null),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Login2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/SignUp', component: _SignUp2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/Dashboard', component: _Dashboard2.default })
-  )
-), mountNode);
+_reactDom2.default.render(_react2.default.createElement(_Layout2.default, null), mountNode);
 
 /***/ }),
 /* 106 */
@@ -26046,6 +25991,140 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory(__webpack_require__(6));
+	else if(typeof define === 'function' && define.amd)
+		define(["react"], factory);
+	else if(typeof exports === 'object')
+		exports["Spinner"] = factory(require("react"));
+	else
+		root["Spinner"] = factory(root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "./build";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var Spinner = (function (_React$Component) {
+	  _inherits(Spinner, _React$Component);
+	
+	  function Spinner(props) {
+	    _classCallCheck(this, Spinner);
+	
+	    _get(Object.getPrototypeOf(Spinner.prototype), 'constructor', this).call(this, props);
+	  }
+	
+	  _createClass(Spinner, [{
+	    key: 'render',
+	    value: function render() {
+	      var bars = [];
+	      var props = this.props;
+	
+	      for (var i = 0; i < 12; i++) {
+	        var barStyle = {};
+	        barStyle.WebkitAnimationDelay = barStyle.animationDelay = (i - 12) / 10 + 's';
+	
+	        barStyle.WebkitTransform = barStyle.transform = 'rotate(' + i * 30 + 'deg) translate(146%)';
+	
+	        bars.push(_react2['default'].createElement('div', { style: barStyle, className: 'react-spinner_bar', key: i }));
+	      }
+	
+	      return _react2['default'].createElement(
+	        'div',
+	        _extends({}, props, { className: (props.className || '') + ' react-spinner' }),
+	        bars
+	      );
+	    }
+	  }]);
+	
+	  return Spinner;
+	})(_react2['default'].Component);
+	
+	;
+	
+	exports['default'] = Spinner;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ })
+/******/ ])
+});
+;
+//# sourceMappingURL=index.map
 
 /***/ })
 /******/ ]);
