@@ -9,7 +9,7 @@ import {
 import Spinner from 'react-spinner';
 
 import Example2 from '../Pages/Example2';
-import {RecursiveExample} from '../Pages/Example';
+import { RecursiveExample } from '../Pages/Example';
 import Login from '../Pages/Login';
 import Dashboard from '../Pages/Dashboard';
 import firebase from '../firebaseConfig';

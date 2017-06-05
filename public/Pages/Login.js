@@ -21,7 +21,7 @@ export default class Login extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     return (
         <div>
           <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
