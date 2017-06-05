@@ -7,6 +7,11 @@ import filterStore from './HeadlineFilter';
 class AllArticle extends EventEmitter {
   constructor() {
     super();
+    this.articlesFillter = {
+      sortBy: 'top',
+      source: 'all',
+    };
+
     this.article = [
       {
 				"author": "Khaled \"Tito\" Hamze",
