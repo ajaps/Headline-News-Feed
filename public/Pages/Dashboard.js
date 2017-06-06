@@ -9,7 +9,6 @@ import SourcesComponent from '../component/SourcesComponent';
 
 import ArticleStore from '../stores/Article';
 import SourcesStore from '../stores/Sources';
-import filterStore from '../stores/HeadlineFilter';
 
 import * as myActions from '../actions/HeadlineActions';
 
@@ -22,7 +21,6 @@ export default class Dashboard extends React.Component {
     this.state = { title: 'Ajaps Franklin that BOSS!!',
       article: ArticleStore.getAll(),
       sources: SourcesStore.getAll(),
-      url: filterStore.getUrl(),
     };
   }
 
