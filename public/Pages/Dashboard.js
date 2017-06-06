@@ -79,7 +79,7 @@ export default class Dashboard extends React.Component {
 
   render() {
     const { article, sources } = this.state;
-
+    
     const articleComponents = article.map((articleItem) => {
       return <ArticleComponent key={articleItem.url}{...articleItem} />;
     });
