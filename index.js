@@ -1,13 +1,11 @@
-/*
-import express from 'express';
-import path from 'path';
-*/
+require('dotenv').config();
+
 const express = require('express');
-const path = require('path')
+const path = require('path');
+
 const app = express();
 
-//app.set('port', (process.env.PORT));
-app.set('port', '3000');
+app.set('port', (process.env.PORT));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.get('*', function (request, response){

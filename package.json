@@ -34,6 +34,7 @@
     "history": "^4.6.1",
     "loader": "^2.1.1",
     "node-sass": "^4.5.3",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^4.1.1",

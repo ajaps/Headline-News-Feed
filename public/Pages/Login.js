@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Footer from '../component/Footer';
 import Header from '../component/Header';
@@ -32,5 +33,5 @@ export default class Login extends React.Component {
 }
 
 Login.propTypes = {
-  logInFirebase: React.PropTypes.func.isRequired,
+  logInFirebase: PropTypes.func.isRequired,
 };

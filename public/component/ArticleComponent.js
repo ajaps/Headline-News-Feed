@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ArticleComponent extends React.Component {
 
@@ -23,10 +24,10 @@ export default class ArticleComponent extends React.Component {
 }
 
 ArticleComponent.propTypes = {
-  url: React.PropTypes.string.isRequired,
-  urlToImage: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string.isRequired,
-  author: React.PropTypes.string.isRequired,
-  publishedAt: React.PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  urlToImage: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
 };

@@ -19,6 +19,7 @@ p.publishedAt {
 	font-style: italic;
 }
 .article-Source-Container {
+  padding: 1vw;
 	overflow: scroll;
 	height: 38vw;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as myActions from '../actions/HeadlineActions';
 
@@ -38,5 +39,5 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  logout: React.PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };

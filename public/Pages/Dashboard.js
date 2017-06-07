@@ -21,6 +21,7 @@ export default class Dashboard extends React.Component {
     this.state = { title: 'Ajaps Franklin that BOSS!!',
       article: ArticleStore.getAll(),
       sources: SourcesStore.getAll(),
+      searchTerm: '',
     };
   }
 
@@ -57,6 +58,14 @@ export default class Dashboard extends React.Component {
     myActions.getNewArticles();
   }
 
+  // Search input box
+  searchSource(e) {
+    const searchString = e.target.value;
+    this.setState({
+      searchTerm: searchString,
+    });
+  }
+
     // Logout from Applicaton
   logout() {
     this.props.logout();
@@ -70,7 +79,10 @@ export default class Dashboard extends React.Component {
     });
 
     const sourcesComponents = sources.map((sourcesItem) => {
-      return <SourcesComponent key={sourcesItem.id}{...sourcesItem} />;
+      const reg = RegExp(this.state.searchTerm, 'gi');
+      if (sourcesItem.name.search(reg) !== -1) {
+        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} />;
+      }
     });
 
     return (
@@ -85,6 +97,7 @@ export default class Dashboard extends React.Component {
             <div className="">
               <div className="col-sm-3 col-md-2 sidebar">
                 <ul className="nav nav-sidebar article-Source-Container">
+                  <input type="text" className="form-control" placeholder="Search..." onChange={this.searchSource.bind(this)} />
                   <li className="active"><h4>All Sources <span className="sr-only">(current)</span></h4></li>
                   {sourcesComponents}
                 </ul>

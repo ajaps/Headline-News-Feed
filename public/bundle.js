@@ -9184,6 +9184,10 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(11);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _HeadlineActions = __webpack_require__(35);
 
 var myActions = _interopRequireWildcard(_HeadlineActions);
@@ -9299,7 +9303,7 @@ exports.default = Header;
 
 
 Header.propTypes = {
-  logout: _react2.default.PropTypes.func.isRequired
+  logout: _propTypes2.default.func.isRequired
 };
 
 /***/ }),
@@ -15242,7 +15246,8 @@ var Dashboard = function (_React$Component) {
     _this.setArticles = _this.setArticles.bind(_this);
     _this.state = { title: 'Ajaps Franklin that BOSS!!',
       article: _Article2.default.getAll(),
-      sources: _Sources2.default.getAll()
+      sources: _Sources2.default.getAll(),
+      searchTerm: ''
     };
     return _this;
   }
@@ -15296,6 +15301,17 @@ var Dashboard = function (_React$Component) {
       myActions.getNewArticles();
     }
 
+    // Search input box
+
+  }, {
+    key: 'searchSource',
+    value: function searchSource(e) {
+      var searchString = e.target.value;
+      this.setState({
+        searchTerm: searchString
+      });
+    }
+
     // Logout from Applicaton
 
   }, {
@@ -15306,6 +15322,8 @@ var Dashboard = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var _state = this.state,
           article = _state.article,
           sources = _state.sources;
@@ -15316,7 +15334,10 @@ var Dashboard = function (_React$Component) {
       });
 
       var sourcesComponents = sources.map(function (sourcesItem) {
-        return _react2.default.createElement(_SourcesComponent2.default, _extends({ key: sourcesItem.id }, sourcesItem));
+        var reg = RegExp(_this2.state.searchTerm, 'gi');
+        if (sourcesItem.name.search(reg) !== -1) {
+          return _react2.default.createElement(_SourcesComponent2.default, _extends({ key: sourcesItem.id }, sourcesItem));
+        }
       });
 
       return _react2.default.createElement(
@@ -15354,6 +15375,7 @@ var Dashboard = function (_React$Component) {
                 _react2.default.createElement(
                   'ul',
                   { className: 'nav nav-sidebar article-Source-Container' },
+                  _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search...', onChange: this.searchSource.bind(this) }),
                   _react2.default.createElement(
                     'li',
                     { className: 'active' },
@@ -15410,6 +15432,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(11);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _Footer = __webpack_require__(79);
 
@@ -15485,7 +15511,7 @@ exports.default = Login;
 
 
 Login.propTypes = {
-  logInFirebase: _react2.default.PropTypes.func.isRequired
+  logInFirebase: _propTypes2.default.func.isRequired
 };
 
 /***/ }),
@@ -15505,6 +15531,10 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(11);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -15523,45 +15553,45 @@ var ArticleComponent = function (_React$Component) {
   }
 
   _createClass(ArticleComponent, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       // Template for each Article
       return _react2.default.createElement(
-        "div",
-        { className: "col-lg-3 col-md-3 col-sm-3 col-xs-3" },
+        'div',
+        { className: 'col-lg-3 col-md-3 col-sm-3 col-xs-3' },
         _react2.default.createElement(
-          "a",
-          { href: this.props.url, target: "_Blank", rel: "noopener noreferrer" },
+          'a',
+          { href: this.props.url, target: '_Blank', rel: 'noopener noreferrer' },
           _react2.default.createElement(
-            "div",
-            { className: "thumbnail well text-center" },
-            _react2.default.createElement("img", { src: this.props.urlToImage, alt: "..." }),
+            'div',
+            { className: 'thumbnail well text-center' },
+            _react2.default.createElement('img', { src: this.props.urlToImage, alt: '...' }),
             _react2.default.createElement(
-              "div",
-              { className: "caption" },
+              'div',
+              { className: 'caption' },
               _react2.default.createElement(
-                "p",
-                { className: "title" },
+                'p',
+                { className: 'title' },
                 this.props.title,
-                " "
+                ' '
               ),
               _react2.default.createElement(
-                "p",
-                { className: "description" },
+                'p',
+                { className: 'description' },
                 this.props.description,
-                " "
+                ' '
               ),
               _react2.default.createElement(
-                "p",
-                { className: "author" },
+                'p',
+                { className: 'author' },
                 this.props.author,
-                " "
+                ' '
               ),
               _react2.default.createElement(
-                "p",
-                { className: "publishedAt" },
+                'p',
+                { className: 'publishedAt' },
                 this.props.publishedAt,
-                " "
+                ' '
               )
             )
           )
@@ -15577,12 +15607,12 @@ exports.default = ArticleComponent;
 
 
 ArticleComponent.propTypes = {
-  url: _react2.default.PropTypes.string.isRequired,
-  urlToImage: _react2.default.PropTypes.string.isRequired,
-  title: _react2.default.PropTypes.string.isRequired,
-  description: _react2.default.PropTypes.string.isRequired,
-  author: _react2.default.PropTypes.string.isRequired,
-  publishedAt: _react2.default.PropTypes.string.isRequired
+  url: _propTypes2.default.string.isRequired,
+  urlToImage: _propTypes2.default.string.isRequired,
+  title: _propTypes2.default.string.isRequired,
+  description: _propTypes2.default.string.isRequired,
+  author: _propTypes2.default.string.isRequired,
+  publishedAt: _propTypes2.default.string.isRequired
 };
 
 /***/ }),
