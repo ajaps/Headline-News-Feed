@@ -34,8 +34,8 @@ export default class Navbar extends React.Component {
               <li><a onClick={this.setCategory.bind(this, 'technology')}>Technology</a></li>
             </ul>
           </nav>
-          <li className="dropdown">
-            <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span className="caret" /></a>
+          <li className="dropdown sortByFeature">
+            <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> Sort Articles By <span className="caret" /></a>
             <ul className="dropdown-menu">
               <li><a onClick={this.bySort.bind(this, 'top')}>Top</a></li>
               <li><a onClick={this.bySort.bind(this, 'latest')}>Latest</a></li>

@@ -16,6 +16,7 @@ import * as myActions from '../actions/HeadlineActions';
 export default class Dashboard extends React.Component {
   constructor() {
     super();
+    this.getSources();
     this.setSources = this.setSources.bind(this);
     this.setArticles = this.setArticles.bind(this);
     this.state = { title: 'Ajaps Franklin that BOSS!!',
@@ -34,11 +35,16 @@ export default class Dashboard extends React.Component {
     ArticleStore.removeListener('articleChange', this.setArticles);
   }
 
+  componentDidMount() {
+  }
+
   // Get all sources from store
   setSources() {
     this.setState({
       sources: SourcesStore.getAll(),
     });
+    myActions.getArticles(this.state.sources[0].id);
+    // console.log(this.state.sources[0].id);
   }
 
   // Get All Article from store
@@ -74,9 +80,7 @@ export default class Dashboard extends React.Component {
   render() {
     const { article, sources } = this.state;
 
-    const articleComponents = article.map((articleItem) => {
-      return <ArticleComponent key={articleItem.url}{...articleItem} />;
-    });
+    const articleComponents = article.map(articleItem => <ArticleComponent key={articleItem.url}{...articleItem} />);
 
     const sourcesComponents = sources.map((sourcesItem) => {
       const reg = RegExp(this.state.searchTerm, 'gi');
@@ -87,25 +91,22 @@ export default class Dashboard extends React.Component {
 
     return (
       <div>
-        <Header logout={this.logout.bind(this)}/>
+        <Header logout={this.logout.bind(this)} />
         <button hidden onClick={this.logout.bind(this)}>SignOut </button>
         <button hidden onClick={this.getSources.bind(this)}> Get Sources </button>
         <button hidden onClick={this.getArticle.bind(this)}> Get Articles </button>
         <Navbar />
-        <div className="">
-          <div className="row">
-            <div className="">
-              <div className="col-sm-3 col-md-2 sidebar">
-                <ul className="nav nav-sidebar article-Source-Container">
-                  <input type="text" className="form-control" placeholder="Search..." onChange={this.searchSource.bind(this)} />
-                  <li className="active"><h4>All Sources <span className="sr-only">(current)</span></h4></li>
-                  {sourcesComponents}
-                </ul>
-              </div>
-                <div className="container">
-                  <div className="row article-Source-Container">{articleComponents} </div>
-                </div>
-            </div>
+        <div className="row">
+          <div className="col-sm-3 col-md-2 sidebar well">
+            <h3> All Sources </h3>
+            <input type="text" className="form-control" placeholder="Search Sources..." onChange={this.searchSource.bind(this)} />
+            <ul className="nav nav-sidebar Source-Container">
+              <li className="active"><h4>All Sources <span className="sr-only">(current)</span></h4></li>
+              {sourcesComponents}
+            </ul>
+          </div>
+          <div className="container">
+            <div className="row article-Container">{articleComponents} </div>
           </div>
         </div>
         <Footer />

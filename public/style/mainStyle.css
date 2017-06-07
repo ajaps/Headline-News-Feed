@@ -18,7 +18,14 @@ p.publishedAt {
 	font-size: 0.6vw;
 	font-style: italic;
 }
-.article-Source-Container {
+.Source-Container {
+  padding: 1vw;
+	overflow: scroll;
+	height: 29vw;
+
+}
+
+.article-Container {
   padding: 1vw;
 	overflow: scroll;
 	height: 38vw;
@@ -96,4 +103,13 @@ color: red;
 
 .navbar2{
 	margin-bottom: 1vw;
+}
+
+.sortByFeature{
+  width: 15vw;
+  margin-left: 60vw;
+  margin-top:1vw; 
+  height: 1vw;
+  font-weight: bold;
+  text-align: center;
 }

@@ -15242,6 +15242,7 @@ var Dashboard = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this));
 
+    _this.getSources();
     _this.setSources = _this.setSources.bind(_this);
     _this.setArticles = _this.setArticles.bind(_this);
     _this.state = { title: 'Ajaps Franklin that BOSS!!',
@@ -15264,6 +15265,9 @@ var Dashboard = function (_React$Component) {
       _Sources2.default.removeListener('sourceChange', this.setSources);
       _Article2.default.removeListener('articleChange', this.setArticles);
     }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
 
     // Get all sources from store
 
@@ -15273,6 +15277,8 @@ var Dashboard = function (_React$Component) {
       this.setState({
         sources: _Sources2.default.getAll()
       });
+      myActions.getArticles(this.state.sources[0].id);
+      // console.log(this.state.sources[0].id);
     }
 
     // Get All Article from store
@@ -15362,47 +15368,44 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(_HeadlineNavbar2.default, null),
         _react2.default.createElement(
           'div',
-          { className: '' },
+          { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'row' },
+            { className: 'col-sm-3 col-md-2 sidebar well' },
             _react2.default.createElement(
-              'div',
-              { className: '' },
+              'h3',
+              null,
+              ' All Sources '
+            ),
+            _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search Sources...', onChange: this.searchSource.bind(this) }),
+            _react2.default.createElement(
+              'ul',
+              { className: 'nav nav-sidebar Source-Container' },
               _react2.default.createElement(
-                'div',
-                { className: 'col-sm-3 col-md-2 sidebar' },
+                'li',
+                { className: 'active' },
                 _react2.default.createElement(
-                  'ul',
-                  { className: 'nav nav-sidebar article-Source-Container' },
-                  _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search...', onChange: this.searchSource.bind(this) }),
+                  'h4',
+                  null,
+                  'All Sources ',
                   _react2.default.createElement(
-                    'li',
-                    { className: 'active' },
-                    _react2.default.createElement(
-                      'h4',
-                      null,
-                      'All Sources ',
-                      _react2.default.createElement(
-                        'span',
-                        { className: 'sr-only' },
-                        '(current)'
-                      )
-                    )
-                  ),
-                  sourcesComponents
+                    'span',
+                    { className: 'sr-only' },
+                    '(current)'
+                  )
                 )
               ),
-              _react2.default.createElement(
-                'div',
-                { className: 'container' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'row article-Source-Container' },
-                  articleComponents,
-                  ' '
-                )
-              )
+              sourcesComponents
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row article-Container' },
+              articleComponents,
+              ' '
             )
           )
         ),
@@ -15788,11 +15791,11 @@ var Navbar = function (_React$Component) {
           ),
           _react2.default.createElement(
             'li',
-            { className: 'dropdown' },
+            { className: 'dropdown sortByFeature' },
             _react2.default.createElement(
               'a',
-              { className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-              'Sort By ',
+              { className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'true' },
+              ' Sort Articles By ',
               _react2.default.createElement('span', { className: 'caret' })
             ),
             _react2.default.createElement(
