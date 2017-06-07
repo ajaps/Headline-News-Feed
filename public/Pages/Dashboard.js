@@ -47,21 +47,6 @@ export default class Dashboard extends React.Component {
     });
   }
 
-  getData() {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        const sources = xhr.responseText;
-        // console.log(JSON.stringify(JSON.parse(sources).sources));
-        console.log(JSON.parse(sources));
-        // this.state.list = JSON.parse(xhr.responseText);
-        // this.setState(this.sate);
-      }
-    };
-    xhr.open('GET', 'https://newsapi.org/v1/sources?language=en');
-    xhr.send();
-  }
-
   // Function to trigger Flux Action to Get Sources based on set criteria
   getSources() {
     myActions.getNewSources();
@@ -79,7 +64,7 @@ export default class Dashboard extends React.Component {
 
   render() {
     const { article, sources } = this.state;
-    
+
     const articleComponents = article.map((articleItem) => {
       return <ArticleComponent key={articleItem.url}{...articleItem} />;
     });
@@ -90,9 +75,8 @@ export default class Dashboard extends React.Component {
 
     return (
       <div>
-        <Header />
+        <Header logout={this.logout.bind(this)}/>
         <button hidden onClick={this.logout.bind(this)}>SignOut </button>
-        <button hidden onClick={this.getData.bind(this)}> Get Data </button>
         <button hidden onClick={this.getSources.bind(this)}> Get Sources </button>
         <button hidden onClick={this.getArticle.bind(this)}> Get Articles </button>
         <Navbar />

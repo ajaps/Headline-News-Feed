@@ -8,7 +8,7 @@ export default class Login extends React.Component {
 
   constructor() {
     super();
-    this.state = { title: 'Ajaps Franklin that BOSS!!'};
+    this.state = { title: 'Ajaps Franklin that BOSS!!' };
   }
 
   changeTitle(title) {
@@ -16,19 +16,21 @@ export default class Login extends React.Component {
   }
 
   signIn() {
-    console.log(this.props)
     this.props.logInFirebase();
   }
 
   render() {
-    console.log(this.props);
     return (
-        <div>
-          <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
-          <h4>Login from {this.state.title} islogged IN {this.state.isLoggedIN}</h4>
-          <p><button onClick={this.signIn.bind(this)}>Log IN </button></p>
-          <Footer />
-        </div>
+      <div>
+        <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
+        <h4>Login from {this.state.title} islogged IN {this.state.isLoggedIN}</h4>
+        <p><button onClick={this.signIn.bind(this)}>Log IN </button></p>
+        <Footer />
+      </div>
     );
   }
 }
+
+Login.propTypes = {
+  logInFirebase: React.PropTypes.func.isRequired,
+};

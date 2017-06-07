@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -10,30 +11,30 @@ import Spinner from 'react-spinner';
 
 import Login from '../Pages/Login';
 import Dashboard from '../Pages/Dashboard';
-import firebase from '../firebaseConfig';
+
+firebase.initializeApp({
+  apiKey: 'AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ',
+  authDomain: 'headlines-rss-feed.firebaseapp.com',
+  databaseURL: 'https://headlines-rss-feed.firebaseio.com',
+  projectId: 'headlines-rss-feed',
+  storageBucket: 'headlines-rss-feed.appspot.com',
+  messagingSenderId: '843843623432',
+});
 
 export default class Layout extends React.Component {
   constructor() {
     super();
-    this.state = { title: 'Ajaps Franklin that BOSS!!', url:'/Dasboard' };
+    this.state = { url: '/Dasboard' };
   }
 
   componentDidMount() {
-   /* firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(user => {
       this.setState({ user });
     });
-    */
-        // AlWAYS LOGGED IN - i'm working on the Dashboard
-    this.setState({ user: 'user' });
-  }
-
-  changeTitle(title) {
-    this.setState({ title });
   }
 
   // Sign Out from Firebase/Application
   logout() {
-    console.log('Signed OUT');
     this.setState({ user: null });
 
     firebase.auth().signOut().then(() => {
@@ -44,37 +45,27 @@ export default class Layout extends React.Component {
     });
   }
 
-  //To change the URL
-  changeUrl(url){
-    this.setState({url})
+  // To change the URL
+  changeUrl(url) {
+    this.setState({ url })
   }
 
   // Sign In to Firebase/Application
   signIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
       let token = result.credential.accessToken;
-      // The signed-in user info.
       let user = result.user;
-      console.log(user);
-      // ...
     }).catch((error) => {
-      // Handle Errors here.
       let errorCode = error.code;
       let errorMessage = error.message;
       console.log(errorMessage);
-      // The email of the user's account used.
-      let email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
       let credential = error.credential;
-      // ...
     });
   }
 
   render() {
     const { user } = this.state;
-    console.log('moi     ' + user);
     return (
       user === undefined ?
         <Spinner /> :

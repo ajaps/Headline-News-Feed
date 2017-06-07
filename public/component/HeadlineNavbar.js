@@ -4,14 +4,17 @@ import * as myActions from '../actions/HeadlineActions';
 
 export default class Navbar extends React.Component {
 
+  // Calls the set Category function
   setCategory(category) {
     myActions.setCategory(category);
   }
 
+  // Calls the Sort By Action
   bySort(sortValue) {
     myActions.sortBy(sortValue);
   }
 
+// component containing justified center nav bar (the second nav bar)
   render() {
     return (
       <div className=" container navbar2">
@@ -32,7 +35,7 @@ export default class Navbar extends React.Component {
             </ul>
           </nav>
           <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span className="caret" /></a>
+            <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span className="caret" /></a>
             <ul className="dropdown-menu">
               <li><a onClick={this.bySort.bind(this, 'top')}>Top</a></li>
               <li><a onClick={this.bySort.bind(this, 'latest')}>Latest</a></li>

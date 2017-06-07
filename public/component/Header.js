@@ -3,9 +3,8 @@ import React from 'react';
 import * as myActions from '../actions/HeadlineActions';
 
 
+// Component containing language preference and logout button
 export default class Header extends React.Component {
-
-
 
   setLanguage(lang) {
     myActions.setLanguage(lang);
@@ -22,14 +21,14 @@ export default class Header extends React.Component {
               <span className="icon-bar" />
               <span className="icon-bar" />
             </button>
-            <a className="navbar-brand" href="#">Headlines RSS Feed</a>
+            <a className="navbar-brand" href="/">Headlines RSS Feed</a>
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#" onClick={this.setLanguage.bind(this, 'en')}>English</a></li>
-              <li><a href="#" onClick={this.setLanguage.bind(this, 'de')}>German</a></li>
-              <li><a href="#" onClick={this.setLanguage.bind(this, 'fr')}>French</a></li>
-              <li><a href="#" id="logoutBtn">Logout</a></li>
+              <li><a cursor="pointer" onClick={this.setLanguage.bind(this, 'en')}>English</a></li>
+              <li><a className="link_cursor" onClick={this.setLanguage.bind(this, 'de')}>German</a></li>
+              <li><a className="link_cursor" onClick={this.setLanguage.bind(this, 'fr')}>French</a></li>
+              <li><a onClick={this.props.logout} id="logoutBtn">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -38,3 +37,6 @@ export default class Header extends React.Component {
   }
 }
 
+Header.propTypes = {
+  logout: React.PropTypes.func.isRequired,
+};

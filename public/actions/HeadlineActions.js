@@ -1,17 +1,20 @@
 import Dispatcher from '../dispatcher/HeadlineDispatcher';
 
+//Action function to get new sources
 export function getNewSources() {
   Dispatcher.dispatch({
     type: 'GET_SOURCES',
   });
 }
 
+// Action function to get new Articles
 export function getNewArticles() {
   Dispatcher.dispatch({
     type: 'GET_ARTICLES',
   });
 }
 
+// Action function to set prefered Language
 export function setLanguage(language) {
   Dispatcher.dispatch({
     type: 'SET_LANGUAGE',
@@ -19,6 +22,7 @@ export function setLanguage(language) {
   });
 }
 
+// Action to set Source Category
 export function setCategory(category) {
   Dispatcher.dispatch({
     type: 'SET_CATEGORY',
@@ -26,6 +30,7 @@ export function setCategory(category) {
   });
 }
 
+// Action to set Sort BY parameter
 export function sortBy(sortValue) {
   Dispatcher.dispatch({
     type: 'SET_SORTBY',
@@ -33,6 +38,7 @@ export function sortBy(sortValue) {
   });
 }
 
+// Action to set Source url
 export function getArticles(source) {
   Dispatcher.dispatch({
     type: 'SET_SOURCE',

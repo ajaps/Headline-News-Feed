@@ -1,12 +1,14 @@
-import firebase from 'firebase';
+require('dotenv').config();
+
+import * as firebase from 'firebase';
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ',
-  authDomain: 'headlines-rss-feed.firebaseapp.com',
-  databaseURL: 'https://headlines-rss-feed.firebaseio.com',
-  projectId: 'headlines-rss-feed',
-  storageBucket: 'headlines-rss-feed.appspot.com',
-  messagingSenderId: '843843623432',
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
 });
 
 export default firebase;

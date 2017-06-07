@@ -4,6 +4,7 @@ import * as myActions from '../actions/HeadlineActions';
 
 export default class SourcesComponent extends React.Component {
 
+  // Calls function to initialize actions to get Articles
   setSources(sources) {
     myActions.getArticles(sources);
   }

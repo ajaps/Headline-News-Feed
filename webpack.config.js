@@ -1,5 +1,5 @@
+// import path from 'path';
 const path = require('path');
-// const webpack = require('webpack');
 
 
 module.exports = {
@@ -9,12 +9,16 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /.jsx?$/,
+        test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: ['es2015', 'react'],
         },
+      },
+      {
+        test: /\.s?css$/,
+        loaders: ["style", "css", "sass"],
       },
     ],
   },
