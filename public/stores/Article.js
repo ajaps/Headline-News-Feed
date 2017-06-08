@@ -8,16 +8,26 @@ class AllArticle extends EventEmitter {
     super();
 
     this.getArticleUrl = {
-      sortBy: 'all',
+      sortBy: 'top',
       source: 'all',
     };
 
-    this.sortAvailable = {};
+    this.sortAvailable = [];
+
     this.article = [];
   }
 
+  // Returns all articles
   getAll() {
     return this.article;
+  }
+
+  // Return Available Sort filter
+  getSortAvailable() {
+    if (!this.sortAvailable) {
+      return ['unavailable'];
+    }
+    return this.sortAvailable;
   }
 
   getArticle() {
@@ -25,7 +35,7 @@ class AllArticle extends EventEmitter {
     let url = 'https://newsapi.org/v1/articles';
     url += `?source=${this.getArticleUrl.source}`;
 
-    if (this.getArticleUrl.source === 'all' && this.getArticleUrl.sortBy === 'all') {
+    if (this.getArticleUrl.source !== 'all' && this.getArticleUrl.sortBy !== 'all') {
       url += `&sortBy=${this.getArticleUrl.sortBy}`;
     }
 
@@ -37,13 +47,11 @@ class AllArticle extends EventEmitter {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const sources = xhr.responseText;
         this.article = JSON.parse(sources).articles;
-        console.log(this.article);
         this.emit('articleChange');
       }
     };
     xhr.open('GET', url);
     xhr.send();
-    console.log(url);
   }
 
   handleAction(action) {
@@ -53,17 +61,16 @@ class AllArticle extends EventEmitter {
         break;
       case 'SET_SOURCE':
         this.getArticleUrl.source = action.text;
+        this.sortAvailable = action.sort;
         this.getArticle();
-        this.sortAvailable = action.sortPresent;
-        console.log(action.sortPresent);
         break;
       case 'SET_SORTBY':
         this.getArticleUrl.sortBy = action.text;
         this.getArticle();
         break;
       case 'SET_CATEGORY':
-        this.article = [];
         this.getArticleUrl.sortBy = 'all';
+        this.article = [];
         this.emit('articleChange');
         break;
       case 'SET_LANGUAGE':

@@ -1,20 +1,30 @@
 import Dispatcher from '../dispatcher/HeadlineDispatcher';
 
-//Action function to get new sources
+/**
+* sends an action to dispacth to get new sources
+* @returns {void}
+*/
 export function getNewSources() {
   Dispatcher.dispatch({
     type: 'GET_SOURCES',
   });
 }
 
-// Action function to get new Articles
+/**
+* sends an action to dispacth to get new Articles
+* @returns {void}
+*/
 export function getNewArticles() {
   Dispatcher.dispatch({
     type: 'GET_ARTICLES',
   });
 }
 
-// Action function to set prefered Language
+/**
+* sends an action to dispacth to set preffered language
+* @param {String} language The preffered language.
+* @returns {void}
+*/
 export function setLanguage(language) {
   Dispatcher.dispatch({
     type: 'SET_LANGUAGE',
@@ -22,7 +32,11 @@ export function setLanguage(language) {
   });
 }
 
-// Action to set Source Category
+/**
+* sends an action to dispacth to set category
+* @param {String} category The category selected.
+* @returns {void}
+*/
 export function setCategory(category) {
   Dispatcher.dispatch({
     type: 'SET_CATEGORY',
@@ -30,7 +44,11 @@ export function setCategory(category) {
   });
 }
 
-// Action to set Sort BY parameter
+/**
+* sends an action to dispacth to set filter
+* @param {String} sortValue The sort value selected.
+* @returns {void}
+*/
 export function sortBy(sortValue) {
   Dispatcher.dispatch({
     type: 'SET_SORTBY',
@@ -38,10 +56,16 @@ export function sortBy(sortValue) {
   });
 }
 
-// Action to set Source url
-export function getArticles(source) {
+/**
+* sends an action to dispacth to set the url for the API
+* @param {String} source The source id
+*@param {String} sortAvailable The sort available for the source
+* @returns {void}
+*/
+export function getArticles(source, sortAvailable) {
   Dispatcher.dispatch({
     type: 'SET_SOURCE',
     text: source,
+    sort: sortAvailable,
   });
 }

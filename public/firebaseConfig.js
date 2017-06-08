@@ -1,6 +1,7 @@
 require('dotenv').config();
 
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 firebase.initializeApp({
   apiKey: process.env.API_KEY,

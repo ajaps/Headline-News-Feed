@@ -14,16 +14,19 @@ import * as myActions from '../actions/HeadlineActions';
 
 
 export default class Dashboard extends React.Component {
+
   constructor() {
     super();
     this.getSources();
     this.setSources = this.setSources.bind(this);
     this.setArticles = this.setArticles.bind(this);
-    this.state = { title: 'Ajaps Franklin that BOSS!!',
+    this.state = {
       article: ArticleStore.getAll(),
       sources: SourcesStore.getAll(),
+      sortFilter: ArticleStore.getSortAvailable(),
       searchTerm: '',
     };
+    console.log(this.props)
   }
 
   componentWillMount() {
@@ -35,13 +38,11 @@ export default class Dashboard extends React.Component {
     ArticleStore.removeListener('articleChange', this.setArticles);
   }
 
-  componentDidMount() {
-  }
-
   // Get all sources from store
   setSources() {
     this.setState({
       sources: SourcesStore.getAll(),
+      
     });
     myActions.getArticles(this.state.sources[0].id);
     // console.log(this.state.sources[0].id);
@@ -51,6 +52,7 @@ export default class Dashboard extends React.Component {
   setArticles() {
     this.setState({
       article: ArticleStore.getAll(),
+      sortFilter: ArticleStore.getSortAvailable(),
     });
   }
 
@@ -77,6 +79,9 @@ export default class Dashboard extends React.Component {
     this.props.logout();
   }
 
+/**
+ * @returns {component} A User dashboard Page.
+ */
   render() {
     const { article, sources } = this.state;
 
@@ -92,10 +97,7 @@ export default class Dashboard extends React.Component {
     return (
       <div>
         <Header logout={this.logout.bind(this)} />
-        <button hidden onClick={this.logout.bind(this)}>SignOut </button>
-        <button hidden onClick={this.getSources.bind(this)}> Get Sources </button>
-        <button hidden onClick={this.getArticle.bind(this)}> Get Articles </button>
-        <Navbar />
+        <Navbar sortFilter={this.state.sortFilter} />
         <div className="row">
           <div className="col-sm-3 col-md-2 sidebar well">
             <h3> All Sources </h3>
@@ -105,7 +107,7 @@ export default class Dashboard extends React.Component {
               {sourcesComponents}
             </ul>
           </div>
-          <div className="container">
+          <div className="container well articleCountainerHeight">
             <div className="row article-Container">{articleComponents} </div>
           </div>
         </div>

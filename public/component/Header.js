@@ -4,13 +4,23 @@ import PropTypes from 'prop-types';
 import * as myActions from '../actions/HeadlineActions';
 
 
-// Component containing language preference and logout button
+/**
+ * Represents language preference and logout button
+ */
 export default class Header extends React.Component {
 
+/**
+* sends an action to change language preference
+* @param {String} lang The preffered language.
+* @returns {void}
+*/
   setLanguage(lang) {
     myActions.setLanguage(lang);
   }
 
+/**
+ * @returns {component} A component with Header details like language and sign out functionality.
+ */
   render() {
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top">

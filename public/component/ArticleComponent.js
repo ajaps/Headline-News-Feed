@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Represents an Article.
+ */
 export default class ArticleComponent extends React.Component {
 
+/**
+ * @returns {component} A component with relevant article details.
+ */
   render() {
-    // Template for each Article
     return (
       <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <a href={this.props.url} target="_Blank" rel="noopener noreferrer">
@@ -28,6 +33,11 @@ ArticleComponent.propTypes = {
   urlToImage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  publishedAt: PropTypes.string.isRequired,
+  author: PropTypes.string,
+  publishedAt: PropTypes.string,
+};
+
+ArticleComponent.defaultProps = {
+  publishedAt: 'unknown',
+  author: 'unknown',
 };

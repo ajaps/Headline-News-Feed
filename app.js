@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Layout from './public/component/Layout';
+import Layout from './public/Pages/Layout';
 
 const mountNode = document.getElementById('mountNode');
 
