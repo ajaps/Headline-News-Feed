@@ -45,8 +45,8 @@ class AllArticle extends EventEmitter {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        const sources = xhr.responseText;
-        this.article = JSON.parse(sources).articles;
+        const liveArticles = xhr.responseText;
+        this.article = JSON.parse(liveArticles).articles;
         this.emit('articleChange');
       }
     };
@@ -84,5 +84,4 @@ class AllArticle extends EventEmitter {
 
 const ArticleStore = new AllArticle();
 Dispatcher.register(ArticleStore.handleAction.bind(ArticleStore));
-window.Dispatcher = Dispatcher;
 export default ArticleStore;

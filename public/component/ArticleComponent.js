@@ -6,10 +6,32 @@ import PropTypes from 'prop-types';
  */
 export default class ArticleComponent extends React.Component {
 
+  /**
+   * @returns {String} A function that retruns a custom date
+   */
+  formatDate(){
+    const month = ["January", "February", "March",
+    "April", "May", "June", "July", "August", "September",
+    "October", "November", "December"];
+
+    let userDate = new Date(this.props.publishedAt);
+    let cDate = userDate.getDate();
+    let cMonth = userDate.getMonth();
+    let cYear = userDate.getFullYear();
+
+    let cHour = userDate.getHours();
+    let cMin = userDate.getMinutes();
+    let cSec = userDate.getSeconds();
+    let formattedDate = `${month[cMonth]} ${cDate},   ${cYear}   ${cHour}:${cMin}:${cSec}`;
+    
+    return formattedDate
+  }
+
 /**
  * @returns {component} A component with relevant article details.
  */
   render() {
+    const getFormateDate = this.formatDate();
     return (
       <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <a href={this.props.url} target="_Blank" rel="noopener noreferrer">
@@ -19,7 +41,7 @@ export default class ArticleComponent extends React.Component {
               <p className="title">{this.props.title} </p>
               <p className="description">{this.props.description} </p>
               <p className="author">{this.props.author} </p>
-              <p className="publishedAt">{this.props.publishedAt} </p>
+              <p className="publishedAt">{getFormateDate} </p>
             </div>
           </div>
         </a>
@@ -27,6 +49,7 @@ export default class ArticleComponent extends React.Component {
     );
   }
 }
+
 
 ArticleComponent.propTypes = {
   url: PropTypes.string.isRequired,

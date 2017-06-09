@@ -28,9 +28,6 @@ class AllSources extends EventEmitter {
         const sources = xhr.responseText;
         this.sources = JSON.parse(sources).sources;
         this.emit('sourceChange');
-        if (JSON.parse(sources).sources.length < 2) {
-          alert('This Source does not contain any Article');
-        }
       }
     };
     xhr.open('GET', url);
@@ -61,5 +58,4 @@ class AllSources extends EventEmitter {
 
 const SourcesStore = new AllSources();
 Dispatcher.register(SourcesStore.handleAction.bind(SourcesStore));
-window.Dispatcher = Dispatcher;
 export default SourcesStore;

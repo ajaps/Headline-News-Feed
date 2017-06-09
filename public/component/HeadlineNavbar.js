@@ -27,6 +27,7 @@ export default class Navbar extends React.Component {
  */
   setCategory(category) {
     myActions.setCategory(category);
+    setState({activeCell: [category]})
   }
 
 /**
@@ -42,11 +43,20 @@ export default class Navbar extends React.Component {
  * @returns {component} A component containing the nav bar with categories and sort drop-down.
  */
   render() {
+
+    // Enable or Disable the Sort dropdown button based on available sort
     const sourceFilters = this.props.sortFilter;
     const topFilter = sourceFilters[0] ? '' : 'disabled';
     const latestFilter = sourceFilters[1] ? '' : 'disabled';
     const popularFilter = sourceFilters[2] ? '' : 'disabled';
-
+    
+    //set Active class for Category based on user selection
+    /*
+    const url = location.pathname;
+    const all = url.match(/^\/all/) ? 'active' : '';
+    const business = url.match(/^\/business/) ? 'active' : '';
+    console.log(url)
+    */
     return (
       <div className=" container navbar2">
         <div className="masthead">

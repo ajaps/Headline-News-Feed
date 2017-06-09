@@ -17,8 +17,12 @@ module.exports = {
         },
       },
       {
-        test: /\.s?css$/,
-        loaders: ['style', 'css', 'sass'],
+      test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,
+        loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.scss$/,
+        loaders: 'style-loader!css-loader!sass-loader',
       },
     ],
   },

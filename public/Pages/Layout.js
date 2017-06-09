@@ -5,12 +5,13 @@ import {
   Route,
   Link,
   Redirect,
+  Switch,
 } from 'react-router-dom';
 
 import Spinner from 'react-spinner';
 
-import Login from './Login';
 import Dashboard from './Dashboard';
+import Login from './Login';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ',
@@ -61,25 +62,25 @@ export default class Layout extends React.Component {
 
   render() {
     const { user } = this.state;
-    console.log(this.state)
     return (
       user === undefined ?
         <Spinner /> :
         <Router>
-          <div>
-            <ul>
-              <li hidden><Link to="/">Home</Link></li>
-              <li hidden><Link to="/Login">Login</Link></li>
-              <li hidden><Link to="/Dashboard">Dashboard</Link></li>
-            </ul>
-            <div />
-
-            <Route exact path="/" render={() => user ? <Redirect to="/Dashboard" /> : <Login />} />
-            <Route path="/Login" render={() => user ? <Redirect to="/Dashboard" /> : <Login logInFirebase={this.signIn.bind(this)} />} />
-            <Route path="/Dashboard" render={() => user ? <Dashboard changeUrl={this.changeUrl.bind(this)} logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
-          </div>
+          <Switch>
+            <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> : <Login />} />
+            <Route path="/Login" component={() => user ? <Redirect to="/Dashboard" /> : <Login logInFirebase={this.signIn.bind(this)} />} />
+            <Route path="/Dashboard" component={() => user ? <Dashboard changeUrl={this.changeUrl.bind(this)} logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
+          </Switch>
         </Router>
     );
   }
 }
 
+
+/*
+
+          <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> : <Login />} >
+           <Route path="/Login" component={() => user ? <Redirect to="/Dashboard" /> : <Login logInFirebase={this.signIn.bind(this)} />} />
+           <Route path="/Dashboard:/sourceid" component={() => user ? <Dashboard changeUrl={this.changeUrl.bind(this)} logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
+          </Route>
+          */

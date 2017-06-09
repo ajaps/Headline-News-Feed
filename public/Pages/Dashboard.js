@@ -26,7 +26,6 @@ export default class Dashboard extends React.Component {
       sortFilter: ArticleStore.getSortAvailable(),
       searchTerm: '',
     };
-    console.log(this.props)
   }
 
   componentWillMount() {
@@ -93,7 +92,11 @@ export default class Dashboard extends React.Component {
         return <SourcesComponent key={sourcesItem.id}{...sourcesItem} />;
       }
     });
-
+    
+    //alerts the user if article store is empty
+    if(article.length < 1){
+      alert('Article store is empty')
+    }
     return (
       <div>
         <Header logout={this.logout.bind(this)} />
