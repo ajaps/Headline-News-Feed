@@ -13,6 +13,18 @@ import Spinner from 'react-spinner';
 import Dashboard from './Dashboard';
 import Login from './Login';
 
+/*
+const config = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+};
+
+firebase.initializeApp({ config });
+*/
 firebase.initializeApp({
   apiKey: 'AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ',
   authDomain: 'headlines-rss-feed.firebaseapp.com',
@@ -22,10 +34,12 @@ firebase.initializeApp({
   messagingSenderId: '843843623432',
 });
 
+
 export default class Layout extends React.Component {
   constructor() {
     super();
     this.state = { url: '/Dasboard' };
+    console.log(process.env.STORAGE_BUCKET)
   }
 
   componentDidMount() {

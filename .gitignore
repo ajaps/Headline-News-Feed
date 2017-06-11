@@ -5,3 +5,4 @@ debug.log
 poof
 bootstrap Style
 .env
+coverage

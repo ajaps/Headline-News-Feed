@@ -15,39 +15,74 @@ import * as myActions from '../actions/HeadlineActions';
 
 export default class Dashboard extends React.Component {
 
+/**
+ * gets sources at the first time of lauching the app
+ * binds getArticles and getSources which sets the inital contents gotten from API
+ * sests the initial state to mirror the new object in the stores
+ */
   constructor() {
     super();
     this.getSources();
+
     this.setSources = this.setSources.bind(this);
+    this.logout = this.logout.bind(this);
     this.setArticles = this.setArticles.bind(this);
+    this.setLanguage = this.setLanguage.bind(this);
+    this.searchSource = this.searchSource.bind(this);
+
     this.state = {
       article: ArticleStore.getAll(),
       sources: SourcesStore.getAll(),
       sortFilter: ArticleStore.getSortAvailable(),
       searchTerm: '',
+      url: SourcesStore.getUrl(),
+      language: SourcesStore.getSourceUrl.language,
     };
   }
 
+  /**
+   * binds store listener to the component
+   * @return {void}
+   */
   componentWillMount() {
     SourcesStore.on('sourceChange', this.setSources);
     ArticleStore.on('articleChange', this.setArticles);
   }
+
+  /**
+   * unbinds store listener from the component to prevent memory leaks
+   * @return {void}
+   */
   componentWillUnmount() {
     SourcesStore.removeListener('sourceChange', this.setSources);
     ArticleStore.removeListener('articleChange', this.setArticles);
   }
 
-  // Get all sources from store
+  /**
+  * changes language preference based on user selection
+  * @param {String} lang The preffered language.
+  * @returns {void}
+  */
+  setLanguage(lang) {
+    myActions.setLanguage(this.state.url, lang);
+  }
+
+  /**
+   * sets the state of the component to store values and sends the first source id to generate articles on first load
+   * @return {void}
+   */
   setSources() {
     this.setState({
       sources: SourcesStore.getAll(),
-      
     });
-    myActions.getArticles(this.state.sources[0].id);
-    // console.log(this.state.sources[0].id);
+    myActions.getArticles(ArticleStore.getArticleUrl,
+      this.state.sources[0].id, ArticleStore.sortAvailable);
   }
 
-  // Get All Article from store
+  /**
+   * sets the state of the component to store values and sets the filter available for the source
+   * @return {void}
+   */
   setArticles() {
     this.setState({
       article: ArticleStore.getAll(),
@@ -55,17 +90,19 @@ export default class Dashboard extends React.Component {
     });
   }
 
-  // Function to trigger Flux Action to Get Sources based on set criteria
+  /**
+   * initiate an action to get sources based on the defualt language on first load
+   * @return {void}
+   */
   getSources() {
-    myActions.getNewSources();
+    myActions.setLanguage(SourcesStore.getSourceUrl, 'en');
   }
 
-  // Function to trigger Flux Action to Get Articles
-  getArticle() {
-    myActions.getNewArticles();
-  }
-
-  // Search input box
+  /**
+   * sets the an object in the state to the value of the search string
+   * @param {Object} e The calling object property
+   * @return {void}
+   */
   searchSource(e) {
     const searchString = e.target.value;
     this.setState({
@@ -73,44 +110,47 @@ export default class Dashboard extends React.Component {
     });
   }
 
-    // Logout from Applicaton
+  /**
+   * Initiates logout process
+   * @return {void}
+   */
   logout() {
     this.props.logout();
   }
 
 /**
- * @returns {component} A User dashboard Page.
+ * @returns {component} User dashboard Page.
  */
   render() {
     const { article, sources } = this.state;
 
-    const articleComponents = article.map(articleItem => <ArticleComponent key={articleItem.url}{...articleItem} />);
+    // iterate through article object
+    const articleComponents = article.map(articleItem =>
+      <ArticleComponent key={articleItem.url}{...articleItem} />);
 
+    // Search through sources, return all if search term is empty
     const sourcesComponents = sources.map((sourcesItem) => {
       const reg = RegExp(this.state.searchTerm, 'gi');
       if (sourcesItem.name.search(reg) !== -1) {
         return <SourcesComponent key={sourcesItem.id}{...sourcesItem} />;
       }
     });
-    
-    //alerts the user if article store is empty
-    if(article.length < 1){
-      alert('Article store is empty')
-    }
+    const allLanguages = SourcesStore.getAllLanguages();
+
     return (
       <div>
-        <Header logout={this.logout.bind(this)} />
+        <Header allLanguage={allLanguages} logout={this.logout} url={this.state.url.language} setLan={this.setLanguage}/>
         <Navbar sortFilter={this.state.sortFilter} />
         <div className="row">
           <div className="col-sm-3 col-md-2 sidebar well">
             <h3> All Sources </h3>
-            <input type="text" className="form-control" placeholder="Search Sources..." onChange={this.searchSource.bind(this)} />
+            <input type="text" className="form-control" placeholder="Search Sources..." onChange={this.searchSource} />
             <ul className="nav nav-sidebar Source-Container">
               <li className="active"><h4>All Sources <span className="sr-only">(current)</span></h4></li>
               {sourcesComponents}
             </ul>
           </div>
-          <div className="container well articleCountainerHeight">
+          <div className="container well articleCountainerHeight clearfix">
             <div className="row article-Container">{articleComponents} </div>
           </div>
         </div>

@@ -9,22 +9,22 @@ export default class ArticleComponent extends React.Component {
   /**
    * @returns {String} A function that retruns a custom date
    */
-  formatDate(){
-    const month = ["January", "February", "March",
-    "April", "May", "June", "July", "August", "September",
-    "October", "November", "December"];
+  formatDate() {
+    const month = ['January', 'February', 'March',
+      'April', 'May', 'June', 'July', 'August', 'September',
+      'October', 'November', 'December'];
 
-    let userDate = new Date(this.props.publishedAt);
-    let cDate = userDate.getDate();
-    let cMonth = userDate.getMonth();
-    let cYear = userDate.getFullYear();
+    const userDate = new Date(this.props.publishedAt);
+    const cDate = userDate.getDate();
+    const cMonth = userDate.getMonth();
+    const cYear = userDate.getFullYear();
 
-    let cHour = userDate.getHours();
-    let cMin = userDate.getMinutes();
-    let cSec = userDate.getSeconds();
-    let formattedDate = `${month[cMonth]} ${cDate},   ${cYear}   ${cHour}:${cMin}:${cSec}`;
-    
-    return formattedDate
+    const cHour = userDate.getHours();
+    const cMin = userDate.getMinutes();
+    const cSec = userDate.getSeconds();
+
+    const formattedDate = `${month[cMonth]} ${cDate},   ${cYear}   ${cHour}:${cMin}:${cSec}`;
+    return formattedDate;
   }
 
 /**
