@@ -53,5 +53,5 @@ export default class Login extends React.Component {
 }
 
 Login.propTypes = {
-  logInFirebase: PropTypes.func.isRequired,
+  logInFirebase: PropTypes.func,
 };
