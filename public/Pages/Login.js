@@ -1,34 +1,57 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Footer from '../component/Footer';
-import Header from '../component/Header';
 
 
 export default class Login extends React.Component {
 
-  constructor() {
-    super();
-    this.state = { title: 'Ajaps Franklin that BOSS!!'};
-  }
-
-  changeTitle(title) {
-    this.setState({ title });
-  }
-
   signIn() {
-    console.log(this.props)
     this.props.logInFirebase();
   }
 
   render() {
-    console.log(this.props);
     return (
-        <div>
-          <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
-          <h4>Login from {this.state.title} islogged IN {this.state.isLoggedIN}</h4>
-          <p><button onClick={this.signIn.bind(this)}>Log IN </button></p>
-          <Footer />
+      <div>
+        <div id="theCarousel" className="carousel slide" data-ride="carousel">
+
+          <ol className="carousel-indicators">
+            <li data-target="#theCarousel" data-slide-to="0" className="active" />
+            <li data-target="#theCarousel" data-slide-to="1" />
+          </ol >
+
+          <div className="carousel-inner">
+            <div className="item active" >
+
+              <div className="slide1" />
+              <div className="carousel-caption">
+                <h1>Get News Headline for free</h1>
+              </div>
+            </div>
+
+
+            <div className="item">
+              <div className="slide2" />
+              <div className="carousel-caption">
+                <h1>Get Live Headlines</h1>
+              </div>
+            </div>
+          </div>
+
+          <a className="left carousel-control" href="#theCarousel" data-slide="prev">
+            <span className="glyphicon glyphicon-chevron-left" />
+          </a>
+          <a className="right carousel-control" href="#theCarousel" data-slide="next">
+            <span className="glyphicon glyphicon-chevron-right" />
+          </a>
         </div>
+        <p><button onClick={this.signIn.bind(this)} href="login" className="loginBtn loginBtn--google">Login with Google</button></p>
+        <Footer />
+      </div>
     );
   }
 }
+
+Login.propTypes = {
+  logInFirebase: PropTypes.func.isRequired,
+};

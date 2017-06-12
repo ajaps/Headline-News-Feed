@@ -14,101 +14,143 @@ import * as myActions from '../actions/HeadlineActions';
 
 
 export default class Dashboard extends React.Component {
+
+/**
+ * gets sources at the first time of lauching the app
+ * binds getArticles and getSources which sets the inital contents gotten from API
+ * sests the initial state to mirror the new object in the stores
+ */
   constructor() {
     super();
+    this.getSources();
+
     this.setSources = this.setSources.bind(this);
+    this.logout = this.logout.bind(this);
     this.setArticles = this.setArticles.bind(this);
-    this.state = { title: 'Ajaps Franklin that BOSS!!',
+    this.setLanguage = this.setLanguage.bind(this);
+    this.searchSource = this.searchSource.bind(this);
+
+    this.state = {
       article: ArticleStore.getAll(),
       sources: SourcesStore.getAll(),
+      sortFilter: ArticleStore.getSortAvailable(),
+      searchTerm: '',
+      url: SourcesStore.getUrl(),
+      language: SourcesStore.getSourceUrl.language,
     };
   }
 
+  /**
+   * binds store listener to the component
+   * @return {void}
+   */
   componentWillMount() {
     SourcesStore.on('sourceChange', this.setSources);
     ArticleStore.on('articleChange', this.setArticles);
   }
+
+  /**
+   * unbinds store listener from the component to prevent memory leaks
+   * @return {void}
+   */
   componentWillUnmount() {
     SourcesStore.removeListener('sourceChange', this.setSources);
     ArticleStore.removeListener('articleChange', this.setArticles);
   }
 
-  // Get all sources from store
+  /**
+  * changes language preference based on user selection
+  * @param {String} lang The preffered language.
+  * @returns {void}
+  */
+  setLanguage(lang) {
+    myActions.setLanguage(this.state.url, lang);
+  }
+
+  /**
+   * sets the state of the component to store values and sends the first source id to generate articles on first load
+   * @return {void}
+   */
   setSources() {
     this.setState({
       sources: SourcesStore.getAll(),
     });
+    myActions.getArticles(ArticleStore.getArticleUrl,
+      this.state.sources[0].id, ArticleStore.sortAvailable);
   }
 
-  // Get All Article from store
+  /**
+   * sets the state of the component to store values and sets the filter available for the source
+   * @return {void}
+   */
   setArticles() {
     this.setState({
       article: ArticleStore.getAll(),
+      sortFilter: ArticleStore.getSortAvailable(),
     });
   }
 
-  getData() {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        const sources = xhr.responseText;
-        // console.log(JSON.stringify(JSON.parse(sources).sources));
-        console.log(JSON.parse(sources));
-        // this.state.list = JSON.parse(xhr.responseText);
-        // this.setState(this.sate);
-      }
-    };
-    xhr.open('GET', 'https://newsapi.org/v1/sources?language=en');
-    xhr.send();
-  }
-
-  // Function to trigger Flux Action to Get Sources based on set criteria
+  /**
+   * initiate an action to get sources based on the defualt language on first load
+   * @return {void}
+   */
   getSources() {
-    myActions.getNewSources();
+    myActions.setLanguage(SourcesStore.getSourceUrl, 'en');
   }
 
-  // Function to trigger Flux Action to Get Articles
-  getArticle() {
-    myActions.getNewArticles();
+  /**
+   * sets the an object in the state to the value of the search string
+   * @param {Object} e The calling object property
+   * @return {void}
+   */
+  searchSource(e) {
+    const searchString = e.target.value;
+    this.setState({
+      searchTerm: searchString,
+    });
   }
 
-    // Logout from Applicaton
+  /**
+   * Initiates logout process
+   * @return {void}
+   */
   logout() {
     this.props.logout();
   }
 
+/**
+ * @returns {component} User dashboard Page.
+ */
   render() {
     const { article, sources } = this.state;
 
-    const articleComponents = article.map((articleItem) => {
-      return <ArticleComponent key={articleItem.url}{...articleItem} />;
-    });
+    // iterate through article object
+    const articleComponents = article.map(articleItem =>
+      <ArticleComponent key={articleItem.url}{...articleItem} />);
 
+    // Search through sources, return all if search term is empty
     const sourcesComponents = sources.map((sourcesItem) => {
-      return <SourcesComponent key={sourcesItem.id}{...sourcesItem} />;
+      const reg = RegExp(this.state.searchTerm, 'gi');
+      if (sourcesItem.name.search(reg) !== -1) {
+        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} />;
+      }
     });
-
+    const allLanguages = SourcesStore.getAllLanguages();
     return (
       <div>
-        <Header />
-        <button hidden onClick={this.logout.bind(this)}>SignOut </button>
-        <button hidden onClick={this.getData.bind(this)}> Get Data </button>
-        <button hidden onClick={this.getSources.bind(this)}> Get Sources </button>
-        <button hidden onClick={this.getArticle.bind(this)}> Get Articles </button>
-        <Navbar />
-        <div className="">
-          <div className="row">
-            <div className="">
-              <div className="col-sm-3 col-md-2 sidebar">
-                <ul className="nav nav-sidebar article-Source-Container">
-                  <li className="active"><h4>All Sources <span className="sr-only">(current)</span></h4></li>
-                  {sourcesComponents}
-                </ul>
-              </div>
-                <div className="container">
-                  <div className="row article-Source-Container">{articleComponents} </div>
-                </div>
-            </div>
+        <Header allLanguage={allLanguages} logout={this.logout} url={this.state.url.language} setLan={this.setLanguage}/>
+        <Navbar sortFilter={this.state.sortFilter} />
+        <div className="row">
+          <div className="col-sm-3 col-md-2 sidebar well">
+            <h3> All Sources </h3>
+            <input type="text" className="form-control" placeholder="Search Sources..." onChange={this.searchSource} />
+            <ul className="nav nav-sidebar Source-Container">
+              <li className="active"><h4>All Sources <span className="sr-only">(current)</span></h4></li>
+              {sourcesComponents}
+            </ul>
+          </div>
+          <div className="container well articleCountainerHeight">
+            <div className="row article-Container">{articleComponents} </div>
           </div>
         </div>
         <Footer />

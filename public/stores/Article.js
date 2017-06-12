@@ -7,120 +7,47 @@ class AllArticle extends EventEmitter {
   constructor() {
     super();
 
-		this.getArticleUrl = {
+    this.getArticleUrl = {
       sortBy: 'top',
       source: 'all',
+      URL_ARTICLES: 'https://newsapi.org/v1/articles',
+      API_KEY: '213327409d384371851777e7c7f78dfe',
     };
+    this.status = 'ok';
+    this.sortAvailable = ['unavailable'];
 
-    this.article = [
-      {
-				"author": "Khaled \"Tito\" Hamze",
-				"title": "Crunch Report",
-				"description": "Your daily roundup of the biggest TechCrunch stories and startup news.",
-				"url": "https://techcrunch.com/video/crunchreport/",
-				"urlToImage": "https://tctechcrunch2011.files.wordpress.com/2015/03/tccrshowogo.jpg?w=500&h=200&crop=1",
-				"publishedAt": "2017-05-30T20:00:29Z"
-			},
+    this.article = [];
+  }
 
-			{
-				"author": "Josh Constine",
-				"title": "The best Meeker 2017 Internet Trends slides and what they mean",
-				"description": "Here are the must-read stats about what's happening with internet adoption, smartphones, ads, e-commerce, entertainment, gaming, enterprise healthcare, China,..",
-				"url": "https://techcrunch.com/gallery/internet-trends-2017/",
-				"urlToImage": "https://tctechcrunch2011.files.wordpress.com/2017/05/mary-meeker-2017-internet-trends-best.png?w=764&h=400&crop=1",
-				"publishedAt": "2017-05-31T20:09:14Z"
-			},
-
-			{
-				"author": "Darrell Etherington",
-				"title": "Elon Musk will leave Trump councils if U.S. withdraws from Paris agreement",
-				"description": "Elon Musk says that he'll have \"no choice\" but to withdraw from the advisory councils he's currently serving for President Trump, should Trump decide to step..",
-				"url": "https://techcrunch.com/2017/05/31/elon-musk-will-leave-trump-councils-if-u-s-withdraws-from-paris-agreement/",
-				"urlToImage": "https://tctechcrunch2011.files.wordpress.com/2017/01/gettyimages-632485274.jpg?w=764&h=400&crop=1",
-				"publishedAt": "2017-05-31T18:01:23Z"
-			},
-
-			{
-				"author": "Taylor Hatmaker",
-				"title": "Uber blew through $1 million a week in an effort to make UberPool viable in San Francisco",
-				"description": "New documents leaked to BuzzFeed demonstrate yet again what Uber is willing to do to beat the competition at any cost.",
-				"url": "https://techcrunch.com/2017/05/31/uberpool-sf-buzzfeed-documents-burn-rate/",
-				"urlToImage": "https://tctechcrunch2011.files.wordpress.com/2017/05/uberpool.jpg?w=764&h=400&crop=1",
-				"publishedAt": "2017-05-31T17:48:01Z"
-			},	
-		]
-	}
-
+  // Returns all articles
   getAll() {
     return this.article;
   }
 
-  getArticle() {
-    const API_KEY = { KEY: '213327409d384371851777e7c7f78dfe' };
-    let url = 'https://newsapi.org/v1/articles';
-    if (this.getArticleUrl.source !== 'all') {
-      url += '?source=' + this.getArticleUrl.source;
-    }
-
-    if (this.getArticleUrl.sortBy === 'all') {
-      url += '?sortBy=' + this.getArticleUrl.sortBy;
-    }
-
-    else {
-      url += '&sortBy=' + this.getArticleUrl.sortBy;
-    }
-    url += '&apiKey=' + API_KEY.KEY;
-
-		//GET news headline sources based on API
-	const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-	  if (xhr.readyState === 4 && xhr.status === 200) {
-        const sources = xhr.responseText;
-        //console.log(JSON.stringify(JSON.parse(sources).sources));
-				this.article = JSON.parse(sources).articles;
-        console.log('FETCH DATA API Status', JSON.parse(sources));
-        //console.log(JSON.parse(sources.status));
-        // this.state.list = JSON.parse(xhr.responseText);
-        // this.setState(this.state);
-      }
-    };
-    xhr.open('GET', url);
-    xhr.send();
-	console.log(url);
-		console.log(url);
-		/*
-    this.article.push(
-      {
-				"author": "Natasha Lomas",
-				"title": "Smartphone screens find their size sweet spot",
-				"description": "The joke in the smartphone space in years past was how screens just kept getting bigger -- stretching palms and making you look ridiculous when held up to the..",
-				"url": "https://techcrunch.com/2017/05/31/phables-are-the-phuture/",
-				"urlToImage": "https://tctechcrunch2011.files.wordpress.com/2016/07/gettyimages-490626518.jpg?w=764&h=400&crop=1",
-				"publishedAt": "2017-05-31T09:58:59Z"
-			},
-		) */
-    this.emit('articleChange');
+  // Return Available Sort filter
+  getSortAvailable() {
+    return this.sortAvailable;
   }
 
   handleAction(action) {
     switch (action.type) {
-      case 'GET_ARTICLES':
-        this.getArticle();
-        break;
       case 'SET_SOURCE':
-				this.getArticleUrl.source = action.text;
-        this.getArticle();
+        this.getArticleUrl.source = action.text;
+        this.sortAvailable = action.sort;
+        this.status = action.response;
+        this.article = action.articles;
+        this.emit('articleChange');
         break;
       case 'SET_SORTBY':
-				this.getArticleUrl.sortBy = action.text;
-        this.getArticle();
+        this.getArticleUrl.sortBy = action.text;
+        this.article = action.articles;
+        this.status = action.response;
+        this.emit('articleChange');
         break;
     }
-		console.log('ARTICLE STORE:', action.type);
   }
 }
 
-const ArticleStore = new AllArticle;
+const ArticleStore = new AllArticle();
 Dispatcher.register(ArticleStore.handleAction.bind(ArticleStore));
-window.Dispatcher = Dispatcher;
 export default ArticleStore;
