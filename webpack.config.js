@@ -1,6 +1,5 @@
-// import path from 'path';
 const path = require('path');
-
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './app.js',
@@ -26,4 +25,14 @@ module.exports = {
       },
     ],
   },
+  node: {
+    fs: 'empty',
+    tls: 'empty'
+  },
+  plugins: [
+    new Dotenv({
+      path: '.env',
+      safe: false,
+    })
+  ]
 };

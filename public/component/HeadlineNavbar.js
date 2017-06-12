@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 
 import * as myActions from '../actions/HeadlineActions';
+
+import ArticleStore from '../stores/Article';
+import CategoryComponent from './CategoryComponent';
+import SourcesStore from '../stores/Sources';
 
 /**
  * Represents a navigation bar containing different categories
@@ -15,19 +18,7 @@ export default class Navbar extends React.Component {
  */
   constructor() {
     super();
-    this.state = {
-      sortAvailable: ['unavailable'],
-    };
-  }
-
-/**
- * sends an action to change category based on user selection
- * @param {String} category The selected category
- * @return {void}
- */
-  setCategory(category) {
-    myActions.setCategory(category);
-    setState({activeCell: [category]})
+    this.category = SourcesStore.allCategory;
   }
 
 /**
@@ -36,43 +27,31 @@ export default class Navbar extends React.Component {
  * @return {void}
  */
   bySort(sortValue) {
-    myActions.sortBy(sortValue);
+    const url = ArticleStore.getArticleUrl;
+    myActions.sortBy(url, sortValue);
   }
 
 /**
  * @returns {component} A component containing the nav bar with categories and sort drop-down.
  */
   render() {
-
     // Enable or Disable the Sort dropdown button based on available sort
     const sourceFilters = this.props.sortFilter;
-    const topFilter = sourceFilters[0] ? '' : 'disabled';
-    const latestFilter = sourceFilters[1] ? '' : 'disabled';
-    const popularFilter = sourceFilters[2] ? '' : 'disabled';
-    
-    //set Active class for Category based on user selection
-    /*
-    const url = location.pathname;
-    const all = url.match(/^\/all/) ? 'active' : '';
-    const business = url.match(/^\/business/) ? 'active' : '';
-    console.log(url)
-    */
+    const topFilter = sourceFilters.indexOf('top') > -1 ? '' : 'disabled disableClick';
+    const latestFilter = sourceFilters.indexOf('latest') > -1 ? '' : 'disabled disableClick';
+    const popularFilter = sourceFilters.indexOf('popular') > -1 ? '' : 'disabled disableClick';
+
+    // iterate through category object
+    const categoryComponent = this.category.map(categoryItem =>
+      <CategoryComponent key={categoryItem.id}{...categoryItem} />);
+
     return (
       <div className=" container navbar2">
         <div className="masthead">
           <h3 className="text-muted">Category</h3>
           <nav>
             <ul className="nav nav-justified">
-              <li className={this.all} > <Link to="/Dashboard/all" onClick={this.setCategory.bind(this, 'all')}>ALL</Link></li>
-              <li className={this.business}> <Link to="/Dashboard/business" onClick={this.setCategory.bind(this, 'business')}>Business</Link></li>
-              <li><a onClick={this.setCategory.bind(this, 'entertainment')}>Entertainment</a></li>
-              <li><a onClick={this.setCategory.bind(this, 'gaming')}>Gaming</a></li>
-              <li><a onClick={this.setCategory.bind(this, 'general')}>General</a></li>
-              <li><a onClick={this.setCategory.bind(this, 'music')}>Music</a></li>
-              <li><a onClick={this.setCategory.bind(this, 'politics')}>Politics</a></li>
-              <li><a onClick={this.setCategory.bind(this, 'science')}>Science</a></li>
-              <li><a onClick={this.setCategory.bind(this, 'sport')}>Sport</a></li>
-              <li><a onClick={this.setCategory.bind(this, 'technology')}>Technology</a></li>
+              {categoryComponent }
             </ul>
           </nav>
           <li className="dropdown sortByFeature">
@@ -90,5 +69,5 @@ export default class Navbar extends React.Component {
 }
 
 Navbar.defaultProps = {
-  sortFilter: ['top'],
+  sortFilter: ['unavailable'],
 };

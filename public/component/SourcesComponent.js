@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as myActions from '../actions/HeadlineActions';
-
+import ArticleStore from '../stores/Article';
 /**
  * Represents a Source.
  */
@@ -14,7 +14,8 @@ export default class SourcesComponent extends React.Component {
  * @return {void}
  */
   setSources(sources, sortAvailable) {
-    myActions.getArticles(sources, sortAvailable);
+    const url = ArticleStore.getArticleUrl;
+    myActions.getArticles(url, sources, sortAvailable);
   }
 
 /**
@@ -22,7 +23,11 @@ export default class SourcesComponent extends React.Component {
  */
   render() {
     return (
-      <li><a onClick={this.setSources.bind(this, this.props.id, this.props.sortBysAvailable)}>{this.props.name}</a></li>
+      <li>
+        <a onClick={this.setSources.bind(this, this.props.id, this.props.sortBysAvailable)}>
+          {this.props.name}
+        </a>
+      </li>
     );
   }
 }

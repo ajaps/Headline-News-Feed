@@ -10,9 +10,11 @@ class AllArticle extends EventEmitter {
     this.getArticleUrl = {
       sortBy: 'top',
       source: 'all',
+      URL_ARTICLES: 'https://newsapi.org/v1/articles',
+      API_KEY: '213327409d384371851777e7c7f78dfe',
     };
-
-    this.sortAvailable = [];
+    this.status = 'ok';
+    this.sortAvailable = ['unavailable'];
 
     this.article = [];
   }
@@ -24,58 +26,22 @@ class AllArticle extends EventEmitter {
 
   // Return Available Sort filter
   getSortAvailable() {
-    if (!this.sortAvailable) {
-      return ['unavailable'];
-    }
     return this.sortAvailable;
-  }
-
-  getArticle() {
-    const API_KEY = { KEY: '213327409d384371851777e7c7f78dfe' };
-    let url = 'https://newsapi.org/v1/articles';
-    url += `?source=${this.getArticleUrl.source}`;
-
-    if (this.getArticleUrl.source !== 'all' && this.getArticleUrl.sortBy !== 'all') {
-      url += `&sortBy=${this.getArticleUrl.sortBy}`;
-    }
-
-    url += `&apiKey=${API_KEY.KEY}`;
-
-    // GET news headline sources based on API
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        const liveArticles = xhr.responseText;
-        this.article = JSON.parse(liveArticles).articles;
-        this.emit('articleChange');
-      }
-    };
-    xhr.open('GET', url);
-    xhr.send();
   }
 
   handleAction(action) {
     switch (action.type) {
-      case 'GET_ARTICLES':
-        this.getArticle();
-        break;
       case 'SET_SOURCE':
         this.getArticleUrl.source = action.text;
         this.sortAvailable = action.sort;
-        this.getArticle();
+        this.status = action.response;
+        this.article = action.articles;
+        this.emit('articleChange');
         break;
       case 'SET_SORTBY':
         this.getArticleUrl.sortBy = action.text;
-        this.getArticle();
-        break;
-      case 'SET_CATEGORY':
-        this.getArticleUrl.sortBy = 'all';
-        this.article = [];
-        this.emit('articleChange');
-        break;
-      case 'SET_LANGUAGE':
-        this.article = [];
-        this.getArticleUrl.sortBy = 'all';
+        this.article = action.articles;
+        this.status = action.response;
         this.emit('articleChange');
         break;
     }
