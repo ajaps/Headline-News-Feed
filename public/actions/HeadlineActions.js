@@ -9,7 +9,6 @@ import Dispatcher from '../dispatcher/HeadlineDispatcher';
 export function setLanguage(url, language) {
   url.language = language;
   const newUrl = `${url.URL_SOURCE}?language=${language}`;
-  console.log(newUrl)
   fetch(newUrl).then(response => response.json())
   .then(data => {
     Dispatcher.dispatch({

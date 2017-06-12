@@ -136,7 +136,6 @@ export default class Dashboard extends React.Component {
       }
     });
     const allLanguages = SourcesStore.getAllLanguages();
-
     return (
       <div>
         <Header allLanguage={allLanguages} logout={this.logout} url={this.state.url.language} setLan={this.setLanguage}/>
@@ -150,7 +149,7 @@ export default class Dashboard extends React.Component {
               {sourcesComponents}
             </ul>
           </div>
-          <div className="container well articleCountainerHeight clearfix">
+          <div className="container well articleCountainerHeight">
             <div className="row article-Container">{articleComponents} </div>
           </div>
         </div>

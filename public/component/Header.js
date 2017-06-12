@@ -52,5 +52,5 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  logout: PropTypes.func.isRequired,
+  logout: PropTypes.func,
 };

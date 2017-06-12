@@ -37,9 +37,9 @@ export default class Navbar extends React.Component {
   render() {
     // Enable or Disable the Sort dropdown button based on available sort
     const sourceFilters = this.props.sortFilter;
-    const topFilter = sourceFilters.indexOf('top') >-1 ? '' : 'disabled';
-    const latestFilter = sourceFilters.indexOf('latest') >-1  ? '' : 'disabled';
-    const popularFilter = sourceFilters.indexOf('popular') >-1  ? '' : 'disabled';
+    const topFilter = sourceFilters.indexOf('top') > -1 ? '' : 'disabled disableClick';
+    const latestFilter = sourceFilters.indexOf('latest') > -1 ? '' : 'disabled disableClick';
+    const popularFilter = sourceFilters.indexOf('popular') > -1 ? '' : 'disabled disableClick';
 
     // iterate through category object
     const categoryComponent = this.category.map(categoryItem =>

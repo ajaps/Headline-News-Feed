@@ -1,16 +1,21 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Header from '../../component/Header';
 
 describe('Header', () => {
   let app;
   beforeEach(() => {
-    app = shallow(<Header/>);
+    const allLanguages = [{ ig: 'Igbo', yr: 'Yoruba' }];
+    app = shallow(<Header allLanguage={allLanguages}/>);
   });
 
   it('renders without crashing', () => {
-    mount(<Header/>);
+    const allLanguages = [{ ig: 'Igbo', yr: 'Yoruba' }];
+    mount(<Header allLanguage={ allLanguages } />);
+  });
+
+  it('function', () => {
+    app.instance().setLanguage();
   });
 
   it('contains English language clickable element', () => {
@@ -29,12 +34,18 @@ describe('Header', () => {
     expect(app.exists(<li>Logout</li>)).toBe(true);
   });
 
-  it('recieves three(2) props', () => {
+  it('recieves Two(2) props', () => {
     expect(Object.keys(app.props()).length).toBe(2);
   });
 });
 
 /*
+  expect(checkbox.text()).toEqual('Off');
+
+  checkbox.find('input').simulate('change');
+
+  expect(checkbox.text()).toEqual('On');
+});
 
 const wrapper = shallow(<Foo />);
 

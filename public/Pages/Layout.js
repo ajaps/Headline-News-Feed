@@ -13,33 +13,20 @@ import Spinner from 'react-spinner';
 import Dashboard from './Dashboard';
 import Login from './Login';
 
-/*
-const config = {
+
+firebase.initializeApp({
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
   databaseURL: process.env.DATABASE_URL,
   projectId: process.env.PROJECT_ID,
   storageBucket: process.env.STORAGE_BUCKET,
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
-};
-
-firebase.initializeApp({ config });
-*/
-firebase.initializeApp({
-  apiKey: 'AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ',
-  authDomain: 'headlines-rss-feed.firebaseapp.com',
-  databaseURL: 'https://headlines-rss-feed.firebaseio.com',
-  projectId: 'headlines-rss-feed',
-  storageBucket: 'headlines-rss-feed.appspot.com',
-  messagingSenderId: '843843623432',
 });
-
 
 export default class Layout extends React.Component {
   constructor() {
     super();
     this.state = { url: '/Dasboard' };
-    console.log(process.env.STORAGE_BUCKET)
   }
 
   componentDidMount() {
@@ -89,12 +76,3 @@ export default class Layout extends React.Component {
     );
   }
 }
-
-
-/*
-
-          <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> : <Login />} >
-           <Route path="/Login" component={() => user ? <Redirect to="/Dashboard" /> : <Login logInFirebase={this.signIn.bind(this)} />} />
-           <Route path="/Dashboard:/sourceid" component={() => user ? <Dashboard changeUrl={this.changeUrl.bind(this)} logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
-          </Route>
-          */
