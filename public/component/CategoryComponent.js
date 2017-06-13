@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import SourcesStore from '../stores/Sources';
 import * as myActions from '../actions/HeadlineActions';
@@ -30,3 +31,12 @@ export default class CategoryComponent extends React.Component {
     );
   }
 }
+
+CategoryComponent.propTypes = {
+  name: PropTypes.string.isRequired,
+};
+
+CategoryComponent.defaultProps = {
+  name: '',
+};
+

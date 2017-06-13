@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
   entry: './app.js',
   output: { path: path.join(__dirname, 'public'), filename: 'bundle.js' },
-  watch: true,
+  watch: false,
   module: {
     loaders: [
       {

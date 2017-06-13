@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --coverage",
     "babel": "babel",
-    "webpack": "webpack",
-    "start": "node index.js"
+    "build": "webpack",
+    "start": "npm run build && node index.js"
   },
   "author": "Ajaps Franklin",
   "license": "ISC",

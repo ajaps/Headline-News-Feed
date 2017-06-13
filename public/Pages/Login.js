@@ -7,6 +7,7 @@ import Footer from '../component/Footer';
 export default class Login extends React.Component {
 
   signIn() {
+    console.log(this.props);
     this.props.logInFirebase();
   }
 
@@ -45,7 +46,7 @@ export default class Login extends React.Component {
             <span className="glyphicon glyphicon-chevron-right" />
           </a>
         </div>
-        <p><button onClick={this.signIn.bind(this)} href="login" className="loginBtn loginBtn--google">Login with Google</button></p>
+        <p><button onClick={this.signIn.bind(this)} ref={'button'} href="login" className="loginBtn loginBtn--google">Login with Google</button></p>
         <Footer />
       </div>
     );

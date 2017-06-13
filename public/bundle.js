@@ -15654,6 +15654,7 @@ var Login = function (_React$Component) {
   _createClass(Login, [{
     key: 'signIn',
     value: function signIn() {
+      console.log(this.props);
       this.props.logInFirebase();
     }
   }, {
@@ -15735,7 +15736,7 @@ exports.default = Login;
 
 
 Login.propTypes = {
-  logInFirebase: _propTypes2.default.func.isRequired
+  logInFirebase: _propTypes2.default.func
 };
 
 /***/ }),
@@ -15891,6 +15892,10 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(8);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Sources = __webpack_require__(49);
 
 var _Sources2 = _interopRequireDefault(_Sources);
@@ -15958,6 +15963,15 @@ var CategoryComponent = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = CategoryComponent;
+
+
+CategoryComponent.propTypes = {
+  name: _propTypes2.default.string.isRequired
+};
+
+CategoryComponent.defaultProps = {
+  name: ''
+};
 
 /***/ }),
 /* 136 */

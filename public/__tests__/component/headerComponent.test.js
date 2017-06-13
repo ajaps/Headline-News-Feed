@@ -5,29 +5,25 @@ import Header from '../../component/Header';
 describe('Header', () => {
   let app;
   beforeEach(() => {
-    const allLanguages = [{ ig: 'Igbo', yr: 'Yoruba' }];
-    app = shallow(<Header allLanguage={allLanguages}/>);
+    const allLanguages = [{ key: 'ig', text: 'Igbo' }, { key: 'yr', text: 'Yoruba' }];
+    app = shallow(<Header allLanguage={allLanguages} setLan={() => 'y' } />);
   });
 
   it('renders without crashing', () => {
     const allLanguages = [{ ig: 'Igbo', yr: 'Yoruba' }];
-    mount(<Header allLanguage={ allLanguages } />);
+    shallow(<Header key ={allLanguages.key}allLanguage={ allLanguages } />);
   });
 
-  it('function', () => {
+  it('is a function', () => {
     app.instance().setLanguage();
   });
 
-  it('contains English language clickable element', () => {
-    expect(app.exists(<li>English</li>)).toBe(true);
+  it('contains Igbo language clickable element', () => {
+    expect(app.exists(<li>Igbo</li>)).toBe(true);
   });
 
-  it('contains Germany language clickable element', () => {
-    expect(app.exists(<li>German</li>)).toBe(true);
-  });
-
-  it('contains French language clickable element', () => {
-    expect(app.exists(<li>French</li>)).toBe(true);
+  it('contains Yoruba language clickable element', () => {
+    expect(app.exists(<li>Yoruba</li>)).toBe(true);
   });
 
   it('contains Logout clickable element', () => {
@@ -38,23 +34,3 @@ describe('Header', () => {
     expect(Object.keys(app.props()).length).toBe(2);
   });
 });
-
-/*
-  expect(checkbox.text()).toEqual('Off');
-
-  checkbox.find('input').simulate('change');
-
-  expect(checkbox.text()).toEqual('On');
-});
-
-const wrapper = shallow(<Foo />);
-
-expect(wrapper.find('.clicks-0').length).to.equal(1);
-wrapper.find('a').simulate('click');
-expect(wrapper.find('.clicks-1').length).to.equal(1);
-
-it('contains ', () => {
-    app.find('English').simulate('click');
-    expect(app.find('English').length).to.equal(1);
-  });
-*/
