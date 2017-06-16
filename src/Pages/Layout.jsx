@@ -88,7 +88,7 @@ export default class Layout extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
-              <Login />} />
+              <Login logInFirebase={this.signIn.bind(this)} />} />
 
             <Route path="/Login" component={() => user ? <Redirect to="/Dashboard" /> :
               <Login logInFirebase={this.signIn.bind(this)} />} />
