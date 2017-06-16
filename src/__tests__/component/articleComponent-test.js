@@ -30,8 +30,6 @@ describe('Category', () => {
   });
 
   it('should have text according to the object passed', () => {
-    const result = 'I\'m the best Franklin is the best at programming...' +
-    ' Ajaps Franklin June 6,   2018   22:20:41 ';
-    expect(app.text()).toContain(result.toString());
+    expect(app.text()).toContain('Franklin is the best at programming...');
   });
 });
