@@ -71,6 +71,9 @@ export default class Layout extends React.Component {
    */
   signInToApp() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      hd: 'herokuapp.com'
+    });
     firebase.auth().signInWithPopup(provider).then((result) => {
     }).catch((error) => {
       alert(error.message);
