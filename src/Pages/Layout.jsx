@@ -41,6 +41,7 @@ export default class Layout extends React.Component {
     console.log('API_KEY', process.envAPI_KEY);
     console.log('AUTH_DOMAIN', process.env.AUTH_DOMAIN);
     console.log('PROJECT_ID', process.env.PROJECT_ID);
+    console.log('127.0.0.1');
   }
 
   /**
