@@ -1,23 +1,18 @@
 {
   "name": "headlines",
   "version": "1.0.0",
-  "description": "An App tht allows users view headlines from different news sources and link to the original artices on those sources",
+  "description": "An App that allows users view headlines from different news sources and link to the original artices on those sources",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
     "babel": "babel",
     "build": "webpack",
-    "start": "npm run build && node index.js"
+    "start": "npm run build && node index.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "author": "Ajaps Franklin",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-jest": "^20.0.3",
-    "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.5.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
@@ -26,12 +21,17 @@
     "eslint-plugin-react": "^7.0.1",
     "extract-text-webpack-plugin": "^2.1.2",
     "jest": "^20.0.4",
-    "react-test-renderer": "^15.5.4",
-    "webpack": "^2.6.1"
+    "react-test-renderer": "^15.5.4"
   },
   "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "coveralls": "^2.13.1",
     "css-loader": "^0.28.4",
-    "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.0",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
@@ -54,6 +54,7 @@
     "sass-loader": "^6.0.5",
     "sinon": "^2.3.4",
     "style-loader": "^0.18.2",
-    "url-loader": "^0.5.8"
+    "url-loader": "^0.5.8",
+    "webpack": "^2.6.1"
   }
 }
