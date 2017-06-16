@@ -3,7 +3,8 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import ArticleComponent from '../../component/ArticleComponent.jsx';
 
-const result = 'I\'m the best Franklin is the best at programming... Ajaps Franklin June 6,   2018   22:20:41 ';
+const result = 'I\'m the best Franklin is the best at programming...' +
+  'Ajaps Franklin June 6,   2018   22:20:41 ';
 describe('Category', () => {
   let app;
   const articleObject =
