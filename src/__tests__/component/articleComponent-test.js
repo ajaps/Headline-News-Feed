@@ -23,6 +23,7 @@ describe('Category', () => {
   // });
 
   it('should have extacly one anchor element', () => {
+    app = shallow(<ArticleComponent key={articleObject.url}{...articleObject}/>);
     expect(app.find('a').length).toEqual(1);
   });
 
