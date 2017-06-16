@@ -4,7 +4,7 @@
   "description": "An App tht allows users view headlines from different news sources and link to the original artices on those sources",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage - --u",
     "babel": "babel",
     "build": "webpack",
     "start": "npm run build && node index.js"
