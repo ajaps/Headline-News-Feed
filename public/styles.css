@@ -9,6 +9,9 @@ body {
 a {
   cursor: pointer; }
 
+.thumbnail {
+  min-height: 33.5vw; }
+
 p.title {
   font-size: 1vw;
   font-weight: bold; }
