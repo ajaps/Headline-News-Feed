@@ -18,5 +18,6 @@ exports[`404 page should render as expected 1`] = `
       Go to Home Page
     </a>
   </h5>
+  <Footer />
 </div>
 `;
