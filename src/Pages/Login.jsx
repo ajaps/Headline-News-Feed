@@ -17,8 +17,6 @@ export default class Login extends React.Component {
    * @return {void}
    */
   signIn() {
-    console.log('loginCalled')
-    console.log('login',this.props)
     this.props.logInFirebase();
   }
 
