@@ -5,4 +5,5 @@ debug.log
 poof
 bootstrap Style
 .env
-coverage/
+bundle.js
+coverage
