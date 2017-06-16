@@ -1,6 +1,8 @@
-const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+
 
 module.exports = {
   entry: './src/app.js',
@@ -42,5 +44,16 @@ module.exports = {
       safe: false,
     }),
     new ExtractTextPlugin('styles.css'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        API_KEY: JSON.stringify(process.env.API_KEY),
+        AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
+        DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
+        PROJECT_ID: JSON.stringify(process.env.PROJECT_ID),
+        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
+        MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID),
+        NEWS_API_KEY: JSON.stringify(process.env.NEWS_API_KEY)
+      }
+    }),
   ]
 };
