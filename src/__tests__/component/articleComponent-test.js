@@ -25,7 +25,7 @@ describe('Category', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should have extacly one anchor element', () => {
+  it('should have  extacly one anchor element', () => {
     expect(app.find('a').length).toEqual(1);
   });
 
