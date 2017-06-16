@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/framky007/Headlines.svg?branch=master)](https://travis-ci.org/framky007/Headlines) 
-
+[![Coverage Status](https://coveralls.io/repos/github/framky007/Headlines/badge.svg?branch=master)](https://coveralls.io/github/framky007/Headlines?branch=master)
 ----
 ## Description
 
