@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render as expected 1`] = `
+<footer>
+  Headline News App (c) 2017 
+</footer>
+`;

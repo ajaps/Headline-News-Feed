@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category should render as expected 1`] = `
+<div
+  className="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+>
+  <a
+    href="https://thenextweb.com/insider/2017/06/14/pornhub-piss-off-entire-internet-net-neutrality-protest/"
+    rel="noopener noreferrer"
+    target="_Blank"
+  >
+    <div
+      className="thumbnail well text-center"
+    >
+      <img
+        alt="..."
+        src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2017/01/pornhub-logo.jpg"
+      />
+      <div
+        className="caption"
+      >
+        <p
+          className="title"
+        >
+          I'm the best
+           
+        </p>
+        <p
+          className="description"
+        >
+          Franklin is the best at programming...
+           
+        </p>
+        <p
+          className="author"
+        >
+          Ajaps Franklin
+           
+        </p>
+        <p
+          className="publishedAt"
+        >
+          June 6,   2018   22:20:41
+           
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+`;
