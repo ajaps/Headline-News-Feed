@@ -38,12 +38,6 @@ export default class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.state = { url: '/Dasboard' };
-    this.api = process.env.API_KEY;
-    console.log('API_KEY', process.env.API_KEY);
-    console.log('API_KEY', this.api);
-    console.log('AUTH_DOMAIN', process.env.AUTH_DOMAIN);
-    console.log('PROJECT_ID', process.env.PROJECT_ID);
-    console.log('127.0.0.1');
   }
 
 
