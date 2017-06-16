@@ -46,6 +46,7 @@ export default class Layout extends React.Component {
     console.log('127.0.0.1');
   }
 
+
   /**
    * checks if user is authenticated at component mount
    * @return {void}
