@@ -8,8 +8,6 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import Spinner from 'react-spinner';
-
 import Dashboard from './Dashboard.jsx';
 import Login from './Login.jsx';
 import Page404 from './Page404.jsx';
@@ -84,7 +82,7 @@ export default class Layout extends React.Component {
     const { user } = this.state;
     return (
       user === undefined ?
-        <Spinner /> :
+        <h1 /> :
         <Router>
           <Switch>
             <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
