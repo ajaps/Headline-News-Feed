@@ -8,12 +8,17 @@ import Footer from '../component/Footer.jsx';
  * Represents a component Login/Home page.
  */
 export default class Login extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
 /**
    * Initiates login process
    * @return {void}
    */
   signIn() {
+    console.log('loginCalled')
+    console.log('login',this.props)
     this.props.logInFirebase();
   }
 

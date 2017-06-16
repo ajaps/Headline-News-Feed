@@ -69,7 +69,7 @@ export default class Layout extends React.Component {
    * Signs in into firebase/Application
    * @return {void}
    */
-  signIn() {
+  signInToApp() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) => {
     }).catch((error) => {
@@ -89,10 +89,10 @@ export default class Layout extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
-              <Login />} />
+              <Login logInFirebase={this.signInToApp.bind(this)}/>} />
 
             <Route path="/Login" component={() => user ? <Redirect to="/Dashboard" /> :
-              <Login logInFirebase={this.signIn.bind(this)} />} />
+              <Login logInFirebase={this.signInToApp.bind(this)} />} />
 
             <Route path="/Dashboard" component={() => user ? <Dashboard
               logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />

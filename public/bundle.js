@@ -15152,12 +15152,6 @@ var Layout = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
     _this.state = { url: '/Dasboard' };
-    _this.api = "AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ";
-    console.log('API_KEY', "AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ");
-    console.log('API_KEY', _this.api);
-    console.log('AUTH_DOMAIN', "headlines-rss-feed.firebaseapp.com");
-    console.log('PROJECT_ID', "headlines-rss-feed");
-    console.log('127.0.0.1');
     return _this;
   }
 
@@ -15606,20 +15600,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Login = function (_React$Component) {
   _inherits(Login, _React$Component);
 
-  function Login() {
+  function Login(props) {
     _classCallCheck(this, Login);
 
-    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
   }
+
+  /**
+     * Initiates login process
+     * @return {void}
+     */
+
 
   _createClass(Login, [{
     key: 'signIn',
-
-
-    /**
-       * Initiates login process
-       * @return {void}
-       */
     value: function signIn() {
       this.props.logInFirebase();
     }
