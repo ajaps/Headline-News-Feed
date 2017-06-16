@@ -15124,7 +15124,7 @@ module.exports = getIteratorFn;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -15195,9 +15195,10 @@ var Layout = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
     _this.state = { url: '/Dasboard' };
-    console.log('API_KEY', process.envAPI_KEY);
+    console.log('API_KEY', "AIzaSyA57rAcrALqud4s5iR5tHj3W1dIhqGQuDQ");
     console.log('AUTH_DOMAIN', "headlines-rss-feed.firebaseapp.com");
     console.log('PROJECT_ID', "headlines-rss-feed");
+    console.log('127.0.0.1');
     return _this;
   }
 
@@ -15290,7 +15291,6 @@ var Layout = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Layout;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 128 */
