@@ -3,8 +3,7 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import ArticleComponent from '../../component/ArticleComponent.jsx';
 
-const result = 'I\'m the best Franklin is the best at programming...' +
-  'Ajaps Franklin June 6,   2018   22:20:41 ';
+
 describe('Category', () => {
   let app;
   const articleObject =
@@ -17,18 +16,22 @@ describe('Category', () => {
       publishedAt: "2018-06-06T21:20:41Z"
     };
 
-  // it('should render as expected', () => {
-  //   app = shallow(<ArticleComponent key={articleObject.url}{...articleObject}/>);
-  //   const tree = toJson(app);
-  //   expect(tree).toMatchSnapshot();
-  // });
+  beforeEach(() => {
+    app = shallow(<ArticleComponent key={articleObject.url}{...articleObject}/>);
+  });
+
+  it('should render as expected', () => {
+    const tree = toJson(app);
+    expect(tree).toMatchSnapshot();
+  });
 
   it('should have extacly one anchor element', () => {
-    app = shallow(<ArticleComponent key={articleObject.url}{...articleObject}/>);
     expect(app.find('a').length).toEqual(1);
   });
 
-  // it('should have text according to the object passed ', () => {
-  //   expect(result).toBe(app.text());
-  // });
+  it('should have text according to the object passed', () => {
+    const result = 'I\'m the best Franklin is the best at programming...' +
+    ' Ajaps Franklin June 6,   2018   22:20:41 ';
+    expect(app.text()).toContain(result.toString());
+  });
 });
