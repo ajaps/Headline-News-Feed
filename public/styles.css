@@ -6,6 +6,10 @@
 body {
   overflow: auto; }
 
+.loadingBar {
+  margin-left: 40%;
+  margin-top: 15%; }
+
 a {
   cursor: pointer; }
 

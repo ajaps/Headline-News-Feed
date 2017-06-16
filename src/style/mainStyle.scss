@@ -14,6 +14,8 @@ $color_mojo_approx: #bb3f30;
 $color_cinnabar_approx: #e74b37;
 $black_10: rgba(0,0,0,0.1);
 
+
+
 //fonts
 $font_0: "Roboto";
 $font_1: "Roboto";
@@ -39,6 +41,13 @@ $url_2: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png"
 body {
 	overflow: auto;
 }
+
+//loading bar
+.loadingBar {
+  margin-left: 40%;
+  margin-top: 15%;
+}
+
 a {
 	cursor: pointer;
 }

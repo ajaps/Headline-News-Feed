@@ -8,7 +8,8 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import Spinner from 'react-spinner';
+
+import LoadingBar from '../component/LoadingBar';
 
 import Dashboard from './Dashboard.jsx';
 import Login from './Login.jsx';
@@ -76,6 +77,7 @@ export default class Layout extends React.Component {
     });
   }
 
+
   /**
    * return component based on current authentication state
    * @return {ReactElement} returns react element under different authentication state
@@ -84,7 +86,7 @@ export default class Layout extends React.Component {
     const { user } = this.state;
     return (
       user === undefined ?
-        <Spinner /> :
+        <LoadingBar /> :
         <Router>
           <Switch>
             <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
