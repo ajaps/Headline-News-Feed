@@ -1,7 +1,7 @@
 {
   "name": "headlines",
   "version": "1.0.0",
-  "description": "An App tht allows users view headlines from different news sources and link to the original artices on those sources",
+  "description": "An App that allows users view headlines from different news sources and link to the original artices on those sources",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
@@ -20,7 +20,8 @@
     "eslint-plugin-react": "^7.0.1",
     "extract-text-webpack-plugin": "^2.1.2",
     "jest": "^20.0.4",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.5.4",
+    "dotenv": "^4.0.0"
   },
   "dependencies": {
     "babel-jest": "^20.0.3",
@@ -30,7 +31,6 @@
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
     "css-loader": "^0.28.4",
-    "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.0",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
