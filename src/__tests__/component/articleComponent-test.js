@@ -26,7 +26,7 @@ describe('Category', () => {
     expect(app.find('a').length).toEqual(1);
   });
 
-  it('should have text according to the object passed', () => {
-    expect(app.text()).toBe('I\'m the best Franklin is the best at programming... Ajaps Franklin June 6,   2018   22:20:41 ');
+  it('should have text according to the object passed ', () => {
+    expect(result).toBe(app.text());
   });
 });
