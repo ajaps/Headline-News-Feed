@@ -18,7 +18,7 @@ class AllArticle extends EventEmitter {
       sortBy: 'top',
       source: 'all',
       URL_ARTICLES: 'https://newsapi.org/v1/articles',
-      API_KEY: process.env.NEWS_API_KEY,
+      API_KEY: '213327409d384371851777e7c7f78dfe',
     };
     this.status = 'ok';
     this.sortAvailable = ['unavailable'];
