@@ -36,9 +36,12 @@ class AllSources extends EventEmitter {
       { id: 'technology', name: 'Technology' },
     ];
 
+    // Selected category on each click
+    this.selectedCategory = ['all'];
+
     // All Available language for the application
     this.ALL_LANGUAGES = [
-      { key: 'en', text: 'Englsih' },
+      { key: 'en', text: 'English' },
       { key: 'de', text: 'German' },
       { key: 'fr', text: 'French' },
     ];
@@ -69,6 +72,14 @@ class AllSources extends EventEmitter {
   }
 
   /**
+   * returns current selected category
+   * @return {string} contains source url required to fetch data from API
+   */
+  getCurrentCat() {
+    return this.selectedCategory;
+  }
+
+  /**
    * handles to specified action type
    * @param {Object} action - the action type and text - Sources
    * @return {void}
@@ -84,6 +95,7 @@ class AllSources extends EventEmitter {
         this.getSourceUrl.category = action.text;
         this.sources = action.sources;
         this.status = action.response;
+        this.selectedCategory[0] = action.text;
         this.emit('sourceChange');
         break;
       case 'SET_LANGUAGE':

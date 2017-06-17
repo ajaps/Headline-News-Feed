@@ -44,6 +44,8 @@ export default class Dashboard extends React.Component {
       searchTerm: '',
       url: SourcesStore.getUrl(),
       language: SourcesStore.getSourceUrl.language,
+      CurrentCat: SourcesStore.getCurrentCat(),
+      highlightedText: ArticleStore.getHighlightText(),
     };
   }
 
@@ -75,7 +77,8 @@ export default class Dashboard extends React.Component {
   }
 
   /**
-   * sets the state of the component to store values and sends the first source id to generate articles on first load
+   * sets the state of the component to store values and sends the
+   * first source id to generate articles on first load
    * @return {void}
    */
   setSources() {
@@ -129,6 +132,8 @@ export default class Dashboard extends React.Component {
  * @returns {ReactElement} User dashboard Page.
  */
   render() {
+    const katigory = this.state.CurrentCat;
+    const sourceToHigh = this.state.highlightedText;
     const { article, sources } = this.state;
 
     // iterate through article object
@@ -139,25 +144,26 @@ export default class Dashboard extends React.Component {
     const sourcesComponents = sources.map((sourcesItem) => {
       const reg = RegExp(this.state.searchTerm, 'gi');
       if (sourcesItem.name.search(reg) !== -1) {
-        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} />;
+        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} sourceHigh={sourceToHigh}/>;
       }
     });
 
     // Gets all the available languages and sends to header component
     const allLanguages = SourcesStore.getAllLanguages();
 
+
     return (
       <div>
         <Header allLanguage={allLanguages} logout={this.logout} url={this.state.url.language}
           setLan={this.setLanguage}/>
-        <Navbar sortFilter={this.state.sortFilter} />
+        <Navbar sortFilter={this.state.sortFilter} category={katigory} />
         <div className="row">
           <div className="col-sm-3 col-md-2 sidebar well">
-            <h3> All Sources </h3>
+            <h3> News Sources </h3>
             <input type="text" className="form-control" placeholder="Search Sources..."
               onChange={this.searchSource} />
             <ul className="nav nav-sidebar Source-Container">
-              <li className="active"><h4><span className="sr-only">
+              <li><h4><span className="sr-only">
                   (current)</span></h4></li>
               {sourcesComponents}
             </ul>

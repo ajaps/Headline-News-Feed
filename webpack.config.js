@@ -43,6 +43,8 @@ module.exports = {
       path: '.env',
       safe: false,
     }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin('styles.css'),
     new webpack.DefinePlugin({
       'process.env': {

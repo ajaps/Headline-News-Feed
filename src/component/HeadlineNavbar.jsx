@@ -41,7 +41,7 @@ export default class Navbar extends React.Component {
 
     // iterate through category object
     const categoryComponent = this.category.map(categoryItem =>
-      <CategoryComponent key={categoryItem.id}{...categoryItem} />);
+      <CategoryComponent key={categoryItem.id}{...categoryItem} category={this.props.category}/>);
 
     return (
       <div className=" container navbar2">

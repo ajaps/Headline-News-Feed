@@ -22,7 +22,7 @@ class AllArticle extends EventEmitter {
     };
     this.status = 'ok';
     this.sortAvailable = ['unavailable'];
-
+    this.highlightSource = ['all'];
     this.article = [];
   }
 
@@ -43,6 +43,14 @@ class AllArticle extends EventEmitter {
   }
 
   /**
+   * returns the id of the selected source
+   * @return {array} contains the id in an array
+   */
+  getHighlightText() {
+    return this.highlightSource;
+  }
+
+  /**
    * handles to specified action type
    * @param {Object} action - the action type and text - Articles
    * @return {void}
@@ -54,6 +62,7 @@ class AllArticle extends EventEmitter {
         this.sortAvailable = action.sort;
         this.status = action.response;
         this.article = action.articles;
+        this.highlightSource[0] = action.text;
         this.emit('articleChange');
         break;
       case 'SET_SORTBY':

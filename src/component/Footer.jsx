@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
  */
   render() {
     return (
-    <footer>Headline News App (c) 2017 </footer>
+    <footer className="footer">Headline News App (c) 2017 </footer>
     );
   }
 }
