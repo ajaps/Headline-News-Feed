@@ -18,11 +18,11 @@ class AllArticle extends EventEmitter {
       sortBy: 'top',
       source: 'all',
       URL_ARTICLES: 'https://newsapi.org/v1/articles',
-      API_KEY: '213327409d384371851777e7c7f78dfe',
+      API_KEY: process.env.NEWS_API_KEY,
     };
     this.status = 'ok';
-    this.sortAvailable = ['unavailable'];
-
+    this.sortAvailable = ['top'];
+    this.highlightSource = ['all'];
     this.article = [];
   }
 
@@ -43,6 +43,14 @@ class AllArticle extends EventEmitter {
   }
 
   /**
+   * returns the id of the selected source
+   * @return {array} contains the id in an array
+   */
+  getHighlightText() {
+    return this.highlightSource;
+  }
+
+  /**
    * handles to specified action type
    * @param {Object} action - the action type and text - Articles
    * @return {void}
@@ -54,6 +62,7 @@ class AllArticle extends EventEmitter {
         this.sortAvailable = action.sort;
         this.status = action.response;
         this.article = action.articles;
+        this.highlightSource[0] = action.text;
         this.emit('articleChange');
         break;
       case 'SET_SORTBY':

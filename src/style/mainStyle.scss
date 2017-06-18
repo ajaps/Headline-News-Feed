@@ -21,7 +21,7 @@ $font_2: "arial";
 $font_3: "sans-serif";
 
 //urls
-$url_0: url("../img/news_icon.jpg");
+$url_0: url("../img/news_testa.jpg");
 $url_1: url("../img/news.jpg");
 $url_2: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png");
 
@@ -42,11 +42,26 @@ body {
 a {
 	cursor: pointer;
 }
-
+.loginHeader{
+  font: $font_0;
+  font-size: 5vw;
+  text-align: center;
+  color: blue;
+}
 .thumbnail {
 	min-height: 33.5vw;
 }
-
+.catHighlight{
+  border-bottom: solid lightgreen 3px;
+}
+.sourceBorder{
+  border: solid black 1px;
+  background: lightgoldenrodyellow;
+  border-radius: 1vw;
+}
+.caroselTitle{
+  color: gold;
+}
 p {
 	&.title {
 		font-size: 1vw;
@@ -78,6 +93,25 @@ p {
 }
 #logoutBtn {
 	color: $red;
+}
+.page404{
+  text-align: center;
+}
+.p404Header{
+  font-size: 10vw;
+  color: $red;
+  margin-top: 10vw;
+}
+.p404Body{
+  margin: 5vw;
+  font: $font_2;
+}
+.p404Link{
+  font-size: 5vw;
+  margin-bottom: 5vw; 
+}
+.footer{
+  text-align: left;
 }
 .nav-justified {
 	background-color: $color_gallery_approx;
@@ -199,8 +233,7 @@ p {
 	//Instead of the line below you could use @include box-sizing($bs)
 	box-sizing: border-box;
 	position: relative;
-	margin: 0.2em;
-	margin-top: 5em;
+	margin-top: 1em;
 	margin-left: 33em;
 	padding: 0 15px 0 46px;
 	border: none;

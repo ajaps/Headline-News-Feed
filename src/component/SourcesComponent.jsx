@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import * as myActions from '../actions/HeadlineActions';
 import ArticleStore from '../stores/Article';
@@ -22,8 +23,14 @@ export default class SourcesComponent extends React.Component {
  * @returns {component} A component with relevant source.
  */
   render() {
+    // sets class name based on user source selection
+    const btnClass = classNames({
+      sourceBorder: this.props.sourceHigh[0] === this.props.id,
+      'sr-only': 'sr-only'
+    });
+
     return (
-      <li>
+      <li className={btnClass} >
         <a onClick={this.setSources.bind(this, this.props.id, this.props.sortBysAvailable)}>
           {this.props.name}
         </a>

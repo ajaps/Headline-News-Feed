@@ -9,8 +9,24 @@ body {
 a {
   cursor: pointer; }
 
+.loginHeader {
+  font: "Roboto";
+  font-size: 5vw;
+  text-align: center;
+  color: blue; }
+
 .thumbnail {
   min-height: 33.5vw; }
+
+.catHighlight {
+  border-bottom: solid lightgreen 3px; }
+
+.sourceBorder {
+  border: solid black 1px;
+  background: lightgoldenrodyellow; }
+
+.caroselTitle {
+  color: gold; }
 
 p.title {
   font-size: 1vw;
@@ -41,6 +57,25 @@ p.publishedAt {
 
 #logoutBtn {
   color: red; }
+
+.page404 {
+  text-align: center; }
+
+.p404Header {
+  font-size: 10vw;
+  color: red;
+  margin-top: 10vw; }
+
+.p404Body {
+  margin: 5vw;
+  font: "arial"; }
+
+.p404Link {
+  font-size: 5vw;
+  margin-bottom: 5vw; }
+
+.footer {
+  text-align: left; }
 
 .nav-justified {
   background-color: #eee;
@@ -103,7 +138,7 @@ p.publishedAt {
   color: green; }
 
 .slide1 {
-  background-image: url(f76f0e83857be45c456aca2300aafe20.jpg);
+  background-image: url(6d20af80bf782a4946baf6fd096387c8.jpg);
   height: 450px;
   background-repeat: no-repeat;
   background-position: center;
@@ -130,8 +165,7 @@ p.publishedAt {
 .loginBtn {
   box-sizing: border-box;
   position: relative;
-  margin: 0.2em;
-  margin-top: 5em;
+  margin-top: 1em;
   margin-left: 33em;
   padding: 0 15px 0 46px;
   border: none;

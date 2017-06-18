@@ -10,20 +10,24 @@ import Footer from '../component/Footer.jsx';
 export default class Login extends React.Component {
 
 /**
-   * Initiates login process
-   * @return {void}
-   */
-  signIn() {
-    this.props.logInFirebase();
+ * Initiates login process
+ * @param {string} signInMethod - sign in provider name
+ * @return {void}
+ */
+  signIn(signInMethod) {
+    this.props.logInFirebase(signInMethod);
   }
 
 /**
-   * return component that displays home/login page
-   * @return {ReactElement} Markup
-   */
+ * return component that displays home/login page
+ * @return {ReactElement} Markup
+ */
   render() {
     return (
       <div>
+        <div>
+          <h1 className="loginHeader">Headline News</h1>
+        </div>
         <div id="theCarousel" className="carousel slide" data-ride="carousel">
 
           <ol className="carousel-indicators">
@@ -36,7 +40,7 @@ export default class Login extends React.Component {
 
               <div className="slide1" />
               <div className="carousel-caption">
-                <h1>Get News Headline for free</h1>
+                <h1 className="caroselTitle">Get News Headline for free</h1>
               </div>
             </div>
 
@@ -44,7 +48,7 @@ export default class Login extends React.Component {
             <div className="item">
               <div className="slide2" />
               <div className="carousel-caption">
-                <h1>Get Live Headlines</h1>
+                <h1 className="caroselTitle">Get Live Headlines</h1>
               </div>
             </div>
           </div>
@@ -56,8 +60,10 @@ export default class Login extends React.Component {
             <span className="glyphicon glyphicon-chevron-right" />
           </a>
         </div>
-        <p><button onClick={this.signIn.bind(this)} href="login"
-          className="loginBtn loginBtn--google">Login with Google</button></p>
+        <button onClick={this.signIn.bind(this, 'github')} href="login"
+          className="loginBtn btn-social btn-github"> <span className="fa fa-github" />Login with Github</button>
+        <button onClick={this.signIn.bind(this, 'google+')} href="login"
+          className="loginBtn loginBtn--google">Login with Google</button>
         <Footer />
       </div>
     );
