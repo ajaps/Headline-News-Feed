@@ -87,7 +87,7 @@ export default class Layout extends React.Component {
     const { user } = this.state;
     return (
       user === undefined ?
-        <h1 /> :
+        <h1>Loading ...........please wait</h1> :
         <Router>
           <Switch>
             <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
@@ -97,6 +97,9 @@ export default class Layout extends React.Component {
               <Login logInFirebase={this.signIn.bind(this)} />} />
 
             <Route path="/Dashboard" component={() => user ? <Dashboard
+              logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
+
+            <Route path="/Dashboard/:good" component={() => user ? <Dashboard
               logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
 
             <Route path = "/*" component={ () => <Page404 /> } />

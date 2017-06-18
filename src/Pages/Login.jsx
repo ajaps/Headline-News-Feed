@@ -10,18 +10,18 @@ import Footer from '../component/Footer.jsx';
 export default class Login extends React.Component {
 
 /**
-   * Initiates login process
-   * @param {string} signInMethod - sign in provider name
-   * @return {void}
-   */
+ * Initiates login process
+ * @param {string} signInMethod - sign in provider name
+ * @return {void}
+ */
   signIn(signInMethod) {
     this.props.logInFirebase(signInMethod);
   }
 
 /**
-   * return component that displays home/login page
-   * @return {ReactElement} Markup
-   */
+ * return component that displays home/login page
+ * @return {ReactElement} Markup
+ */
   render() {
     return (
       <div>

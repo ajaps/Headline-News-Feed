@@ -54,7 +54,8 @@ module.exports = {
         PROJECT_ID: JSON.stringify(process.env.PROJECT_ID),
         STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
         MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID),
-        NEWS_API_KEY: JSON.stringify(process.env.NEWS_API_KEY)
+        NEWS_API_KEY: JSON.stringify(process.env.NEWS_API_KEY),
+        NODE_ENV: JSON.stringify('production')
       }
     }),
   ]
