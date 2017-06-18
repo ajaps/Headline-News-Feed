@@ -24,9 +24,8 @@ export default class Header extends React.Component {
     const languageComponent = allLanguage.map((languageItem) => {
       const key = languageItem.key;
       return <li key={key}><a onClick={this.setLanguage.bind(this, languageItem.key)}>
-        {languageItem.text}</a></li>;
-    }
-    );
+      {languageItem.text}</a></li>;
+    });
 
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top">

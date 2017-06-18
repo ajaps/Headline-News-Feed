@@ -8,7 +8,7 @@
     "babel": "babel",
     "build": "webpack",
     "start": "npm run build && node index.js",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "author": "Ajaps Franklin",
   "license": "ISC",
@@ -30,6 +30,7 @@
     "babel-preset-env": "^1.5.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.5",
     "coveralls": "^2.13.1",
     "css-loader": "^0.28.4",
     "dotenv-webpack": "^1.5.0",

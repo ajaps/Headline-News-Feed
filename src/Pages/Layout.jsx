@@ -3,12 +3,9 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect,
   Switch,
 } from 'react-router-dom';
-
-import Spinner from 'react-spinner';
 
 import Dashboard from './Dashboard.jsx';
 import Login from './Login.jsx';
@@ -45,7 +42,7 @@ export default class Layout extends React.Component {
    * @return {void}
    */
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user });
     });
   }
@@ -66,10 +63,16 @@ export default class Layout extends React.Component {
 
   /**
    * Signs in into firebase/Application
+   * @param {string} signInMethod  - represents the preffered sign in provider
    * @return {void}
    */
-  signIn() {
-    const provider = new firebase.auth.GoogleAuthProvider();
+  signIn(signInMethod) {
+    let provider;
+    if (signInMethod === 'google+') {
+      provider = new firebase.auth.GoogleAuthProvider();
+    } else {
+      provider = new firebase.auth.GithubAuthProvider();
+    }
     firebase.auth().signInWithPopup(provider).then((result) => {
     }).catch((error) => {
       alert(error.message);
@@ -84,7 +87,7 @@ export default class Layout extends React.Component {
     const { user } = this.state;
     return (
       user === undefined ?
-        <Spinner /> :
+        <h1>Loading ...........please wait</h1> :
         <Router>
           <Switch>
             <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
@@ -94,6 +97,9 @@ export default class Layout extends React.Component {
               <Login logInFirebase={this.signIn.bind(this)} />} />
 
             <Route path="/Dashboard" component={() => user ? <Dashboard
+              logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
+
+            <Route path="/Dashboard/:good" component={() => user ? <Dashboard
               logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
 
             <Route path = "/*" component={ () => <Page404 /> } />
