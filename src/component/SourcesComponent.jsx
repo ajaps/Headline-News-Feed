@@ -26,7 +26,6 @@ export default class SourcesComponent extends React.Component {
     // sets class name based on user source selection
     const btnClass = classNames({
       sourceBorder: this.props.sourceHigh[0] === this.props.id,
-      'sr-only': 'sr-only'
     });
 
     return (
