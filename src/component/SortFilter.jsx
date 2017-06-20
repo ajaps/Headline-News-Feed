@@ -46,4 +46,3 @@ export default class SortFilter extends React.Component {
     );
   }
 }
-

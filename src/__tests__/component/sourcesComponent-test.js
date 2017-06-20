@@ -29,7 +29,7 @@ describe('Category', () => {
     };
 
   it('should render as expected', () => {
-    app = shallow(<SourcesComponent key={sourceObject.id}{...sourceObject}/>);
+    app = shallow(<SourcesComponent key={sourceObject.id}{...sourceObject} sourceHigh={['all']}/>);
     const tree = toJson(app);
     expect(tree).toMatchSnapshot();
   });

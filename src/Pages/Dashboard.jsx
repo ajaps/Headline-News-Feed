@@ -17,7 +17,7 @@ import * as myActions from '../actions/HeadlineActions';
 /**
  * Represents an user's Dsiplay page.
  */
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
 
 /**
  * gets sources at the first time of lauching the app
@@ -133,7 +133,7 @@ export default class Dashboard extends React.Component {
  */
   render() {
     const katigory = this.state.CurrentCat;
-    const sourceToHigh = this.state.highlightedText;
+    const sourceToHighlight = this.state.highlightedText;
     const { article, sources } = this.state;
 
     // iterate through article object
@@ -144,13 +144,11 @@ export default class Dashboard extends React.Component {
     const sourcesComponents = sources.map((sourcesItem) => {
       const reg = RegExp(this.state.searchTerm, 'gi');
       if (sourcesItem.name.search(reg) !== -1) {
-        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} sourceHigh={sourceToHigh}/>;
+        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} sourceHigh={sourceToHighlight}/>;
       }
     });
-
     // Gets all the available languages and sends to header component
     const allLanguages = SourcesStore.getAllLanguages();
-
 
     return (
       <div>
@@ -185,3 +183,5 @@ export default class Dashboard extends React.Component {
 Dashboard.propTypes = {
   logout: PropTypes.func,
 };
+
+export default Dashboard;

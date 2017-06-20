@@ -42,8 +42,8 @@ describe('Dashboard page', () => {
   });
 
   it('should have state', () => {
-    // let app = shallow(<Dashboard />);
-    //console.log(app.state);
+    // const app = shallow(<Dashboard />);
+    // app.setState(mockData);
   });
 
   // it('should render as expected', () => {

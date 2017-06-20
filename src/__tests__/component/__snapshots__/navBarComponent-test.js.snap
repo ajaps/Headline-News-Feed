@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar should render as expected 1`] = `
+<div
+  className=" container navbar2"
+>
+  <div
+    className="masthead"
+  >
+    <h3
+      className="text-muted"
+    >
+      Category
+    </h3>
+    <nav>
+      <ul
+        className="nav nav-justified"
+      >
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="all"
+          name="All"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="business"
+          name="Business"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="entertainment"
+          name="Entertainment"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="gaming"
+          name="Gaming"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="general"
+          name="General"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="music"
+          name="Music"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="politics"
+          name="Politics"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="science-and-nature"
+          name="Science"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="sport"
+          name="Sport"
+        />
+        <CategoryComponent
+          category={
+            Array [
+              Object {
+                "id": "all",
+                "name": "All",
+              },
+            ]
+          }
+          id="technology"
+          name="Technology"
+        />
+      </ul>
+    </nav>
+  </div>
+</div>
+`;
