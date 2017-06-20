@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Layout page should render as expected 1`] = `<h1 />`;
+exports[`Layout page should render as expected 1`] = `
+<h1>
+  Loading ...........please wait
+</h1>
+`;

@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/framky007/Headlines.svg?branch=master)](https://travis-ci.org/framky007/Headlines) 
 [![Coverage Status](https://coveralls.io/repos/github/framky007/Headlines/badge.svg?branch=master)](https://coveralls.io/github/framky007/Headlines?branch=master)
+[![Code Climate](https://codeclimate.com/github/framky007/Headlines?branch=master)](https://codeclimate.com/github/framky007/Headlines?branch=master)
+
 ----
 ## Description
 
@@ -78,6 +80,7 @@ If you are interested in contributing to development of News-feed-app, follow th
 - Users can only view news from only 2 languages
 - Users can only view a finite amount of artiles per news source.
 - There is no provision to view old articles.
+- The Articles currently don't have their authors' displayed because the API is returning a URl instead of a string containg the author
 
 ## FAQ
 

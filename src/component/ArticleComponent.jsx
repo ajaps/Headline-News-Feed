@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 export default class ArticleComponent extends React.Component {
 
   /**
-   * @returns {String} A function that retruns a custom date
+   * @returns {String} A function that retruns a customized date
    */
   formatDate() {
     const month = ['January', 'February', 'March',
@@ -40,7 +40,6 @@ export default class ArticleComponent extends React.Component {
             <div className="caption">
               <p className="title">{this.props.title} </p>
               <p className="description">{this.props.description} </p>
-              <p className="author">{this.props.author} </p>
               <p className="publishedAt">{getFormateDate} </p>
             </div>
           </div>
@@ -56,11 +55,9 @@ ArticleComponent.propTypes = {
   urlToImage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  author: PropTypes.string,
   publishedAt: PropTypes.string,
 };
 
 ArticleComponent.defaultProps = {
   publishedAt: 'unknown',
-  author: 'unknown',
 };

@@ -31,7 +31,7 @@ class AllSources extends EventEmitter {
       { id: 'general', name: 'General' },
       { id: 'music', name: 'Music' },
       { id: 'politics', name: 'Politics' },
-      { id: 'science', name: 'Science' },
+      { id: 'science-and-nature', name: 'Science' },
       { id: 'sport', name: 'Sport' },
       { id: 'technology', name: 'Technology' },
     ];

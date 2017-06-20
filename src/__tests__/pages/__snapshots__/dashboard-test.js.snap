@@ -7,7 +7,7 @@ exports[`Dashboard page should render as expected 1`] = `
       Array [
         Object {
           "key": "en",
-          "text": "Englsih",
+          "text": "English",
         },
         Object {
           "key": "de",
@@ -24,9 +24,21 @@ exports[`Dashboard page should render as expected 1`] = `
     url="en"
   />
   <Navbar
+    category={
+      Array [
+        "all",
+      ]
+    }
     sortFilter={
       Array [
         "unavailable",
+      ]
+    }
+  />
+  <SortFilter
+    sortFilter={
+      Array [
+        "top",
       ]
     }
   />
@@ -37,7 +49,7 @@ exports[`Dashboard page should render as expected 1`] = `
       className="col-sm-3 col-md-2 sidebar well"
     >
       <h3>
-         All Sources 
+         News Sources 
       </h3>
       <input
         className="form-control"
@@ -47,19 +59,7 @@ exports[`Dashboard page should render as expected 1`] = `
       />
       <ul
         className="nav nav-sidebar Source-Container"
-      >
-        <li
-          className="active"
-        >
-          <h4>
-            <span
-              className="sr-only"
-            >
-              (current)
-            </span>
-          </h4>
-        </li>
-      </ul>
+      />
     </div>
     <div
       className="container well articleCountainerHeight"

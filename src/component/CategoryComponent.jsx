@@ -46,4 +46,3 @@ CategoryComponent.propTypes = {
 CategoryComponent.defaultProps = {
   name: '',
 };
-

@@ -15,9 +15,9 @@ export default class Header extends React.Component {
     this.props.setLan(lang);
   }
 
-/**
- * @returns {component} A component with Header details like language and sign out functionality.
- */
+  /**
+  * @returns {component} A component with Header details like language and sign out functionality.
+  */
   render() {
     const allLanguage = this.props.allLanguage;
     // iterate through Language object
@@ -31,13 +31,6 @@ export default class Header extends React.Component {
       <nav className="navbar navbar-inverse navbar-fixed-top">
         <div className="container-fluid">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
-              data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-            </button>
             <a className="navbar-brand" href="/">Headlines RSS Feed</a>
           </div>
           <div id="navbar" className="navbar-collapse collapse">

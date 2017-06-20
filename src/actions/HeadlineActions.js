@@ -84,8 +84,8 @@ const sortBy = (url, sortValue) => {
 */
 const getArticles = (url, source, sortAvailable) => {
   // Builds the url necessary to get relevant data from API
-  url.source = source;
-  const newUrl = `${url.URL_ARTICLES}?source=${url.source}&apiKey=${url.API_KEY}`;
+  // url.source = source;
+  const newUrl = `${url.URL_ARTICLES}?source=${source}&apiKey=${url.API_KEY}`;
   // calls class with url to 'fetch' data from API
   getNewsData.getData(newUrl)
   .then((data) => {

@@ -2,6 +2,13 @@
 
 exports[`Login page should render as expected 1`] = `
 <div>
+  <div>
+    <h1
+      className="loginHeader"
+    >
+      Headline News
+    </h1>
+  </div>
   <div
     className="carousel slide"
     data-ride="carousel"
@@ -32,7 +39,9 @@ exports[`Login page should render as expected 1`] = `
         <div
           className="carousel-caption"
         >
-          <h1>
+          <h1
+            className="caroselTitle"
+          >
             Get News Headline for free
           </h1>
         </div>
@@ -46,7 +55,9 @@ exports[`Login page should render as expected 1`] = `
         <div
           className="carousel-caption"
         >
-          <h1>
+          <h1
+            className="caroselTitle"
+          >
             Get Live Headlines
           </h1>
         </div>
@@ -71,15 +82,24 @@ exports[`Login page should render as expected 1`] = `
       />
     </a>
   </div>
-  <p>
-    <button
-      className="loginBtn loginBtn--google"
-      href="login"
-      onClick={[Function]}
-    >
-      Login with Google
-    </button>
-  </p>
+  <button
+    className="loginBtn btn-social btn-github"
+    href="login"
+    onClick={[Function]}
+  >
+     
+    <span
+      className="fa fa-github"
+    />
+    Login with Github
+  </button>
+  <button
+    className="loginBtn loginBtn--google"
+    href="login"
+    onClick={[Function]}
+  >
+    Login with Google
+  </button>
   <Footer />
 </div>
 `;

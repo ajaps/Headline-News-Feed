@@ -18,8 +18,7 @@ describe('Login page', () => {
     expect(app.find('Login with Google')).toBeTruthy();
   });
 
-  it('should have a login button', () => {
-    app.find('button').simulate('click');
-    expect(app).toBeTruthy();
+  it('should contian two buttons', () => {
+    expect(app.find('button').length).toBe(2);
   });
 });

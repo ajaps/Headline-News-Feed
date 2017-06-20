@@ -61,7 +61,8 @@ export default class Login extends React.Component {
           </a>
         </div>
         <button onClick={this.signIn.bind(this, 'github')} href="login"
-          className="loginBtn btn-social btn-github"> <span className="fa fa-github" />Login with Github</button>
+          className="loginBtn btn-social btn-github"> <span className="fa fa-github" />
+          Login with Github</button>
         <button onClick={this.signIn.bind(this, 'google+')} href="login"
           className="loginBtn loginBtn--google">Login with Google</button>
         <Footer />

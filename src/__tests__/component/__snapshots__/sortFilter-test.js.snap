@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category should render as expected 1`] = `
+<div
+  className=" container navbar2"
+>
+  <div
+    className="masthead"
+  >
+    <li
+      className="dropdown sortByFeature"
+    >
+      <a
+        aria-expanded="true"
+        aria-haspopup="true"
+        className="dropdown-toggle"
+        data-toggle="dropdown"
+        role="button"
+      >
+         Sort Articles By 
+        <span
+          className="caret"
+        />
+      </a>
+      <ul
+        className="dropdown-menu"
+      >
+        <li
+          className=""
+        >
+          <a
+            onClick={[Function]}
+          >
+            Top
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            onClick={[Function]}
+          >
+            Latest
+          </a>
+        </li>
+        <li
+          className="disabled disableClick"
+        >
+          <a
+            onClick={[Function]}
+          >
+            Popular
+          </a>
+        </li>
+      </ul>
+    </li>
+  </div>
+</div>
+`;

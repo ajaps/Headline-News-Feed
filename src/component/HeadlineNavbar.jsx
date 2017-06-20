@@ -30,7 +30,7 @@ export default class Navbar extends React.Component {
           <h3 className="text-muted">Category</h3>
           <nav>
             <ul className="nav nav-justified">
-              {categoryComponent }
+              { categoryComponent }
             </ul>
           </nav>
         </div>

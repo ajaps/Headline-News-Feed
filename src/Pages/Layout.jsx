@@ -32,9 +32,11 @@ export default class Layout extends React.Component {
    * constructor
    * @param {object} props
    */
-  constructor(props) {
-    super(props);
-    this.state = { url: '/Dasboard' };
+  constructor() {
+    super();
+    this.state = { url: location };
+    this.signIn = this.signIn.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   /**
@@ -90,17 +92,14 @@ export default class Layout extends React.Component {
         <h1>Loading ...........please wait</h1> :
         <Router>
           <Switch>
-            <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
-              <Login logInFirebase={this.signIn.bind(this)} />} />
+            <Route exact path="/" component={() => user ? <Redirect to="/dashboard" /> :
+            <Login logInFirebase={this.signIn} />} />
 
-            <Route path="/Login" component={() => user ? <Redirect to="/Dashboard" /> :
-              <Login logInFirebase={this.signIn.bind(this)} />} />
+            <Route path="/login" component={() => user ? <Redirect to="/dashboard" /> :
+            <Login logInFirebase={this.signIn} />} />
 
-            <Route path="/Dashboard" component={() => user ? <Dashboard
-              logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
-
-            <Route path="/Dashboard/:good" component={() => user ? <Dashboard
-              logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
+            <Route match="dashboard" component={() => user ? <Dashboard
+            logout={this.logout} params={this.state} /> : <Redirect to="/login" />} />
 
             <Route path = "/*" component={ () => <Page404 /> } />
           </Switch>
