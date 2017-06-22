@@ -16,15 +16,16 @@ export default class Header extends React.Component {
   }
 
   /**
-  * @returns {component} A component with Header details like language and sign out functionality.
+  * @returns {component} A component with Header details like language and
+  * sign out functionality.
   */
   render() {
     const allLanguage = this.props.allLanguage;
     // iterate through Language object
     const languageComponent = allLanguage.map((languageItem) => {
       const key = languageItem.key;
-      return <li key={key}><a onClick={this.setLanguage.bind(this, languageItem.key)}>
-      {languageItem.text}</a></li>;
+      return <li key={key}><a onClick={this.setLanguage.bind(this,
+      languageItem.key)}>{languageItem.text}</a></li>;
     });
 
     return (
@@ -47,4 +48,10 @@ export default class Header extends React.Component {
 
 Header.propTypes = {
   logout: PropTypes.func,
+  setLan: PropTypes.func,
+  allLanguage: PropTypes.array,
+};
+
+Header.defaultProps = {
+  allLanguage: [],
 };

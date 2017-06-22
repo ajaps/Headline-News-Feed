@@ -1,5 +1,5 @@
 import Dispatcher from '../dispatcher/HeadlineDispatcher';
-import getNewsData from '../apiFolder/NewsApi';
+import getNewsData from '../api/NewsApi';
 
 /**
 * Gets Sources from News API using the url built from the params

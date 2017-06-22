@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Footer from '../component/Footer.jsx';
-import Header from '../component/Header.jsx';
-import Navbar from '../component/HeadlineNavbar.jsx';
-import SortFilter from '../component/SortFilter.jsx';
+import Footer from '../components/Footer.jsx';
+import Header from '../components/Header.jsx';
+import Navbar from '../components/HeadlineNavbar.jsx';
+import SortFilter from '../components/SortFilter.jsx';
 
-import ArticleComponent from '../component/ArticleComponent.jsx';
-import SourcesComponent from '../component/SourcesComponent.jsx';
+import ArticleComponent from '../components/ArticleComponent.jsx';
+import SourcesComponent from '../components/SourcesComponent.jsx';
 
 import ArticleStore from '../stores/Article';
 import SourcesStore from '../stores/Sources';
@@ -132,6 +132,7 @@ class Dashboard extends React.Component {
  * @returns {ReactElement} User dashboard Page.
  */
   render() {
+    console.log(this.props);
     const katigory = this.state.CurrentCat;
     const sourceToHighlight = this.state.highlightedText;
     const { article, sources } = this.state;
@@ -144,7 +145,7 @@ class Dashboard extends React.Component {
     const sourcesComponents = sources.map((sourcesItem) => {
       const reg = RegExp(this.state.searchTerm, 'gi');
       if (sourcesItem.name.search(reg) !== -1) {
-        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} sourceHigh={sourceToHighlight}/>;
+        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} source2Highlight={sourceToHighlight}/>;
       }
     });
     // Gets all the available languages and sends to header component
@@ -152,8 +153,8 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        <Header allLanguage={allLanguages} logout={this.logout} url={this.state.url.language}
-        setLan={this.setLanguage}/>
+        <Header allLanguage={allLanguages} logout={this.logout}
+        url={this.state.url.language} setLan={this.setLanguage}/>
 
         <Navbar category={katigory} />
 

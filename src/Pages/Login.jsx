@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Footer from '../component/Footer.jsx';
+import { login } from '../config/authentication';
+import Footer from '../components/Footer.jsx';
 
 
 /**
@@ -11,11 +12,10 @@ export default class Login extends React.Component {
 
 /**
  * Initiates login process
- * @param {string} signInMethod - sign in provider name
  * @return {void}
  */
-  signIn(signInMethod) {
-    this.props.logInFirebase(signInMethod);
+  handleLogin() {
+    login();
   }
 
 /**
@@ -60,10 +60,10 @@ export default class Login extends React.Component {
             <span className="glyphicon glyphicon-chevron-right" />
           </a>
         </div>
-        <button onClick={this.signIn.bind(this, 'github')} href="login"
+        <button name={'github'} onClick={this.handleLogin} href="login"
           className="loginBtn btn-social btn-github"> <span className="fa fa-github" />
           Login with Github</button>
-        <button onClick={this.signIn.bind(this, 'google+')} href="login"
+        <button name={'google+'} onClick={this.handleLogin} href="login"
           className="loginBtn loginBtn--google">Login with Google</button>
         <Footer />
       </div>

@@ -23,7 +23,9 @@ export default class ArticleComponent extends React.Component {
     const cMin = userDate.getMinutes();
     const cSec = userDate.getSeconds();
 
-    const formattedDate = `${month[cMonth]} ${cDate},   ${cYear}   ${cHour}:${cMin}:${cSec}`;
+    const formattedDate = `${month[cMonth]} ${cDate},   ${cYear}   
+    ${cHour}:${cMin}:${cSec}`;
+
     return formattedDate;
   }
 
