@@ -3,6 +3,7 @@ import { ref, firebaseAuth } from './firebase';
 
 
 export function logout() {
+  console.log('LOGOUT!!');
   return firebaseAuth().signOut();
 }
 

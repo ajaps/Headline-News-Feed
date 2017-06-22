@@ -1,21 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AlertContainer from 'react-alert';
 
 import { login } from '../config/authentication';
 import Footer from '../components/Footer.jsx';
+import Header from '../components/Header.jsx';
 
 
 /**
  * Represents a component Login/Home page.
  */
 export default class Login extends React.Component {
-
+  constructor() {
+    super();
+    this.state = { error: '' };
+  }
 /**
  * Initiates login process
  * @return {void}
  */
   handleLogin() {
-    login();
+    login()
+    .catch((error) => {
+      this.setState({ error });
+    });
   }
 
 /**
@@ -23,13 +31,12 @@ export default class Login extends React.Component {
  * @return {ReactElement} Markup
  */
   render() {
+    console.log(this.state);
     return (
       <div>
-        <div>
-          <h1 className="loginHeader">Headline News</h1>
-        </div>
+        <Header />
         <div id="theCarousel" className="carousel slide" data-ride="carousel">
-
+        <h1> {this.state.error} </h1>
           <ol className="carousel-indicators">
             <li data-target="#theCarousel" data-slide-to="0" className="active" />
             <li data-target="#theCarousel" data-slide-to="1" />
@@ -65,7 +72,6 @@ export default class Login extends React.Component {
           Login with Github</button>
         <button name={'google+'} onClick={this.handleLogin} href="login"
           className="loginBtn loginBtn--google">Login with Google</button>
-        <Footer />
       </div>
     );
   }

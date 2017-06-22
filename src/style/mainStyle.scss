@@ -42,11 +42,9 @@ body {
 a {
 	cursor: pointer;
 }
-.loginHeader{
-  font: $font_0;
-  font-size: 5vw;
-  text-align: center;
-  color: blue;
+
+.logoutBtn {
+	color: $red;
 }
 .thumbnail {
 	min-height: 33.5vw;
@@ -87,9 +85,6 @@ p {
 }
 .articleCountainerHeight {
 	height: 39.2vw;
-}
-#logoutBtn {
-	color: $red;
 }
 .page404{
   text-align: center;

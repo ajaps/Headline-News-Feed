@@ -153,13 +153,12 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        <Header allLanguage={allLanguages} logout={this.logout}
-        url={this.state.url.language} setLan={this.setLanguage}/>
+        <Header containLogoutBtn={true} userName={'Franklin'} />
 
         <Navbar category={katigory} />
 
         <SortFilter sortFilter={this.state.sortFilter} />
-        
+     
         <div className="row">
           <div className="col-sm-3 col-md-2 sidebar well">
             <h3> News Sources </h3>
@@ -173,8 +172,6 @@ class Dashboard extends React.Component {
             <div className="row article-Container">{articleComponents} </div>
           </div>
         </div>
-
-        <Footer />
 
       </div>
     );

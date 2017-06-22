@@ -1,31 +1,28 @@
-import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { logout } from '../config/authentication';
 
 /**
  * Represents the Header section, contains language preference and logout button
  */
 export default class Header extends React.Component {
-
-/**
-* sends language selection to props
-* @param {String} lang The preffered language.
-* @returns {void}
-*/
-  setLanguage(lang) {
-    this.props.setLan(lang);
+  constructor() {
+    super();
+    this.initiateLogout = this.initiateLogout.bind(this);
   }
 
-  /**
-  * @returns {component} A component with Header details like language and
-  * sign out functionality.
-  */
+/**
+ * Logs out from application by calling logout function in config file
+ * @return {void}
+ */
+  initiateLogout() {
+    logout();
+  }
+
   render() {
-    const allLanguage = this.props.allLanguage;
-    // iterate through Language object
-    const languageComponent = allLanguage.map((languageItem) => {
-      const key = languageItem.key;
-      return <li key={key}><a onClick={this.setLanguage.bind(this,
-      languageItem.key)}>{languageItem.text}</a></li>;
+    const showLogoutBtn = classNames({
+      hidden: !(this.props.containLogoutBtn)
     });
 
     return (
@@ -35,10 +32,14 @@ export default class Header extends React.Component {
             <a className="navbar-brand" href="/">Headlines RSS Feed</a>
           </div>
           <div id="navbar" className="navbar-collapse collapse">
-            <ul className="nav navbar-nav navbar-right">
-              {languageComponent}
-              <li><a onClick={this.props.logout} id="logoutBtn">Logout</a></li>
-            </ul>
+            <ol className="nav navbar-nav navbar-right">
+              <li className={showLogoutBtn}><a className="disableClick">
+                {/* {`Welcome:   ${ }`} */}
+              </a></li>
+              <li id="logoutBtn" className={showLogoutBtn}>
+                <a onClick={this.initiateLogout}>Logout</a>
+              </li>
+            </ol>
           </div>
         </div>
       </nav>
@@ -47,11 +48,11 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  logout: PropTypes.func,
-  setLan: PropTypes.func,
-  allLanguage: PropTypes.array,
+  containLogoutBtn: PropTypes.bool,
+  userName: PropTypes.string
 };
 
 Header.defaultProps = {
-  allLanguage: [],
+  containLogoutBtn: false,
+  userName: ''
 };
