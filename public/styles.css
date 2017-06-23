@@ -19,7 +19,10 @@ a {
   background-size: cover; }
 
 .loginHeader {
-  font-family: "Comic Sans MS", "Comic Sans", cursive; }
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  padding: 1vw;
+  border-bottom: 2px solid;
+  box-shadow: 10px 10px 5px #888888; }
 
 .all-available-login-button {
   position: absolute;
@@ -32,7 +35,6 @@ a {
   box-shadow: 10px 10px 5px #888888; }
 
 .logoutBtn {
-  color: red;
   font-size: 1.4vw;
   font-weight: bold; }
 
@@ -78,20 +80,24 @@ p.publishedAt {
   text-align: center; }
 
 .p404Header {
-  font-size: 10vw;
-  color: red;
-  margin-top: 10vw; }
+  font-size: 4vw;
+  color: #e5e5e5;
+  margin-top: 10vw;
+  font-weight: bold; }
 
 .p404Body {
-  margin: 5vw;
+  margin: 1vw;
+  padding: 1vw;
   font: "arial"; }
 
 .p404Link {
-  font-size: 5vw;
-  margin-bottom: 5vw; }
+  font-size: 1vw;
+  margin-bottom: 29vw; }
 
 .footer {
-  text-align: left; }
+  position: absolute;
+  text-align: left;
+  margin-left: 3vw; }
 
 .nav-justified {
   background-color: #eee;

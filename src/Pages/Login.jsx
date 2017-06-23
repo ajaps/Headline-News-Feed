@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { login } from '../config/authentication';
-import Header from '../components/Header.jsx';
 
 /**
  * Represents a component Login/Home page.
@@ -24,7 +23,6 @@ export default class Login extends React.Component {
   render() {
     return (
       <div className="login-page">
-        <Header />
         <div className="loginBackgroundImg" />
         <div className=" container-fluid all-available-login-button">
           <h2 className="loginHeader">Headline News Feed</h2>

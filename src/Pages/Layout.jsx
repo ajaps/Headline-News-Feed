@@ -5,6 +5,7 @@ import Login from './Login.jsx';
 import Dashboard from './Dashboard.jsx';
 import Page404 from './Page404.jsx';
 import Footer from '../components/Footer.jsx';
+import Header from '../components/Header.jsx';
 import LoadingNotification from '../components/Loading.jsx';
 import { firebaseAuth } from '../config/firebase';
 import { PublicRoute, PrivateRoute } from './RoutePath';
@@ -35,8 +36,12 @@ class Layout extends React.Component {
   render() {
     return this.state.loading === true ? <LoadingNotification /> : (
         <div>
+          <Header containLogoutBtn={this.state.authenticated} />
         <Router history={history}>
           <Switch>
+            <PublicRoute authenticated={this.state.authenticated}
+            exact path="/" component={Login} />
+
             <PublicRoute authenticated={this.state.authenticated}
             path="/login" component={Login} />
 
