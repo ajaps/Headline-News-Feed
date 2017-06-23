@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as myActions from '../actions/HeadlineActions';
 
-import ArticleStore from '../stores/Article';
+import ArticleStore from '../stores/Articles';
 
 /**
  * Represents a navigation bar containing different categories

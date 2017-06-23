@@ -78,9 +78,6 @@ a {
 .thumbnail {
 	min-height: 33.5vw;
 }
-.catHighlight{
-  border-bottom: solid lightgreen 3px;
-}
 .sourceBorder{
   border: solid black 1px;
   background: lightgoldenrodyellow;
@@ -112,8 +109,10 @@ p {
 	overflow: scroll;
 	height: 37vw;
 }
-.articleCountainerHeight {
+.outerArticleCountainer {
 	height: 39.2vw;
+  margin-left: 17vw;
+  width: 77vw;
 }
 .page404{
   text-align: center;
@@ -132,6 +131,9 @@ p {
 .p404Link{
   font-size: 1vw;
   margin-bottom: 29vw;
+}
+.articlesSourcesContainer{
+  margin-left: 3vw;
 }
 .footer{
   position: absolute;
@@ -224,7 +226,7 @@ p {
 	text-align: center;
 }
 .dropdown-toggle{
-  color: green;
+  color: $color_tapa_approx;
 }
 .loginBtn--google {
 	font-family: $font_0, $font_1, $font_2, $font_3;

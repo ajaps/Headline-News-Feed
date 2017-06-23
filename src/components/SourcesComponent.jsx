@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import * as myActions from '../actions/HeadlineActions';
-import ArticleStore from '../stores/Article';
+import ArticleStore from '../stores/Articles';
 /**
  * Represents a Source.
  */
@@ -17,7 +17,7 @@ export default class SourcesComponent extends React.Component {
  */
   setSources(sources, sortAvailable) {
     const url = ArticleStore.getArticleUrl;
-    myActions.getArticles(url, sources, sortAvailable);
+    myActions.fetchArticles(url, sources, sortAvailable);
   }
 
 /**
@@ -26,7 +26,7 @@ export default class SourcesComponent extends React.Component {
   render() {
     // sets class name based on user source selection using classnames module
     const btnClass = classNames({
-      sourceBorder: this.props.source2Highlight[0] === this.props.id,
+      sourceBorder: this.props.sourceItemSelected[0] === this.props.id,
     });
 
     return (
@@ -41,7 +41,7 @@ export default class SourcesComponent extends React.Component {
 }
 
 SourcesComponent.propTypes = {
-  source2Highlight: PropTypes.string.isRequired,
+  sourceItemSelected: PropTypes.string.isRequired,
   sortBysAvailable: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
 };

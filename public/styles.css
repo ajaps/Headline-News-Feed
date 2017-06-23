@@ -41,9 +41,6 @@ a {
 .thumbnail {
   min-height: 33.5vw; }
 
-.catHighlight {
-  border-bottom: solid lightgreen 3px; }
-
 .sourceBorder {
   border: solid black 1px;
   background: lightgoldenrodyellow;
@@ -73,8 +70,10 @@ p.publishedAt {
   overflow: scroll;
   height: 37vw; }
 
-.articleCountainerHeight {
-  height: 39.2vw; }
+.outerArticleCountainer {
+  height: 39.2vw;
+  margin-left: 17vw;
+  width: 77vw; }
 
 .page404 {
   text-align: center; }
@@ -93,6 +92,9 @@ p.publishedAt {
 .p404Link {
   font-size: 1vw;
   margin-bottom: 29vw; }
+
+.articlesSourcesContainer {
+  margin-left: 3vw; }
 
 .footer {
   position: absolute;
@@ -157,7 +159,7 @@ p.publishedAt {
   text-align: center; }
 
 .dropdown-toggle {
-  color: green; }
+  color: purple; }
 
 .loginBtn--google {
   font-family: "Roboto", "Roboto", "arial", "sans-serif";
