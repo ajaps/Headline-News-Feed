@@ -132,7 +132,6 @@ class Dashboard extends React.Component {
  * @returns {ReactElement} User dashboard Page.
  */
   render() {
-    console.log(this.props);
     const katigory = this.state.CurrentCat;
     const sourceToHighlight = this.state.highlightedText;
     const { article, sources } = this.state;
