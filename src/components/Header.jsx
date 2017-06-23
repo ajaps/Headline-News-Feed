@@ -26,7 +26,7 @@ export default class Header extends React.Component {
     });
 
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top">
+      <nav className="navbar navbar-inverse navbar-fixed-top container">
         <div className="container-fluid">
           <div className="navbar-header">
             <a className="navbar-brand" href="/">Headlines RSS Feed</a>
@@ -36,8 +36,10 @@ export default class Header extends React.Component {
               <li className={showLogoutBtn}><a className="disableClick">
                 {/* {`Welcome:   ${ }`} */}
               </a></li>
-              <li id="logoutBtn" className={showLogoutBtn}>
-                <a onClick={this.initiateLogout}>Logout</a>
+              <li className={showLogoutBtn}>
+                <a onClick={this.initiateLogout}>
+                  <span className={'logoutBtn'}>Logout</span>
+                </a>
               </li>
             </ol>
           </div>

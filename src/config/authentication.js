@@ -3,12 +3,17 @@ import { ref, firebaseAuth } from './firebase';
 
 
 export function logout() {
-  console.log('LOGOUT!!');
   return firebaseAuth().signOut();
 }
 
-export function login() {
-  const provider = new firebase.auth.GoogleAuthProvider();
+export function login(providerName) {
+  let provider;
+  if (providerName === 'google+') {
+    provider = new firebase.auth.GoogleAuthProvider();
+  } else {
+    provider = new firebase.auth.GithubAuthProvider();
+  }
+
   return firebase.auth().signInWithPopup(provider);
 }
 
