@@ -14,6 +14,7 @@ $color_mojo_approx: #bb3f30;
 $color_cinnabar_approx: #e74b37;
 $black_10: rgba(0,0,0,0.1);
 $grey: grey;
+$body_text_color: #add8e6;
 
 //fonts
 $font_0: "Roboto";
@@ -53,9 +54,11 @@ a {
 	background-position: center;
 	background-size: cover;
 }
-
 .loginHeader{
   font-family: "Comic Sans MS", "Comic Sans", cursive;
+  padding: 1vw;
+  border-bottom: 2px solid;
+  box-shadow: 10px 10px 5px #888888;
 }
 .all-available-login-button{
   position: absolute;
@@ -69,7 +72,6 @@ a {
 }
 
 .logoutBtn {
-	color: $red;
   font-size: 1.4vw;
   font-weight: bold;
 }
@@ -117,20 +119,24 @@ p {
   text-align: center;
 }
 .p404Header{
-  font-size: 10vw;
-  color: $red;
+  font-size: 4vw;
+  color: $mercury;
   margin-top: 10vw;
+  font-weight: bold;
 }
 .p404Body{
-  margin: 5vw;
+  margin: 1vw;
+  padding: 1vw;
   font: $font_2;
 }
 .p404Link{
-  font-size: 5vw;
-  margin-bottom: 5vw; 
+  font-size: 1vw;
+  margin-bottom: 29vw;
 }
 .footer{
+  position: absolute;
   text-align: left;
+  margin-left: 3vw;
 }
 .nav-justified {
 	background-color: $color_gallery_approx;
