@@ -15,9 +15,8 @@ class AllSources extends EventEmitter {
     super();
 
     this.getSourceUrl = {
-      language: 'en',
       category: 'all',
-      URL_SOURCE: 'https://newsapi.org/v1/sources',
+      URL_SOURCE: 'https://newsapi.org/v1/sources?language=en',
     };
     this.status = 'ok';
     this.sources = [];
@@ -45,13 +44,14 @@ class AllSources extends EventEmitter {
       { key: 'de', text: 'German' },
       { key: 'fr', text: 'French' },
     ];
+    this.firstSourceInArray = '';
   }
 
   /**
    * returns Sources object
    * @return {object} contains available sources in the store
    */
-  getAll() {
+  getAllSources() {
     return this.sources;
   }
 
@@ -75,7 +75,7 @@ class AllSources extends EventEmitter {
    * returns current selected category
    * @return {string} contains source url required to fetch data from API
    */
-  getCurrentCat() {
+  getCurrentCategory() {
     return this.selectedCategory;
   }
 
@@ -86,24 +86,21 @@ class AllSources extends EventEmitter {
    */
   handleAction(action) {
     switch (action.type) {
-      case 'GET_SOURCES':
-        this.sources = action.sources;
-        this.status = action.response;
-        this.emit('sourceChange');
-        break;
-      case 'SET_CATEGORY':
-        this.getSourceUrl.category = action.text;
-        this.sources = action.sources;
-        this.status = action.response;
-        this.selectedCategory[0] = action.text;
-        this.emit('sourceChange');
-        break;
-      case 'SET_LANGUAGE':
-        this.getSourceUrl.language = action.text;
-        this.sources = action.sources;
-        this.status = action.response;
-        this.emit('sourceChange');
-        break;
+    case 'FETCH_SOURCES':
+      this.sources = action.sources;
+      this.status = action.response;
+      this.firstSourceInArray = action.firstSourceInArray;
+      this.emit('sourceChange');
+      break;
+    case 'SET_CATEGORY':
+      this.getSourceUrl.category = action.text;
+      this.sources = action.sources;
+      this.status = action.response;
+      this.selectedCategory[0] = action.text;
+      this.emit('sourceChange');
+      break;
+    default:
+      this.emit('ActionTypeNotAvailable');
     }
   }
 }

@@ -97,3 +97,7 @@ where <your\_desired\_port> is the port you want to use. So, if you want to use 
 ``` bash 
 PORT=8080
 ```
+
+## License
+This project is authored by [Ajaps Franklin]() and is licensed 
+for your use, modification, and distribution under [the MIT license](https://en.wikipedia.org/wiki/MIT_License).

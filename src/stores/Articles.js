@@ -30,7 +30,7 @@ class AllArticle extends EventEmitter {
    * returns Article object
    * @return {object} contains available articles in the store
    */
-  getAll() {
+  getAllArticles() {
     return this.article;
   }
 
@@ -38,7 +38,7 @@ class AllArticle extends EventEmitter {
    * returns available sort in the selected news source
    * @return {array} contains available filter for the selected source
    */
-  getSortAvailable() {
+  getAvailableSorts() {
     return this.sortAvailable;
   }
 
@@ -46,7 +46,7 @@ class AllArticle extends EventEmitter {
    * returns the id of the selected source
    * @return {array} contains the id in an array
    */
-  getHighlightText() {
+  getSelectedSourceID() {
     return this.highlightSource;
   }
 
@@ -57,24 +57,26 @@ class AllArticle extends EventEmitter {
    */
   handleAction(action) {
     switch (action.type) {
-      case 'SET_SOURCE':
-        this.getArticleUrl.source = action.text;
-        this.sortAvailable = action.sort;
-        this.status = action.response;
-        this.article = action.articles;
-        this.highlightSource[0] = action.text;
-        this.emit('articleChange');
-        break;
-      case 'SET_SORTBY':
-        this.getArticleUrl.sortBy = action.text;
-        this.article = action.articles;
-        this.status = action.response;
-        this.emit('articleChange');
-        break;
+    case 'GOT_NEW_ARTICLES':
+      this.getArticleUrl.source = action.text;
+      this.sortAvailable = action.sort;
+      this.status = action.response;
+      this.article = action.articles;
+      this.highlightSource[0] = action.text;
+      this.emit('articleChange');
+      break;
+    case 'SET_SORTBY':
+      this.getArticleUrl.sortBy = action.text;
+      this.article = action.articles;
+      this.status = action.response;
+      this.emit('articleChange');
+      break;
+    default:
+      this.emit('ActionTypeNotAvailable');
     }
   }
 }
 
-const ArticleStore = new AllArticle();
-Dispatcher.register(ArticleStore.handleAction.bind(ArticleStore));
-export default ArticleStore;
+const ArticlesStore = new AllArticle();
+Dispatcher.register(ArticlesStore.handleAction.bind(ArticlesStore));
+export default ArticlesStore;

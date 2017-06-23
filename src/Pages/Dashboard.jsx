@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Footer from '../components/Footer.jsx';
-import Header from '../components/Header.jsx';
 import Navbar from '../components/HeadlineNavbar.jsx';
 import SortFilter from '../components/SortFilter.jsx';
 
 import ArticleComponent from '../components/ArticleComponent.jsx';
 import SourcesComponent from '../components/SourcesComponent.jsx';
 
-import ArticleStore from '../stores/Article';
+import ArticlesStore from '../stores/Articles';
 import SourcesStore from '../stores/Sources';
 
 import * as myActions from '../actions/HeadlineActions';
@@ -18,62 +16,33 @@ import * as myActions from '../actions/HeadlineActions';
  * Represents an user's Dsiplay page.
  */
 class Dashboard extends React.Component {
-
-/**
- * gets sources at the first time of lauching the app
- * binds getArticles and getSources which sets the inital contents gotten from API
- * sests the initial state to mirror the new object in the stores
- * constructor
- * @param {object} props
- */
-  constructor(props) {
-    super(props);
-    this.getSources();
+  constructor() {
+    super();
     // calls functions to get default values from store
-    this.setSources = this.setSources.bind(this);
-    this.logout = this.logout.bind(this);
-    this.setArticles = this.setArticles.bind(this);
-    this.setLanguage = this.setLanguage.bind(this);
+    this.showArticlesOnFirstLoad = this.showArticlesOnFirstLoad.bind(this);
+    this.fetchArticles = this.fetchArticles.bind(this);
     this.searchSource = this.searchSource.bind(this);
 
     // Sets state with the available data in the store
     this.state = {
-      article: ArticleStore.getAll(),
-      sources: SourcesStore.getAll(),
-      sortFilter: ArticleStore.getSortAvailable(),
+      articles: ArticlesStore.getAllArticles(),
+      sources: SourcesStore.getAllSources(),
+      sortFilter: ArticlesStore.getAvailableSorts(),
       searchTerm: '',
-      url: SourcesStore.getUrl(),
-      language: SourcesStore.getSourceUrl.language,
-      CurrentCat: SourcesStore.getCurrentCat(),
-      highlightedText: ArticleStore.getHighlightText(),
+      CurrentCategory: SourcesStore.getCurrentCategory(),
+      userSelectedSource: ArticlesStore.getSelectedSourceID(),
     };
   }
 
-  /**
-   * binds Source and Article store to this component
-   * @return {void}
-   */
   componentWillMount() {
-    SourcesStore.on('sourceChange', this.setSources);
-    ArticleStore.on('articleChange', this.setArticles);
+    this.fetchSources();
+    SourcesStore.on('sourceChange', this.showArticlesOnFirstLoad);
+    ArticlesStore.on('articleChange', this.fetchArticles);
   }
 
-  /**
-   * unbinds Source and Article from this component to prevent memory leaks
-   * @return {void}
-   */
   componentWillUnmount() {
-    SourcesStore.removeListener('sourceChange', this.setSources);
-    ArticleStore.removeListener('articleChange', this.setArticles);
-  }
-
-  /**
-  * changes language preference based on user selection
-  * @param {String} lang The preffered language.
-  * @returns {void}
-  */
-  setLanguage(lang) {
-    myActions.setLanguage(this.state.url, lang);
+    SourcesStore.removeListener('sourceChange', this.showArticlesOnFirstLoad);
+    ArticlesStore.removeListener('articleChange', this.fetchArticles);
   }
 
   /**
@@ -81,31 +50,32 @@ class Dashboard extends React.Component {
    * first source id to generate articles on first load
    * @return {void}
    */
-  setSources() {
+  showArticlesOnFirstLoad() {
     this.setState({
-      sources: SourcesStore.getAll(),
+      sources: SourcesStore.getAllSources(),
     });
-    myActions.getArticles(ArticleStore.getArticleUrl,
-      this.state.sources[0].id, ArticleStore.sortAvailable);
+    myActions.fetchArticles(ArticlesStore.getArticleUrl,
+      this.state.sources[0].id, ArticlesStore.sortAvailable);
   }
 
   /**
-   * sets the state of the component to store values and sets the filter available for the source
+   * sets component state to the article store values and sets the filter
+   * available for the source
    * @return {void}
    */
-  setArticles() {
+  fetchArticles() {
     this.setState({
-      article: ArticleStore.getAll(),
-      sortFilter: ArticleStore.getSortAvailable(),
+      articles: ArticlesStore.getAllArticles(),
+      sortFilter: ArticlesStore.getAvailableSorts(),
     });
   }
 
   /**
-   * initiate an action to get sources based on the defualt language on first load
+   * gets sources at initial page load
    * @return {void}
    */
-  getSources() {
-    myActions.setLanguage(SourcesStore.getSourceUrl, 'en');
+  fetchSources() {
+    myActions.fetchSources(SourcesStore.getSourceUrl);
   }
 
   /**
@@ -120,58 +90,40 @@ class Dashboard extends React.Component {
     });
   }
 
-  /**
-   * Initiates logout process
-   * @return {void}
-   */
-  logout() {
-    this.props.logout();
-  }
-
-/**
- * @returns {ReactElement} User dashboard Page.
- */
   render() {
-    const katigory = this.state.CurrentCat;
-    const sourceToHighlight = this.state.highlightedText;
-    const { article, sources } = this.state;
+    const { articles, sources } = this.state;
 
     // iterate through article object
-    const articleComponents = article.map(articleItem =>
+    const articleComponents = articles.map(articleItem =>
       <ArticleComponent key={articleItem.url}{...articleItem} />);
 
     // Search through sources, return all if search term is empty('')
     const sourcesComponents = sources.map((sourcesItem) => {
       const reg = RegExp(this.state.searchTerm, 'gi');
       if (sourcesItem.name.search(reg) !== -1) {
-        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} source2Highlight={sourceToHighlight}/>;
+        return <SourcesComponent key={sourcesItem.id}{...sourcesItem}
+        sourceItemSelected={this.state.userSelectedSource}/>;
       }
+      return null;
     });
-    // Gets all the available languages and sends to header component
-    const allLanguages = SourcesStore.getAllLanguages();
 
     return (
       <div>
-        <Header containLogoutBtn={true} userName={'Franklin'} />
-
-        <Navbar category={katigory} />
-
+        <Navbar category={this.state.CurrentCategory} />
         <SortFilter sortFilter={this.state.sortFilter} />
-     
-        <div className="row">
+        <div className="row articlesSourcesContainer">
           <div className="col-sm-3 col-md-2 sidebar well">
             <h3> News Sources </h3>
-            <input type="text" className="form-control" placeholder="Search Sources..."
-            onChange={this.searchSource} />
+            <input type="text" className="form-control"
+            placeholder="Search Sources..." onChange={this.searchSource} />
             <ul className="nav nav-sidebar Source-Container">
               {sourcesComponents}
             </ul>
           </div>
-          <div className="container well articleCountainerHeight">
+          <div className="container well outerArticleCountainer">
             <div className="row article-Container">{articleComponents} </div>
           </div>
         </div>
-
       </div>
     );
   }

@@ -31,7 +31,6 @@ export default class CategoryComponent extends React.Component {
     // sets class name based on user source selection
     const btnClass = classNames({
       active: this.props.category[0] === this.props.id,
-      catHighlight: this.props.category[0] === this.props.id,
     });
 
     return (
