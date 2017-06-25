@@ -91,6 +91,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    console.log('sent to sources component', this.state.userSelectedSource);
     const { articles, sources } = this.state;
 
     // iterate through article object

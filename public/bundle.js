@@ -5925,8 +5925,8 @@ var AllArticle = function (_EventEmitter) {
     };
     _this.status = 'ok';
     _this.sortAvailable = ['top'];
-    _this.highlightSource = ['all'];
-    _this.article = [];
+    _this.highlightedSource = ['all'];
+    _this.articles = [];
     return _this;
   }
 
@@ -5939,7 +5939,7 @@ var AllArticle = function (_EventEmitter) {
   _createClass(AllArticle, [{
     key: 'getAllArticles',
     value: function getAllArticles() {
-      return this.article;
+      return this.articles;
     }
 
     /**
@@ -5961,7 +5961,7 @@ var AllArticle = function (_EventEmitter) {
   }, {
     key: 'getSelectedSourceID',
     value: function getSelectedSourceID() {
-      return this.highlightSource;
+      return this.highlightedSource;
     }
 
     /**
@@ -5978,13 +5978,14 @@ var AllArticle = function (_EventEmitter) {
           this.getArticleUrl.source = action.text;
           this.sortAvailable = action.sort;
           this.status = action.response;
-          this.article = action.articles;
-          this.highlightSource[0] = action.text;
+          this.articles = action.articles;
+          this.highlightedSource[0] = action.text;
+          console.log('from article store', this.highlightedSource);
           this.emit('articleChange');
           break;
         case 'SET_SORTBY':
           this.getArticleUrl.sortBy = action.text;
-          this.article = action.articles;
+          this.articles = action.articles;
           this.status = action.response;
           this.emit('articleChange');
           break;
@@ -6055,9 +6056,6 @@ var AllSources = function (_EventEmitter) {
 
     // Selected category on each click
     _this.selectedCategory = ['all'];
-
-    // All Available language for the application
-    _this.ALL_LANGUAGES = [{ key: 'en', text: 'English' }, { key: 'de', text: 'German' }, { key: 'fr', text: 'French' }];
     _this.firstSourceInArray = '';
     return _this;
   }
@@ -6083,17 +6081,6 @@ var AllSources = function (_EventEmitter) {
     key: 'getUrl',
     value: function getUrl() {
       return this.getSourceUrl;
-    }
-
-    /**
-     * returns current languages supported by the app
-     * @return {string} contains available languages
-     */
-
-  }, {
-    key: 'getAllLanguages',
-    value: function getAllLanguages() {
-      return this.ALL_LANGUAGES;
     }
 
     /**
@@ -17023,25 +17010,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SourcesComponent = function (_React$Component) {
   _inherits(SourcesComponent, _React$Component);
 
-  function SourcesComponent() {
+  function SourcesComponent(props) {
     _classCallCheck(this, SourcesComponent);
 
-    return _possibleConstructorReturn(this, (SourcesComponent.__proto__ || Object.getPrototypeOf(SourcesComponent)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (SourcesComponent.__proto__ || Object.getPrototypeOf(SourcesComponent)).call(this, props));
+
+    _this.setSources = _this.setSources.bind(_this);
+    return _this;
   }
+  /**
+   * calls an action to set sources url and available sorting filter for articles
+   * @param {String} sources The selected source id
+   * @param {String} sortAvailable The selected sort Filter
+   * @return {void}
+   */
+
 
   _createClass(SourcesComponent, [{
     key: 'setSources',
-
-
-    /**
-     * calls an action to set sources url and available sorting filter for articles
-     * @param {String} sources The selected source id
-     * @param {String} sortAvailable The selected sort Filter
-     * @return {void}
-     */
-    value: function setSources(sources, sortAvailable) {
+    value: function setSources() {
       var url = _Articles2.default.getArticleUrl;
-      myActions.fetchArticles(url, sources, sortAvailable);
+      myActions.fetchArticles(url, this.props.id, this.props.sortBysAvailable);
     }
 
     /**
@@ -17061,7 +17050,7 @@ var SourcesComponent = function (_React$Component) {
         { className: btnClass },
         _react2.default.createElement(
           'a',
-          { onClick: this.setSources.bind(this, this.props.id, this.props.sortBysAvailable) },
+          { onClick: this.setSources },
           this.props.name
         )
       );
@@ -17075,9 +17064,10 @@ exports.default = SourcesComponent;
 
 
 SourcesComponent.propTypes = {
-  sourceItemSelected: _propTypes2.default.string.isRequired,
+  sourceItemSelected: _propTypes2.default.array.isRequired,
   sortBysAvailable: _propTypes2.default.array.isRequired,
-  id: _propTypes2.default.string.isRequired
+  id: _propTypes2.default.string.isRequired,
+  name: _propTypes2.default.string.isRequired
 };
 
 /***/ }),
@@ -17147,11 +17137,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Dashboard = function (_React$Component) {
   _inherits(Dashboard, _React$Component);
 
-  /**
-   * gets sources at the first time of lauching the app
-   * sests the initial state to mirror the new object in the stores
-   * constructor
-   */
   function Dashboard() {
     _classCallCheck(this, Dashboard);
 
@@ -17173,12 +17158,6 @@ var Dashboard = function (_React$Component) {
     };
     return _this;
   }
-
-  /**
-   * binds Source and Article store to this component
-   * @return {void}
-   */
-
 
   _createClass(Dashboard, [{
     key: 'componentWillMount',
@@ -17249,16 +17228,12 @@ var Dashboard = function (_React$Component) {
         searchTerm: searchString
       });
     }
-
-    /**
-     * @returns {ReactElement} User dashboard Page.
-     */
-
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
+      console.log('sent to sources component', this.state.userSelectedSource);
       var _state = this.state,
           articles = _state.articles,
           sources = _state.sources;

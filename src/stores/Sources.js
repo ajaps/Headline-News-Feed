@@ -37,13 +37,6 @@ class AllSources extends EventEmitter {
 
     // Selected category on each click
     this.selectedCategory = ['all'];
-
-    // All Available language for the application
-    this.ALL_LANGUAGES = [
-      { key: 'en', text: 'English' },
-      { key: 'de', text: 'German' },
-      { key: 'fr', text: 'French' },
-    ];
     this.firstSourceInArray = '';
   }
 
@@ -61,14 +54,6 @@ class AllSources extends EventEmitter {
    */
   getUrl() {
     return this.getSourceUrl;
-  }
-
-  /**
-   * returns current languages supported by the app
-   * @return {string} contains available languages
-   */
-  getAllLanguages() {
-    return this.ALL_LANGUAGES;
   }
 
   /**
