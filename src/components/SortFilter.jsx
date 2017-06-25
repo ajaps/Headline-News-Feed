@@ -14,7 +14,7 @@ export default class SortFilter extends React.Component {
   }
 /**
  * sends an action to change the preffered sort filter based on user selection
- * @param {String} sortValue The selected sort Filter
+ * @param {object} e The selected sort Filter
  * @return {void}
  */
   bySort(e) {
