@@ -8,16 +8,19 @@ import ArticleStore from '../stores/Articles';
  * Represents a Source.
  */
 export default class SourcesComponent extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.setSources = this.setSources.bind(this);
+  }
 /**
  * calls an action to set sources url and available sorting filter for articles
  * @param {String} sources The selected source id
  * @param {String} sortAvailable The selected sort Filter
  * @return {void}
  */
-  setSources(sources, sortAvailable) {
+  setSources() {
     const url = ArticleStore.getArticleUrl;
-    myActions.fetchArticles(url, sources, sortAvailable);
+    myActions.fetchArticles(url, this.props.id, this.props.sortBysAvailable);
   }
 
 /**
@@ -31,8 +34,7 @@ export default class SourcesComponent extends React.Component {
 
     return (
       <li className={btnClass} >
-        <a onClick={this.setSources.bind(this, this.props.id,
-        this.props.sortBysAvailable)}>
+        <a onClick={this.setSources}>
           {this.props.name}
         </a>
       </li>
@@ -41,7 +43,8 @@ export default class SourcesComponent extends React.Component {
 }
 
 SourcesComponent.propTypes = {
-  sourceItemSelected: PropTypes.string.isRequired,
+  sourceItemSelected: PropTypes.array.isRequired,
   sortBysAvailable: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
