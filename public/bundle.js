@@ -5918,13 +5918,13 @@ var AllArticle = function (_EventEmitter) {
     var _this = _possibleConstructorReturn(this, (AllArticle.__proto__ || Object.getPrototypeOf(AllArticle)).call(this));
 
     _this.getArticleUrl = {
-      sortBy: 'top',
+      sortBy: '',
       source: 'all',
       URL_ARTICLES: 'https://newsapi.org/v1/articles',
       API_KEY: "213327409d384371851777e7c7f78dfe"
     };
     _this.status = 'ok';
-    _this.sortAvailable = ['top'];
+    _this.sortAvailable = [];
     _this.highlightedSource = ['all'];
     _this.articles = [];
     return _this;
@@ -16872,21 +16872,25 @@ var SortFilter = function (_React$Component) {
   function SortFilter() {
     _classCallCheck(this, SortFilter);
 
-    return _possibleConstructorReturn(this, (SortFilter.__proto__ || Object.getPrototypeOf(SortFilter)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (SortFilter.__proto__ || Object.getPrototypeOf(SortFilter)).call(this));
+
+    _this.bySort = _this.bySort.bind(_this);
+    return _this;
   }
+  /**
+   * sends an action to change the preffered sort filter based on user selection
+   * @param {String} sortValue The selected sort Filter
+   * @return {void}
+   */
+
 
   _createClass(SortFilter, [{
     key: 'bySort',
-
-
-    /**
-     * sends an action to change the preffered sort filter based on user selection
-     * @param {String} sortValue The selected sort Filter
-     * @return {void}
-     */
-    value: function bySort(sortValue) {
+    value: function bySort(e) {
+      var sortBy = e.target.dataset.sort;
+      console.log(sortBy);
       var url = _Articles2.default.getArticleUrl;
-      myActions.sortBy(url, sortValue);
+      myActions.sortBy(url, sortBy);
     }
 
     /**
@@ -16896,11 +16900,22 @@ var SortFilter = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       // Enable or Disable the Sort dropdown button based on available sort
-      var sourceFilters = this.props.sortFilter;
-      var topFilter = sourceFilters.indexOf('top') > -1 ? '' : 'disabled disableClick';
-      var latestFilter = sourceFilters.indexOf('latest') > -1 ? '' : 'disabled disableClick';
-      var popularFilter = sourceFilters.indexOf('popular') > -1 ? '' : 'disabled disableClick';
+      var articleSortFilters = this.props.sortFilter;
+      var allAvailableSortFilter = articleSortFilters.map(function (eachSortItem) {
+        return _react2.default.createElement(
+          'li',
+          { className: eachSortItem, key: eachSortItem },
+          _react2.default.createElement(
+            'a',
+            { onClick: _this2.bySort, 'data-sort': eachSortItem },
+            ' ',
+            eachSortItem
+          )
+        );
+      });
 
       return _react2.default.createElement(
         'div',
@@ -16918,33 +16933,7 @@ var SortFilter = function (_React$Component) {
           _react2.default.createElement(
             'ul',
             { className: 'dropdown-menu' },
-            _react2.default.createElement(
-              'li',
-              { className: topFilter },
-              _react2.default.createElement(
-                'a',
-                { onClick: this.bySort.bind(this, 'top') },
-                'Top'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              { className: latestFilter },
-              _react2.default.createElement(
-                'a',
-                { onClick: this.bySort.bind(this, 'latest') },
-                'Latest'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              { className: popularFilter },
-              _react2.default.createElement(
-                'a',
-                { onClick: this.bySort.bind(this, 'popular') },
-                'Popular'
-              )
-            )
+            allAvailableSortFilter
           )
         )
       );
@@ -17185,7 +17174,7 @@ var Dashboard = function (_React$Component) {
       this.setState({
         sources: _Sources2.default.getAllSources()
       });
-      myActions.fetchArticles(_Articles2.default.getArticleUrl, this.state.sources[0].id, _Articles2.default.sortAvailable);
+      myActions.fetchArticles(_Articles2.default.getArticleUrl, this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
     }
 
     /**
@@ -17233,7 +17222,6 @@ var Dashboard = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log('sent to sources component', this.state.userSelectedSource);
       var _state = this.state,
           articles = _state.articles,
           sources = _state.sources;

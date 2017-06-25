@@ -8,15 +8,19 @@ import ArticleStore from '../stores/Articles';
  * Represents a navigation bar containing different categories
  */
 export default class SortFilter extends React.Component {
-
+  constructor() {
+    super();
+    this.bySort = this.bySort.bind(this);
+  }
 /**
  * sends an action to change the preffered sort filter based on user selection
  * @param {String} sortValue The selected sort Filter
  * @return {void}
  */
-  bySort(sortValue) {
+  bySort(e) {
+    const sortBy = e.target.dataset.sort;
     const url = ArticleStore.getArticleUrl;
-    myActions.sortBy(url, sortValue);
+    myActions.sortBy(url, sortBy);
   }
 
 /**
@@ -24,13 +28,12 @@ export default class SortFilter extends React.Component {
  */
   render() {
     // Enable or Disable the Sort dropdown button based on available sort
-    const sourceFilters = this.props.sortFilter;
-    const topFilter = sourceFilters.indexOf('top') > -1 ? '' :
-    'disabled disableClick';
-    const latestFilter = sourceFilters.indexOf('latest') > -1 ? '' :
-    'disabled disableClick';
-    const popularFilter = sourceFilters.indexOf('popular') > -1 ? '' :
-    'disabled disableClick';
+    const articleSortFilters = this.props.sortFilter;
+    const allAvailableSortFilter = articleSortFilters.map(eachSortItem =>
+      <li className={eachSortItem} key={eachSortItem}>
+        <a onClick={this.bySort} data-sort={eachSortItem}> { eachSortItem } </a>
+      </li>
+    );
 
     return (
       <div className=" container navbar2">
@@ -39,15 +42,7 @@ export default class SortFilter extends React.Component {
             aria-haspopup="true" aria-expanded="false"> Sort Articles By
             <span className="caret" /></a>
             <ul className="dropdown-menu">
-              <li className={topFilter}>
-                <a onClick={this.bySort.bind(this, 'top')}>Top</a>
-              </li>
-              <li className={latestFilter}>
-                <a onClick={this.bySort.bind(this, 'latest')}>Latest</a>
-              </li>
-              <li className={popularFilter}>
-                <a onClick={this.bySort.bind(this, 'popular')}>Popular</a>
-              </li>
+              {allAvailableSortFilter}
             </ul>
           </div>
       </div>

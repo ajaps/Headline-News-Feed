@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
       sources: SourcesStore.getAllSources(),
     });
     myActions.fetchArticles(ArticlesStore.getArticleUrl,
-      this.state.sources[0].id, ArticlesStore.sortAvailable);
+      this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
   }
 
   /**
@@ -91,7 +91,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    console.log('sent to sources component', this.state.userSelectedSource);
     const { articles, sources } = this.state;
 
     // iterate through article object
