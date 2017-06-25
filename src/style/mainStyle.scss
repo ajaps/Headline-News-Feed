@@ -73,7 +73,13 @@ a {
   font-weight: bold;
 }
 .thumbnail {
-	min-height: 33.5vw;
+	min-height: 29vw;
+  max-height: 29vw;
+}
+.thumbnail>img {
+    margin-right: auto;
+    margin-left: auto;
+    height: 160px;
 }
 .sourceBorder{
   background: $source_border;
@@ -82,13 +88,14 @@ a {
 .caroselTitle{
   color: gold;
 }
+.article-description {
+	font-size: 0.8vw;
+  margin-bottom: 0.6vw; 
+}
 p {
 	&.title {
 		font-size: 1vw;
 		font-weight: bold;
-	}
-	&.description {
-		font-size: 0.8vw;
 	}
 	&.publishedAt {
 		font-size: 0.6vw;
@@ -215,7 +222,7 @@ p {
 }
 .sortByFeature {
 	width: 15vw;
-	margin-left: 60vw;
+	margin-left: 78vw;
 	margin-top: 1vw;
 	height: 1vw;
 	font-weight: bold;

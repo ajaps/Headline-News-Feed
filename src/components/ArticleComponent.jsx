@@ -1,39 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextTruncate from 'react-text-truncate';
+import dateFormat from 'dateformat';
 
 /**
  * Represents an Article.
  */
 export default class ArticleComponent extends React.Component {
 
-  /**
-   * @returns {String} A function that retruns a customized date
-   */
-  formatDate() {
-    const month = ['January', 'February', 'March',
-      'April', 'May', 'June', 'July', 'August', 'September',
-      'October', 'November', 'December'];
-
-    const userDate = new Date(this.props.publishedAt);
-    const cDate = userDate.getDate();
-    const cMonth = userDate.getMonth();
-    const cYear = userDate.getFullYear();
-
-    const cHour = userDate.getHours();
-    const cMin = userDate.getMinutes();
-    const cSec = userDate.getSeconds();
-
-    const formattedDate = `${month[cMonth]} ${cDate},   ${cYear}   
-    ${cHour}:${cMin}:${cSec}`;
-
-    return formattedDate;
-  }
-
 /**
  * @returns {component} A component with relevant article details.
  */
   render() {
-    const getFormateDate = this.formatDate();
+    // change custom date to a more readable date
+    const articlePublishDate = new Date(this.props.publishedAt);
+    const getFormateDate = dateFormat(articlePublishDate);
+
     return (
       <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <a href={this.props.url} target="_Blank" rel="noopener noreferrer">
@@ -41,7 +23,13 @@ export default class ArticleComponent extends React.Component {
             <img src={this.props.urlToImage} alt="..." />
             <div className="caption">
               <p className="title">{this.props.title} </p>
-              <p className="description">{this.props.description} </p>
+              <div className="article-description ">
+                <TextTruncate
+                  line={2}
+                  truncateText="....."
+                  text={this.props.description}
+                  />
+              </div>
               <p className="publishedAt">{getFormateDate} </p>
             </div>
           </div>
@@ -57,9 +45,5 @@ ArticleComponent.propTypes = {
   urlToImage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  publishedAt: PropTypes.string,
-};
-
-ArticleComponent.defaultProps = {
-  publishedAt: 'unknown',
+  publishedAt: PropTypes.string.isRequired,
 };
