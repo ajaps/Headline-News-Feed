@@ -4,7 +4,7 @@
   "description": "An App that allows users view headlines from different news sources and link to the original artices on those sources",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage -u",
     "build": "webpack",
     "start": "npm run build && node index.js",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
@@ -52,9 +52,9 @@
     "react-addons-test-utils": "^15.5.1",
     "react-alert": "^2.1.2",
     "react-dom": "^15.5.4",
+    "react-loading": "^0.1.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "react-spinner": "^0.2.7",
     "react-test-renderer": "^15.6.1",
     "react-text-truncate": "^0.10.2",
     "rest": "^2.0.0",

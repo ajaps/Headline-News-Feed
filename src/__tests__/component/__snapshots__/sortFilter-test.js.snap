@@ -1,59 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Category should render as expected 1`] = `
+exports[`SortFiler should render as expected 1`] = `
 <div
   className=" container navbar2"
 >
   <div
-    className="masthead"
+    className="dropdown sortByFeature"
   >
-    <li
-      className="dropdown sortByFeature"
+    <a
+      aria-expanded="false"
+      aria-haspopup="true"
+      className="dropdown-toggle"
+      data-toggle="dropdown"
+      role="button"
     >
-      <a
-        aria-expanded="true"
-        aria-haspopup="true"
-        className="dropdown-toggle"
-        data-toggle="dropdown"
-        role="button"
+       Sort Articles By
+      <span
+        className="caret"
+      />
+    </a>
+    <ul
+      className="dropdown-menu"
+    >
+      <li
+        className="top"
       >
-         Sort Articles By 
-        <span
-          className="caret"
-        />
-      </a>
-      <ul
-        className="dropdown-menu"
+        <a
+          data-sort="top"
+          onClick={[Function]}
+        >
+          top
+           
+        </a>
+      </li>
+      <li
+        className="latest"
       >
-        <li
-          className=""
+        <a
+          data-sort="latest"
+          onClick={[Function]}
         >
-          <a
-            onClick={[Function]}
-          >
-            Top
-          </a>
-        </li>
-        <li
-          className=""
-        >
-          <a
-            onClick={[Function]}
-          >
-            Latest
-          </a>
-        </li>
-        <li
-          className="disabled disableClick"
-        >
-          <a
-            onClick={[Function]}
-          >
-            Popular
-          </a>
-        </li>
-      </ul>
-    </li>
+          latest
+           
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
 `;

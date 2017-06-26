@@ -1,13 +1,18 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
+import ReactTestUtils from 'react-dom/test-utils';
 import toJson from 'enzyme-to-json';
-import Header from '../../component/Header';
+import Header from '../../components/Header.jsx';
+
+jest.mock('../../config/authentication', () => ({
+  logout: () => Promise.resolve('getPromise')
+}));
 
 describe('Header', () => {
   let app;
   beforeEach(() => {
-    const allLanguages = [{ key: 'ig', text: 'Igbo' }, { key: 'yr', text: 'Yoruba' }];
-    app = shallow(<Header allLanguage={allLanguages} setLan={() => 'y' } />);
+    const isLoggedIn = true;
+    app = shallow(<Header containLogoutBtn={isLoggedIn} />);
   });
 
   it('should render as expected', () => {
@@ -15,32 +20,22 @@ describe('Header', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders without crashing', () => {
-    const allLanguages = [{ key: 'ig', text: 'Igbo' }, { key: 'yr', text: 'Yoruba' }];
-    shallow(<Header key={allLanguages.key} allLanguage={ allLanguages } />);
+  it('logout button should be visible when authenticated', () => {
+    expect(app.exists('Logout')).toBe(true);
   });
 
-  it('is a function', () => {
-    app.instance().setLanguage();
+  it('logout button should not be visible when user isn\'t logged', () => {
+    const isLoggedIn = false;
+    app = shallow(<Header containLogoutBtn={isLoggedIn} />);
+    expect(app.exists('hidden')).toBe(true);
   });
 
-  it('contains Igbo language clickable element', () => {
-    expect(app.exists(<li>Igbo</li>)).toBe(true);
-  });
-
-  it('contains Yoruba language clickable element', () => {
-    expect(app.exists(<li>Yoruba</li>)).toBe(true);
-  });
-
-  it('contains Logout clickable element', () => {
-    expect(app.exists(<li>Logout</li>)).toBe(true);
-  });
-
-  it('recieves Two(2) props', () => {
-    expect(Object.keys(app.props()).length).toBe(2);
-  });
-
-  it('to contain 3 li(list item) when two object are passed', () => {
-    expect(app.find('li').length).toEqual(3);
+  it('logout button calls logout function', () => {
+    const isLoggedIn = true;
+    const renderedDoc = ReactTestUtils.renderIntoDocument(
+      <Header containLogoutBtn={isLoggedIn} />
+    );
+    const logoutBtn = renderedDoc.refs.logout;
+    ReactTestUtils.Simulate.click(logoutBtn);
   });
 });

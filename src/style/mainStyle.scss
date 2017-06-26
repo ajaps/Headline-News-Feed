@@ -34,14 +34,27 @@ $url_2: url("../img/GitHub-Mark.jpg");
 	box-shadow: inset 0 3px 7px $black_color;
 }
 
-
 body {
 	overflow: auto;
 }
 a {
 	cursor: pointer;
 }
-
+.spinner{
+  margin-left: 40vw;
+  margin-top: 20vw;
+}
+.spin{
+  margin-left: 40%;
+  margin-top: 20%;
+}
+.sourcesHeader{
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.appHeader{
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
 .loginBackgroundImg{
   background-image: $url_0;
   height: 55vw;
@@ -75,11 +88,7 @@ a {
 .thumbnail {
 	min-height: 29vw;
   max-height: 29vw;
-}
-.thumbnail>img {
-    margin-right: auto;
-    margin-left: auto;
-    height: 160px;
+  height: 160px;
 }
 .sourceBorder{
   background: $source_border;
@@ -219,6 +228,8 @@ p {
 }
 .navbar2 {
 	margin-bottom: 1vw;
+  margin-left: 2vw;
+  width: 96vw;
 }
 .sortByFeature {
 	width: 15vw;

@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Layout page should render as expected 1`] = `
-<h1>
-  Loading ...........please wait
-</h1>
+<Loading
+  className="spinner"
+  color="#3b5998"
+  delay={1000}
+  height={64}
+  type="spin"
+  width="150px"
+/>
 `;

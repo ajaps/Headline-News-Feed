@@ -3,6 +3,7 @@ import getNewsData from '../api/NewsApi';
 
 /**
 * Gets Sources from News API using the url built from the params
+* @param {String} url The url for all sources.
 * @returns {void}
 */
 const fetchSources = (url) => {
@@ -15,6 +16,11 @@ const fetchSources = (url) => {
       response: data.status,
       sources: data.sources,
       firstSourceInArray: data.sources[0].id,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_SOURCES',
+      error: error.message,
     });
   });
 };
@@ -40,6 +46,12 @@ const setCategory = (url, category) => {
       text: category,
       response: data.status,
       sources: data.sources,
+      error: null,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_SOURCES',
+      error: error.message,
     });
   });
 };
@@ -67,6 +79,12 @@ const sortBy = (url, sortValue) => {
       text: sortValue,
       response: data.status,
       articles: data.articles,
+      error: null,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_SOURCES',
+      error: error.message,
     });
   });
 };
@@ -90,6 +108,12 @@ const fetchArticles = (url, source, sortAvailable) => {
       sort: sortAvailable,
       response: data.status,
       articles: data.articles,
+      error: null,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_ARTICLES',
+      error: error.message,
     });
   });
 };

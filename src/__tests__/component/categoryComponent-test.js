@@ -2,9 +2,9 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import sinon from 'sinon';
-import CategoryComponent from '../../component/CategoryComponent.jsx';
+import CategoryComponent from '../../components/CategoryComponent.jsx';
 
-jest.mock('../../apiFolder/NewsApi', () => ({
+jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')
 }));
 

@@ -1,7 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import TextTruncate from 'react-text-truncate';
 import dateFormat from 'dateformat';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ReactLoading from 'react-loading';
+import TextTruncate from 'react-text-truncate';
 
 /**
  * Represents an Article.
@@ -12,28 +13,45 @@ export default class ArticleComponent extends React.Component {
  * @returns {component} A component with relevant article details.
  */
   render() {
-    // change custom date to a more readable date
-    const articlePublishDate = new Date(this.props.publishedAt);
-    const getFormateDate = dateFormat(articlePublishDate);
+    const error = this.props.error;
+    const articles = this.props.articles;
 
-    return (
-      <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-        <a href={this.props.url} target="_Blank" rel="noopener noreferrer">
-          <div className="thumbnail well text-center">
-            <img src={this.props.urlToImage} alt="..." />
-            <div className="caption">
-              <p className="title">{this.props.title} </p>
-              <div className="article-description ">
-                <TextTruncate
-                  line={2}
-                  truncateText="....."
-                  text={this.props.description}
-                  />
+    const articleComponents = articles.map((articleItem) => {
+    // change custom date to a more readable date
+      const articlePublishDate = new Date(articleItem.publishedAt);
+      const getFormateDate = dateFormat(articlePublishDate);
+      return (
+        <div key={articleItem.url}>
+          <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <a href={articleItem.url} target="_Blank" rel="noopener noreferrer">
+              <div className="thumbnail well text-center">
+                <img src={articleItem.urlToImage} alt="Not Available" />
+                <div className="caption">
+                  <p className="title">{articleItem.title} </p>
+                  <div className="article-description ">
+                    <TextTruncate
+                    line={2}
+                    truncateText="....."
+                    text={articleItem.description}
+                    />
+                  </div>
+                  <p className="publishedAt">{getFormateDate} </p>
+                </div>
               </div>
-              <p className="publishedAt">{getFormateDate} </p>
-            </div>
+            </a>
           </div>
-        </a>
+        </div>
+      );
+    });
+
+    return error ?
+      <div className="container well outerArticleCountainer">
+        <ReactLoading className="spin" width="99px"
+        type="spin" color="#3b5998"/>
+      </div> :
+    (
+      <div className="container well outerArticleCountainer">
+        <div className="row article-Container">{articleComponents} </div>
       </div>
     );
   }
@@ -41,9 +59,6 @@ export default class ArticleComponent extends React.Component {
 
 
 ArticleComponent.propTypes = {
-  url: PropTypes.string.isRequired,
-  urlToImage: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  publishedAt: PropTypes.string.isRequired,
+  articles: PropTypes.array.isRequired,
+  error: PropTypes.string,
 };

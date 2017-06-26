@@ -31,7 +31,8 @@ export default class SortFilter extends React.Component {
     const articleSortFilters = this.props.sortFilter;
     const allAvailableSortFilter = articleSortFilters.map(eachSortItem =>
       <li className={eachSortItem} key={eachSortItem}>
-        <a onClick={this.bySort} data-sort={eachSortItem}> { eachSortItem } </a>
+        <a onClick={this.bySort} data-sort={eachSortItem} ref={eachSortItem}>
+          { eachSortItem } </a>
       </li>
     );
 

@@ -16,10 +16,6 @@ export default class Login extends React.Component {
     login(e.target.name);
   }
 
-/**
- * return component that displays home/login page
- * @return {ReactElement} Markup
- */
   render() {
     return (
       <div className="login-page">
@@ -27,11 +23,14 @@ export default class Login extends React.Component {
         <div className=" container-fluid all-available-login-button">
           <h2 className="loginHeader">Headline News Feed</h2>
           <button name={'github'} onClick={this.handleLogin} href="login"
-            className="loginBtn btn loginBtn--github">
-            <span className="fa fa-github" />Login with Github</button><br />
+            ref="githubBtn" className="loginBtn btn loginBtn--github">
+            <span className="fa fa-github" />Login with Github
+          </button><br />
 
           <button name={'google+'} onClick={this.handleLogin} href="login"
-            className="loginBtn btn loginBtn--google">Login with Google</button>
+            className="loginBtn btn loginBtn--google" ref="googleBtn">
+            Login with Google
+          </button>
         </div>
       </div>
     );
