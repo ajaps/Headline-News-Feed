@@ -1,7 +1,7 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import Footer from '../../component/Footer';
+import Footer from '../../components/Footer.jsx';
 
 
 describe('Footer', () => {

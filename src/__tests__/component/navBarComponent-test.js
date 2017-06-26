@@ -1,7 +1,7 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import NavBar from '../../component/HeadlineNavbar';
+import NavBar from '../../components/HeadlineNavbar.jsx';
 
 const category = [{ id: 'all', name: 'All' }];
 

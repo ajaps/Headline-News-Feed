@@ -1,17 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-function PrivateRoute({ component: Component, authenticated, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props => authenticated === true
-        ? <Component {...props} />
-        : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
-    />
-  );
-}
-
+/**
+   * checks if user is authenticated redirects to dashbpard if true
+   * @return {ReactElement}
+   */
 function PublicRoute({ component: Component, authenticated, ...rest }) {
   return (
     <Route
@@ -22,8 +16,11 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
     />
   );
 }
+PublicRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+};
 
 module.exports = {
-  PrivateRoute,
   PublicRoute,
 };

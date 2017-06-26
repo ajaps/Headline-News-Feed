@@ -2,7 +2,7 @@
 
 exports[`Header should render as expected 1`] = `
 <nav
-  className="navbar navbar-inverse navbar-fixed-top"
+  className="navbar navbar-inverse navbar-fixed-top appHeader"
 >
   <div
     className="container-fluid"
@@ -21,31 +21,30 @@ exports[`Header should render as expected 1`] = `
       className="navbar-collapse collapse"
       id="navbar"
     >
-      <ul
+      <ol
         className="nav navbar-nav navbar-right"
       >
-        <li>
+        <li
+          className=""
+        >
+          <a
+            className="disableClick"
+          />
+        </li>
+        <li
+          className=""
+        >
           <a
             onClick={[Function]}
           >
-            Igbo
+            <span
+              className="logoutBtn"
+            >
+              Logout
+            </span>
           </a>
         </li>
-        <li>
-          <a
-            onClick={[Function]}
-          >
-            Yoruba
-          </a>
-        </li>
-        <li>
-          <a
-            id="logoutBtn"
-          >
-            Logout
-          </a>
-        </li>
-      </ul>
+      </ol>
     </div>
   </div>
 </nav>

@@ -2,7 +2,7 @@
 
 exports[`Category should render as expected 1`] = `
 <li
-  className="active catHighlight"
+  className="active"
 >
   <a
     onClick={[Function]}

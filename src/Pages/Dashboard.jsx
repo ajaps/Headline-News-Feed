@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Navbar from '../components/HeadlineNavbar.jsx';
@@ -21,7 +20,7 @@ class Dashboard extends React.Component {
     // calls functions to get default values from store
     this.showArticlesOnFirstLoad = this.showArticlesOnFirstLoad.bind(this);
     this.fetchArticles = this.fetchArticles.bind(this);
-    this.searchSource = this.searchSource.bind(this);
+    this.errorFetchingSources = this.errorFetchingSources.bind(this);
 
     // Sets state with the available data in the store
     this.state = {
@@ -31,17 +30,20 @@ class Dashboard extends React.Component {
       searchTerm: '',
       CurrentCategory: SourcesStore.getCurrentCategory(),
       userSelectedSource: ArticlesStore.getSelectedSourceID(),
+      sourcesError: SourcesStore.getErrorMsg(),
     };
   }
 
   componentWillMount() {
     this.fetchSources();
     SourcesStore.on('sourceChange', this.showArticlesOnFirstLoad);
+    SourcesStore.on('error_in_sources', this.errorFetchingSources);
     ArticlesStore.on('articleChange', this.fetchArticles);
   }
 
   componentWillUnmount() {
     SourcesStore.removeListener('sourceChange', this.showArticlesOnFirstLoad);
+    SourcesStore.removeListener('error_in_sources', this.errorFetchingSources);
     ArticlesStore.removeListener('articleChange', this.fetchArticles);
   }
 
@@ -53,11 +55,17 @@ class Dashboard extends React.Component {
   showArticlesOnFirstLoad() {
     this.setState({
       sources: SourcesStore.getAllSources(),
+      userSelectedSource: SourcesStore.firstSourceInArray,
     });
     myActions.fetchArticles(ArticlesStore.getArticleUrl,
       this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
   }
 
+  errorFetchingSources() {
+    this.setState({
+      sourcesError: SourcesStore.getErrorMsg(),
+    });
+  }
   /**
    * sets component state to the article store values and sets the filter
    * available for the source
@@ -67,6 +75,7 @@ class Dashboard extends React.Component {
     this.setState({
       articles: ArticlesStore.getAllArticles(),
       sortFilter: ArticlesStore.getAvailableSorts(),
+      userSelectedSource: ArticlesStore.getSelectedSourceID(),
     });
   }
 
@@ -78,59 +87,22 @@ class Dashboard extends React.Component {
     myActions.fetchSources(SourcesStore.getSourceUrl);
   }
 
-  /**
-   * sets the an object in the state to the value of the search string
-   * @param {Object} e The calling object property
-   * @return {void}
-   */
-  searchSource(e) {
-    const searchString = e.target.value;
-    this.setState({
-      searchTerm: searchString,
-    });
-  }
-
   render() {
     const { articles, sources } = this.state;
-
-    // iterate through article object
-    const articleComponents = articles.map(articleItem =>
-      <ArticleComponent key={articleItem.url}{...articleItem} />);
-
-    // Search through sources, return all if search term is empty('')
-    const sourcesComponents = sources.map((sourcesItem) => {
-      const reg = RegExp(this.state.searchTerm, 'gi');
-      if (sourcesItem.name.search(reg) !== -1) {
-        return <SourcesComponent key={sourcesItem.id}{...sourcesItem}
-        sourceItemSelected={this.state.userSelectedSource}/>;
-      }
-      return null;
-    });
-
+    const error = this.state.sourcesError;
+    const sourceSelected = this.state.userSelectedSource;
     return (
       <div>
         <Navbar category={this.state.CurrentCategory} />
         <SortFilter sortFilter={this.state.sortFilter} />
         <div className="row articlesSourcesContainer">
-          <div className="col-sm-3 col-md-2 sidebar well">
-            <h3> News Sources </h3>
-            <input type="text" className="form-control"
-            placeholder="Search Sources..." onChange={this.searchSource} />
-            <ul className="nav nav-sidebar Source-Container">
-              {sourcesComponents}
-            </ul>
-          </div>
-          <div className="container well outerArticleCountainer">
-            <div className="row article-Container">{articleComponents} </div>
-          </div>
+          <SourcesComponent sources={sources} error={error}
+          sourceSelected={sourceSelected} />
+          <ArticleComponent articles={articles} error={error} />
         </div>
       </div>
     );
   }
 }
-
-Dashboard.propTypes = {
-  logout: PropTypes.func,
-};
 
 export default Dashboard;

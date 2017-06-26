@@ -45,10 +45,11 @@ export default class CategoryComponent extends React.Component {
 
 CategoryComponent.propTypes = {
   name: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.array,
   id: PropTypes.string.isRequired,
 };
 
 CategoryComponent.defaultProps = {
   name: '',
+  category: [],
 };

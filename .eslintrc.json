@@ -1,8 +1,6 @@
 {
 "extends": "airbnb-base",
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -19,6 +17,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
+    "jsx-a11y/no-static-element-interactions": "off",
     "max-len": [1, 80, 2],
     "indent": [1, 2],
     "one-var": 0,
@@ -64,7 +63,7 @@
     "react/require-extension": 0,
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
-    "react/wrap-multilines": 1,
+    "react/wrap-multilines": 0,
     "valid-jsdoc": [1, {
       "requireReturn": false,
       "requireReturnType": false,

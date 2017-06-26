@@ -9,16 +9,16 @@ exports[`404 page should render as expected 1`] = `
   >
     PAGE NOT FOUND 
   </h1>
-  <h3
+  <p
     className="p404Body"
   >
      You are reaching here because the requested page cannot be found or it has been moved
-  </h3>
-  <h4
+  </p>
+  <p
     className="p404Body"
   >
     Click on the link below to go back to Home page or click 'back' in the navigation bar to go to the previos page
-  </h4>
+  </p>
   <p
     className="p404Link"
   >
@@ -28,6 +28,5 @@ exports[`404 page should render as expected 1`] = `
       Go to Home Page
     </a>
   </p>
-  <Footer />
 </div>
 `;

@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/framky007/Headlines.svg?branch=master)](https://travis-ci.org/framky007/Headlines) 
 [![Coverage Status](https://coveralls.io/repos/github/framky007/Headlines/badge.svg?branch=master)](https://coveralls.io/github/framky007/Headlines?branch=master)
-[![Code Climate](https://codeclimate.com/github/framky007/Headlines?branch=master)](https://codeclimate.com/github/framky007/Headlines?branch=master)
+[![Code Climate](https://codeclimate.com/github/framky007/Headlines/badges/gpa.svg)](https://codeclimate.com/github/framky007/Headlines) 
 
 ----
 ## Description

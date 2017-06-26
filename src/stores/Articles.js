@@ -16,13 +16,13 @@ class AllArticle extends EventEmitter {
 
     this.getArticleUrl = {
       sortBy: '',
-      source: 'all',
+      source: '',
       URL_ARTICLES: 'https://newsapi.org/v1/articles',
       API_KEY: process.env.NEWS_API_KEY,
     };
     this.status = 'ok';
     this.sortAvailable = [];
-    this.highlightedSource = ['all'];
+    this.highlightedSource = 'all';
     this.articles = [];
   }
 
@@ -62,7 +62,7 @@ class AllArticle extends EventEmitter {
       this.sortAvailable = action.sort;
       this.status = action.response;
       this.articles = action.articles;
-      this.highlightedSource[0] = action.text;
+      this.highlightedSource = action.text;
       this.emit('articleChange');
       break;
     case 'SET_SORTBY':

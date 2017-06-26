@@ -44,7 +44,7 @@ export default class Navbar extends React.Component {
 
 Navbar.propTypes = {
   sortFilter: PropTypes.array.isRequired,
-  category: PropTypes.string,
+  category: PropTypes.array,
 };
 
 Navbar.defaultProps = {
