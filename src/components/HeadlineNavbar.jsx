@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import CategoryComponent from './CategoryComponent.jsx';
 import SourcesStore from '../stores/Sources';
@@ -17,12 +18,14 @@ export default class Navbar extends React.Component {
   }
 
 /**
- * @returns {component} A component containing the nav bar with categories and sort drop-down.
+ * @returns {component} A component containing the nav bar with categories
+ * and sort drop-down.
  */
   render() {
     // iterate through category object
     const categoryComponent = this.category.map(categoryItem =>
-    <CategoryComponent key={categoryItem.id}{...categoryItem} category={this.props.category}/>);
+    <CategoryComponent key={categoryItem.id}{...categoryItem}
+    category={this.props.category}/>);
 
     return (
       <div className=" container navbar2">
@@ -30,7 +33,7 @@ export default class Navbar extends React.Component {
           <h3 className="text-muted">Category</h3>
           <nav>
             <ul className="nav nav-justified">
-              {categoryComponent }
+              { categoryComponent }
             </ul>
           </nav>
         </div>
@@ -38,6 +41,11 @@ export default class Navbar extends React.Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  sortFilter: PropTypes.array.isRequired,
+  category: PropTypes.array,
+};
 
 Navbar.defaultProps = {
   sortFilter: ['unavailable'],

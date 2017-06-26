@@ -2,83 +2,33 @@
 
 exports[`Dashboard page should render as expected 1`] = `
 <div>
-  <Header
-    allLanguage={
+  <Navbar
+    category={
       Array [
-        Object {
-          "key": "en",
-          "text": "Englsih",
-        },
-        Object {
-          "key": "de",
-          "text": "German",
-        },
-        Object {
-          "key": "fr",
-          "text": "French",
-        },
+        "all",
       ]
     }
-    logout={[Function]}
-    setLan={[Function]}
-    url="en"
-  />
-  <Navbar
     sortFilter={
       Array [
         "unavailable",
       ]
     }
   />
+  <SortFilter
+    sortFilter={Array []}
+  />
   <div
-    className="row"
+    className="row articlesSourcesContainer"
   >
-    <div
-      className="col-sm-3 col-md-2 sidebar well"
-    >
-      <h3>
-         All Sources 
-      </h3>
-      <input
-        className="form-control"
-        onChange={[Function]}
-        placeholder="Search Sources..."
-        type="text"
-      />
-      <ul
-        className="nav nav-sidebar Source-Container"
-      >
-        <li
-          className="active"
-        >
-          <h4>
-            <span
-              className="sr-only"
-            >
-              (current)
-            </span>
-          </h4>
-        </li>
-      </ul>
-    </div>
-    <div
-      className="container well articleCountainerHeight"
-    >
-      <div
-        className="row article-Container"
-      >
-        <ArticleComponent
-          author="Tristan Greene"
-          description="There’s an ambitious new app that wants to help you to find a couple of new friends. The app is called Me3 and was developed by two guys who wanted to bring the ease-of-use of Tinder ..."
-          publishedAt="2017-06-15T18:11:20Z"
-          title="Tinder for platonic threesomes is an actual thing"
-          url="https://thenextweb.com/apps/2017/06/15/someone-made-a-tinder-for-platonic-threesomes/"
-          urlToImage="https://cdn3.tnwcdn.com/wp-content/blogs.dir/1/files/2017/06/me3.jpg"
-        />
-         
-      </div>
-    </div>
+    <SourcesComponent
+      error={null}
+      sourceSelected="all"
+      sources={Array []}
+    />
+    <ArticleComponent
+      articles={Array []}
+      error={null}
+    />
   </div>
-  <Footer />
 </div>
 `;

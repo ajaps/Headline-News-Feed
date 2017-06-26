@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortFiler should render as expected 1`] = `
+<div
+  className=" container navbar2"
+>
+  <div
+    className="dropdown sortByFeature"
+  >
+    <a
+      aria-expanded="false"
+      aria-haspopup="true"
+      className="dropdown-toggle"
+      data-toggle="dropdown"
+      role="button"
+    >
+       Sort Articles By
+      <span
+        className="caret"
+      />
+    </a>
+    <ul
+      className="dropdown-menu"
+    >
+      <li
+        className="top"
+      >
+        <a
+          data-sort="top"
+          onClick={[Function]}
+        >
+          top
+           
+        </a>
+      </li>
+      <li
+        className="latest"
+      >
+        <a
+          data-sort="latest"
+          onClick={[Function]}
+        >
+          latest
+           
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

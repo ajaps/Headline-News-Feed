@@ -1,15 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
-import Footer from '../component/Footer.jsx';
-import Header from '../component/Header.jsx';
-import Navbar from '../component/HeadlineNavbar.jsx';
-import SortFilter from '../component/SortFilter.jsx';
+import Navbar from '../components/HeadlineNavbar.jsx';
+import SortFilter from '../components/SortFilter.jsx';
 
-import ArticleComponent from '../component/ArticleComponent.jsx';
-import SourcesComponent from '../component/SourcesComponent.jsx';
+import ArticleComponent from '../components/ArticleComponent.jsx';
+import SourcesComponent from '../components/SourcesComponent.jsx';
 
-import ArticleStore from '../stores/Article';
+import ArticlesStore from '../stores/Articles';
 import SourcesStore from '../stores/Sources';
 
 import * as myActions from '../actions/HeadlineActions';
@@ -17,63 +14,37 @@ import * as myActions from '../actions/HeadlineActions';
 /**
  * Represents an user's Dsiplay page.
  */
-export default class Dashboard extends React.Component {
-
-/**
- * gets sources at the first time of lauching the app
- * binds getArticles and getSources which sets the inital contents gotten from API
- * sests the initial state to mirror the new object in the stores
- * constructor
- * @param {object} props
- */
-  constructor(props) {
-    super(props);
-    this.getSources();
+class Dashboard extends React.Component {
+  constructor() {
+    super();
     // calls functions to get default values from store
-    this.setSources = this.setSources.bind(this);
-    this.logout = this.logout.bind(this);
-    this.setArticles = this.setArticles.bind(this);
-    this.setLanguage = this.setLanguage.bind(this);
-    this.searchSource = this.searchSource.bind(this);
+    this.showArticlesOnFirstLoad = this.showArticlesOnFirstLoad.bind(this);
+    this.fetchArticles = this.fetchArticles.bind(this);
+    this.errorFetchingSources = this.errorFetchingSources.bind(this);
 
     // Sets state with the available data in the store
     this.state = {
-      article: ArticleStore.getAll(),
-      sources: SourcesStore.getAll(),
-      sortFilter: ArticleStore.getSortAvailable(),
+      articles: ArticlesStore.getAllArticles(),
+      sources: SourcesStore.getAllSources(),
+      sortFilter: ArticlesStore.getAvailableSorts(),
       searchTerm: '',
-      url: SourcesStore.getUrl(),
-      language: SourcesStore.getSourceUrl.language,
-      CurrentCat: SourcesStore.getCurrentCat(),
-      highlightedText: ArticleStore.getHighlightText(),
+      CurrentCategory: SourcesStore.getCurrentCategory(),
+      userSelectedSource: ArticlesStore.getSelectedSourceID(),
+      sourcesError: SourcesStore.getErrorMsg(),
     };
   }
 
-  /**
-   * binds Source and Article store to this component
-   * @return {void}
-   */
   componentWillMount() {
-    SourcesStore.on('sourceChange', this.setSources);
-    ArticleStore.on('articleChange', this.setArticles);
+    this.fetchSources();
+    SourcesStore.on('sourceChange', this.showArticlesOnFirstLoad);
+    SourcesStore.on('error_in_sources', this.errorFetchingSources);
+    ArticlesStore.on('articleChange', this.fetchArticles);
   }
 
-  /**
-   * unbinds Source and Article from this component to prevent memory leaks
-   * @return {void}
-   */
   componentWillUnmount() {
-    SourcesStore.removeListener('sourceChange', this.setSources);
-    ArticleStore.removeListener('articleChange', this.setArticles);
-  }
-
-  /**
-  * changes language preference based on user selection
-  * @param {String} lang The preffered language.
-  * @returns {void}
-  */
-  setLanguage(lang) {
-    myActions.setLanguage(this.state.url, lang);
+    SourcesStore.removeListener('sourceChange', this.showArticlesOnFirstLoad);
+    SourcesStore.removeListener('error_in_sources', this.errorFetchingSources);
+    ArticlesStore.removeListener('articleChange', this.fetchArticles);
   }
 
   /**
@@ -81,107 +52,57 @@ export default class Dashboard extends React.Component {
    * first source id to generate articles on first load
    * @return {void}
    */
-  setSources() {
+  showArticlesOnFirstLoad() {
     this.setState({
-      sources: SourcesStore.getAll(),
+      sources: SourcesStore.getAllSources(),
+      userSelectedSource: SourcesStore.firstSourceInArray,
     });
-    myActions.getArticles(ArticleStore.getArticleUrl,
-      this.state.sources[0].id, ArticleStore.sortAvailable);
+    myActions.fetchArticles(ArticlesStore.getArticleUrl,
+      this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
   }
 
-  /**
-   * sets the state of the component to store values and sets the filter available for the source
-   * @return {void}
-   */
-  setArticles() {
+  errorFetchingSources() {
     this.setState({
-      article: ArticleStore.getAll(),
-      sortFilter: ArticleStore.getSortAvailable(),
+      sourcesError: SourcesStore.getErrorMsg(),
     });
   }
-
   /**
-   * initiate an action to get sources based on the defualt language on first load
+   * sets component state to the article store values and sets the filter
+   * available for the source
    * @return {void}
    */
-  getSources() {
-    myActions.setLanguage(SourcesStore.getSourceUrl, 'en');
-  }
-
-  /**
-   * sets the an object in the state to the value of the search string
-   * @param {Object} e The calling object property
-   * @return {void}
-   */
-  searchSource(e) {
-    const searchString = e.target.value;
+  fetchArticles() {
     this.setState({
-      searchTerm: searchString,
+      articles: ArticlesStore.getAllArticles(),
+      sortFilter: ArticlesStore.getAvailableSorts(),
+      userSelectedSource: ArticlesStore.getSelectedSourceID(),
     });
   }
 
   /**
-   * Initiates logout process
+   * gets sources at initial page load
    * @return {void}
    */
-  logout() {
-    this.props.logout();
+  fetchSources() {
+    myActions.fetchSources(SourcesStore.getSourceUrl);
   }
 
-/**
- * @returns {ReactElement} User dashboard Page.
- */
   render() {
-    const katigory = this.state.CurrentCat;
-    const sourceToHigh = this.state.highlightedText;
-    const { article, sources } = this.state;
-
-    // iterate through article object
-    const articleComponents = article.map(articleItem =>
-      <ArticleComponent key={articleItem.url}{...articleItem} />);
-
-    // Search through sources, return all if search term is empty('')
-    const sourcesComponents = sources.map((sourcesItem) => {
-      const reg = RegExp(this.state.searchTerm, 'gi');
-      if (sourcesItem.name.search(reg) !== -1) {
-        return <SourcesComponent key={sourcesItem.id}{...sourcesItem} sourceHigh={sourceToHigh}/>;
-      }
-    });
-
-    // Gets all the available languages and sends to header component
-    const allLanguages = SourcesStore.getAllLanguages();
-
-
+    const { articles, sources } = this.state;
+    const error = this.state.sourcesError;
+    const sourceSelected = this.state.userSelectedSource;
     return (
       <div>
-        <Header allLanguage={allLanguages} logout={this.logout} url={this.state.url.language}
-        setLan={this.setLanguage}/>
-
-        <Navbar category={katigory} />
-
+        <Navbar category={this.state.CurrentCategory} />
         <SortFilter sortFilter={this.state.sortFilter} />
-        
-        <div className="row">
-          <div className="col-sm-3 col-md-2 sidebar well">
-            <h3> News Sources </h3>
-            <input type="text" className="form-control" placeholder="Search Sources..."
-            onChange={this.searchSource} />
-            <ul className="nav nav-sidebar Source-Container">
-              {sourcesComponents}
-            </ul>
-          </div>
-          <div className="container well articleCountainerHeight">
-            <div className="row article-Container">{articleComponents} </div>
-          </div>
+        <div className="row articlesSourcesContainer">
+          <SourcesComponent sources={sources} error={error}
+          sourceSelected={sourceSelected} />
+          <ArticleComponent articles={articles} error={error} />
         </div>
-
-        <Footer />
-
       </div>
     );
   }
 }
 
-Dashboard.propTypes = {
-  logout: PropTypes.func,
-};
+export default Dashboard;

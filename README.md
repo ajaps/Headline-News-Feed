@@ -1,10 +1,54 @@
+### Headline News - A user friendly news app!
+
 [![Build Status](https://travis-ci.org/framky007/Headlines.svg?branch=master)](https://travis-ci.org/framky007/Headlines) 
 [![Coverage Status](https://coveralls.io/repos/github/framky007/Headlines/badge.svg?branch=master)](https://coveralls.io/github/framky007/Headlines?branch=master)
+[![Code Climate](https://codeclimate.com/github/framky007/Headlines/badges/gpa.svg)](https://codeclimate.com/github/framky007/Headlines) 
+
 ----
 ## Description
 
 This is a news feed application that enables you view news headlines from over 70 news sources.
 The news sources and articles are gotten from [here](https://newsapi.org)
+
+## Features 
+  *  Login via Google
+  *  Allows users to select news sources
+  *  Allows users to select view news sources based on a category e.g.Sport
+  *  Allows users to sort news article based on the sorting parameter available
+  *  Sorting can either be by -
+    *  Top
+    *  Latest
+    *  Popular
+
+
+## Dependencies
+
+### Development Dependencies
+*  The following depencies are required by the app during developmment
+  *  **[Babel-register](https://www.npmjs.com/package/babel-register)** - This framework helps to compile from es6 to es5
+  *  **[css-loader](https://www.npmjs.com/package/css-loader)** - The  css-loader is used with webpack and it interprets @import and url() like import/require()
+  *  **[enzyme](https://www.npmjs.com/package/enzyme)** - Enzyme is used together with mocha, chai and expect.js to test this application
+  *  **[eslint](https://www.npmjs.com/package/eslint)** - This is a javascript syntax highlighter used to highligh syntax error during the development of this app
+  *  **[eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)**, **[eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)**, **[eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)**, **[eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)**  - These are ESlint packages containing all of eslint rules and they are used in this application to define rules and highligh errors
+  *  **[extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin)** - It's used to move all the css imported into the application into a separate file.
+  *  **[file-loader](https://www.npmjs.com/package/file-loader)** - It enables the app to load files directly into scripts
+  *  **[sinon](https://www.npmjs.com/package/sinon)** - Used with mocha and enzyme for mocking React components during test
+  *  **[url-loader](https://www.npmjs.com/package/url-loader)** - It enables the app to use background images in the scss files
+
+### Dependencies
+*  **[babel-core](https://www.npmjs.com/package/babel-core)** - It compiles es6 used in the app to es5
+*  **[babel-eslint](https://www.npmjs.com/package/babel-eslint)** - Used with ESlint to lint syntax errors
+*  **[babel-loader](https://www.npmjs.com/package/babel-loader)** - Used with Webpack to transpile javascript codes
+*  **[babel-plugin-react-html-attrs](https://www.npmjs.com/package/babel-plugin-react-html-attrs)** - It help convert JSX `class` attribute into `className` 
+*  **[coveralls](https://www.npmjs.com/package/coveralls)** - Display test coverage
+*  **[express](https://www.npmjs.com/package/express)** - Used as the web server for this application
+*  **[extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin)** - Moves the app's css into a separate file
+*  **[flux](https://www.npmjs.com/package/flux)** - It enables the app to implement the flux architecture
+*  **[history](https://www.npmjs.com/package/history)** - Allows the app to implement history in routes.
+*  **[react](https://www.npmjs.com/package/react)** - It enables the app to use the React architecture
+*  **[react](https://www.npmjs.com/package/react)** - Used with **[react-dom](https://www.npmjs.com/package/react-dom)** enables the app to use the React architecture
+*  **[react-router-dom](https://www.npmjs.com/package/react-router-dom)** - Used to perform app routing
+*  **[webpack](https://www.npmjs.com/package/react-router-dom)** - Used to bundle the app's js and scss files for usage in the browser
 
 
 ## Technology
@@ -78,6 +122,7 @@ If you are interested in contributing to development of News-feed-app, follow th
 - Users can only view news from only 2 languages
 - Users can only view a finite amount of artiles per news source.
 - There is no provision to view old articles.
+- The Articles currently don't have their authors' displayed because the API is returning a URl instead of a string containg the author
 
 ## FAQ
 
@@ -94,3 +139,7 @@ where <your\_desired\_port> is the port you want to use. So, if you want to use 
 ``` bash 
 PORT=8080
 ```
+
+## License
+This project is authored by [Ajaps Franklin]() and is licensed 
+for your use, modification, and distribution under [the MIT license](https://en.wikipedia.org/wiki/MIT_License).

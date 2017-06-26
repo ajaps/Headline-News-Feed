@@ -2,9 +2,9 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
 import sinon from 'sinon';
-import CategoryComponent from '../../component/CategoryComponent';
+import CategoryComponent from '../../components/CategoryComponent.jsx';
 
-jest.mock('../../apiFolder/NewsApi', () => ({
+jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')
 }));
 
@@ -15,10 +15,10 @@ describe('Category', () => {
   // // mockFn();
   // // expect(mockFn).toHaveBeenCalled();
   beforeEach(() => {
-    const fetch = jest.fn();
+    // const fetch = jest.fn();
     const categoryItem = { id: 'games', name: 'Games' };
     app = shallow(<CategoryComponent onClick={onButtonClick}
-      key={categoryItem.id}{...categoryItem}/>);
+      key={categoryItem.id}{...categoryItem} category={['games']} />);
   });
 
   it('should render as expected', () => {
@@ -33,7 +33,6 @@ describe('Category', () => {
   it('should have a displayed text called Games', () => {
     expect(app.text()).toBe('Games');
   });
-
 
   it('should call the setCategory function on click the anchor element', () => {
     app.find('a').simulate('click');

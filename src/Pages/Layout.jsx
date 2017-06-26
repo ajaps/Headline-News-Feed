@@ -1,110 +1,65 @@
-import firebase from 'firebase';
+import { createBrowserHistory } from 'history';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom';
-
-import Dashboard from './Dashboard.jsx';
+import ReactLoading from 'react-loading';
 import Login from './Login.jsx';
+import Dashboard from './Dashboard.jsx';
 import Page404 from './Page404.jsx';
+import Footer from '../components/Footer.jsx';
+import Header from '../components/Header.jsx';
+import { firebaseAuth } from '../config/firebase';
+import { PublicRoute } from '../components/PublicRoute';
+import { PrivateRoute } from '../components/PrivateRoute';
 
-/**
- * firebase configuration keys.
- */
-firebase.initializeApp({
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  databaseURL: process.env.DATABASE_URL,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-});
 
-/**
- * Represents a component for displaying pages based on users authentication.
- */
-export default class Layout extends React.Component {
+const history = createBrowserHistory();
 
-  /**
-   * constructor
-   * @param {object} props
-   */
-  constructor(props) {
-    super(props);
-    this.state = { url: '/Dasboard' };
+
+class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = { authenticated: false, loading: true, };
   }
 
-  /**
-   * checks if user is authenticated at component mount
-   * @return {void}
-   */
   componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ user });
+    this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authenticated: true, loading: false, });
+      } else {
+        this.setState({ authenticated: false, loading: false, });
+      }
     });
   }
 
-  /**
-   * sign out from firebase/application
-   * @return {void}
-   */
-  logout() {
-    firebase.auth().signOut().then(() => {
-      // Sign-out successful.
-      this.setState({ user: null });
-    }).catch((error) => {
-      // An error happened.
-      alert(error);
-    });
+  componentWillUnmount() {
+    this.removeListener();
   }
 
-  /**
-   * Signs in into firebase/Application
-   * @param {string} signInMethod  - represents the preffered sign in provider
-   * @return {void}
-   */
-  signIn(signInMethod) {
-    let provider;
-    if (signInMethod === 'google+') {
-      provider = new firebase.auth.GoogleAuthProvider();
-    } else {
-      provider = new firebase.auth.GithubAuthProvider();
-    }
-    firebase.auth().signInWithPopup(provider).then((result) => {
-    }).catch((error) => {
-      alert(error.message);
-    });
-  }
-
-  /**
-   * return component based on current authentication state
-   * @return {ReactElement} returns react element under different authentication state
-   */
   render() {
-    const { user } = this.state;
-    return (
-      user === undefined ?
-        <h1>Loading ...........please wait</h1> :
-        <Router>
+    return this.state.loading === true ?
+    <ReactLoading className="spinner" width="150px"
+    type="spin" color="#3b5998"/> :
+    (
+      <div>
+        <Header containLogoutBtn={this.state.authenticated} />
+        <Router history={history}>
           <Switch>
-            <Route exact path="/" component={() => user ? <Redirect to="/Dashboard" /> :
-              <Login logInFirebase={this.signIn.bind(this)} />} />
+            <PublicRoute authenticated={this.state.authenticated}
+            exact path="/" component={Login} />
 
-            <Route path="/Login" component={() => user ? <Redirect to="/Dashboard" /> :
-              <Login logInFirebase={this.signIn.bind(this)} />} />
+            <PublicRoute authenticated={this.state.authenticated}
+            path="/login" component={Login} />
 
-            <Route path="/Dashboard" component={() => user ? <Dashboard
-              logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
+            <PrivateRoute authenticated={this.state.authenticated}
+            path="/dashboard" component={Dashboard} />
 
-            <Route path="/Dashboard/:good" component={() => user ? <Dashboard
-              logout={this.logout.bind(this)} params={this.state} /> : <Redirect to="/Login" />} />
-
-            <Route path = "/*" component={ () => <Page404 /> } />
+            <Route path="*" component={Page404} />
           </Switch>
         </Router>
+        <Footer />
+      </div>
     );
   }
 }
+
+export default Layout;

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login page should render as expected 1`] = `
+<div
+  className="login-page"
+>
+  <div
+    className="loginBackgroundImg"
+  />
+  <div
+    className=" container-fluid all-available-login-button"
+  >
+    <h2
+      className="loginHeader"
+    >
+      Headline News Feed
+    </h2>
+    <button
+      className="loginBtn btn loginBtn--github"
+      href="login"
+      name="github"
+      onClick={[Function]}
+    >
+      <span
+        className="fa fa-github"
+      />
+      Login with Github
+    </button>
+    <br />
+    <button
+      className="loginBtn btn loginBtn--google"
+      href="login"
+      name="google+"
+      onClick={[Function]}
+    >
+      Login with Google
+    </button>
+  </div>
+</div>
+`;

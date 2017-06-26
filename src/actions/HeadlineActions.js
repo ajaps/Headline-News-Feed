@@ -1,24 +1,26 @@
 import Dispatcher from '../dispatcher/HeadlineDispatcher';
-import getNewsData from '../apiFolder/NewsApi';
+import getNewsData from '../api/NewsApi';
 
 /**
 * Gets Sources from News API using the url built from the params
-* @param {object} url An object containing the building blocks for the API url
-* @param {String} language The preffered language.
+* @param {String} url The url for all sources.
 * @returns {void}
 */
-const setLanguage = (url, language) => {
-  // Builds the url necessary to get relevant data from API
-  url.language = language;
-  const newUrl = `${url.URL_SOURCE}?language=${language}`;
+const fetchSources = (url) => {
+  const newUrl = url.URL_SOURCE;
   // calls class with url to 'fetch' data from API
   getNewsData.getData(newUrl)
   .then((data) => {
     Dispatcher.dispatch({
-      type: 'SET_LANGUAGE',
-      text: language,
+      type: 'FETCH_SOURCES',
       response: data.status,
       sources: data.sources,
+      firstSourceInArray: data.sources[0].id,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_SOURCES',
+      error: error.message,
     });
   });
 };
@@ -32,7 +34,7 @@ const setLanguage = (url, language) => {
 const setCategory = (url, category) => {
   // Builds the url necessary to get relevant data from API
   url.category = category;
-  let newUrl = `${url.URL_SOURCE}?language=${url.language}`;
+  let newUrl = url.URL_SOURCE;
   if (url.category !== 'all') {
     newUrl += `&category=${url.category}`;
   }
@@ -44,6 +46,12 @@ const setCategory = (url, category) => {
       text: category,
       response: data.status,
       sources: data.sources,
+      error: null,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_SOURCES',
+      error: error.message,
     });
   });
 };
@@ -71,6 +79,12 @@ const sortBy = (url, sortValue) => {
       text: sortValue,
       response: data.status,
       articles: data.articles,
+      error: null,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_SOURCES',
+      error: error.message,
     });
   });
 };
@@ -82,26 +96,31 @@ const sortBy = (url, sortValue) => {
 *@param {String} sortAvailable The sort available for the source
 * @returns {void}
 */
-const getArticles = (url, source, sortAvailable) => {
+const fetchArticles = (url, source, sortAvailable) => {
   // Builds the url necessary to get relevant data from API
-  url.source = source;
-  const newUrl = `${url.URL_ARTICLES}?source=${url.source}&apiKey=${url.API_KEY}`;
+  const newUrl = `${url.URL_ARTICLES}?source=${source}&apiKey=${url.API_KEY}`;
   // calls class with url to 'fetch' data from API
   getNewsData.getData(newUrl)
   .then((data) => {
     Dispatcher.dispatch({
-      type: 'SET_SOURCE',
+      type: 'GOT_NEW_ARTICLES',
       text: source,
       sort: sortAvailable,
       response: data.status,
       articles: data.articles,
+      error: null,
+    });
+  }).catch((error) => {
+    Dispatcher.dispatch({
+      type: 'ERROR_FETCH_ARTICLES',
+      error: error.message,
     });
   });
 };
 
 module.exports = {
-  setLanguage,
+  fetchSources,
   setCategory,
   sortBy,
-  getArticles,
+  fetchArticles,
 };

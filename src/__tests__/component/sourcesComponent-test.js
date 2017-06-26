@@ -1,50 +1,70 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
+import ReactTestUtils from 'react-dom/test-utils';
 import toJson from 'enzyme-to-json';
-import SourcesComponent from '../../component/SourcesComponent';
+import SourcesComponent from '../../components/SourcesComponent.jsx';
 
-jest.mock('../../apiFolder/NewsApi', () => ({
+jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')
 }));
 
 describe('Category', () => {
   let app;
+  const error = null;
+  const sourceSelected = 'bbc-sport';
   const sourceObject =
-    {
-      "id": "abc-news-au",
-      "name": "ABC News (AU)",
-      "description": "Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.",
-      "url": "http://www.abc.net.au/news",
-      "category": "general",
-      "language": "en",
-      "country": "au",
-      "urlsToLogos": {
-      "small": "",
-      "medium": "",
-      "large": ""
+    [
+      {
+        id: 'bbc-sport',
+        name: 'BBC SPORT',
+        description: 'Cristiano Ronaldo extends his real madrid contract',
+        url: 'http://www.bbcsport.com/news',
+        category: 'sport',
+        language: 'en',
+        country: 'en',
+        urlsToLogos: {
+          small: '',
+          medium: '',
+          large: ''
+        },
+        sortBysAvailable: [
+          'popular',
+          'latest',
+        ]
       },
-        "sortBysAvailable": [
-        "top"
-      ]
-    };
+      {
+        id: 'abc-news-au',
+        name: 'ABC News (AU)',
+        description: "Australia's most trusted source of local",
+        url: 'http://www.abc.net.au/news',
+        category: 'general',
+        language: 'en',
+        country: 'au',
+        urlsToLogos: {
+          small: '',
+          medium: '',
+          large: ''
+        },
+        sortBysAvailable: [
+          'top'
+        ]
+      }
+    ];
 
   it('should render as expected', () => {
-    app = shallow(<SourcesComponent key={sourceObject.id}{...sourceObject}/>);
+    app = shallow(<SourcesComponent sources={sourceObject} error={error}
+          sourceSelected={sourceSelected} />);
     const tree = toJson(app);
     expect(tree).toMatchSnapshot();
   });
 
-  it('should have extacly one anchor element', () => {
-    expect(app.find('a').length).toEqual(1);
+  it('should have the same number of list element as the array length', () => {
+    expect(app.find('li').length).toEqual(2);
   });
 
-  it('should have display text using the value of "name" in the object passed', () => {
-    const result = 'ABC News (AU)';
-    expect(app.text()).toBe(result);
-  });
-
-  it('should call the setCategory function on click the anchor element', () => {
-    app.find('a').simulate('click');
-    expect(app).toBeTruthy();
+  it('should show the spinner component when data is being fetched', () => {
+    const appWhileLoading = shallow(<SourcesComponent sources={sourceObject}
+    error={'loading'} sourceSelected={sourceSelected} />);
+    expect(appWhileLoading.find('div').length).toEqual(1);
   });
 });
