@@ -7,8 +7,7 @@ const app = express();
 app.set('port', process.env.PORT || 3002);
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use((request, response) => {
+app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 

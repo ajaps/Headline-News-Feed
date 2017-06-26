@@ -1,7 +1,7 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import Page404 from '../../Pages/Page404';
+import Page404 from '../../pages/Page404.jsx';
 
 describe('404 page', () => {
   let app;
