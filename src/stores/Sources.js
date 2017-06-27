@@ -15,44 +15,36 @@ class AllSources extends EventEmitter {
     super();
 
     this.getSourceUrl = {
-      language: 'en',
       category: 'all',
-      URL_SOURCE: 'https://newsapi.org/v1/sources',
+      URL_SOURCE: 'https://newsapi.org/v1/sources?language=en',
     };
     this.status = 'ok';
     this.sources = [];
 
     // All Available categories for the application
-    this.allCategory = [
-      { id: 'all', name: 'All' },
-      { id: 'business', name: 'Business' },
-      { id: 'entertainment', name: 'Entertainment' },
-      { id: 'gaming', name: 'Gaming' },
-      { id: 'general', name: 'General' },
-      { id: 'music', name: 'Music' },
-      { id: 'politics', name: 'Politics' },
-      { id: 'science', name: 'Science' },
-      { id: 'sport', name: 'Sport' },
-      { id: 'technology', name: 'Technology' },
-    ];
+    this.allCategory = [];
 
     // Selected category on each click
     this.selectedCategory = ['all'];
+    this.firstSourceInArray = '';
 
-    // All Available language for the application
-    this.ALL_LANGUAGES = [
-      { key: 'en', text: 'English' },
-      { key: 'de', text: 'German' },
-      { key: 'fr', text: 'French' },
-    ];
+    this.errorMsg = null;
   }
 
   /**
    * returns Sources object
    * @return {object} contains available sources in the store
    */
-  getAll() {
+  getAllSources() {
     return this.sources;
+  }
+
+ /**
+   * returns Sources object
+   * @return {object} contains available sources in the store
+   */
+  getErrorMsg() {
+    return this.errorMsg;
   }
 
   /**
@@ -64,19 +56,19 @@ class AllSources extends EventEmitter {
   }
 
   /**
-   * returns current languages supported by the app
-   * @return {string} contains available languages
-   */
-  getAllLanguages() {
-    return this.ALL_LANGUAGES;
-  }
-
-  /**
    * returns current selected category
    * @return {string} contains source url required to fetch data from API
    */
-  getCurrentCat() {
+  getCurrentCategory() {
     return this.selectedCategory;
+  }
+
+/**
+   * returns current selected category
+   * @return {array} contains source url required to fetch data from API
+   */
+  getAllCategory() {
+    return this.allCategory;
   }
 
   /**
@@ -86,24 +78,28 @@ class AllSources extends EventEmitter {
    */
   handleAction(action) {
     switch (action.type) {
-      case 'GET_SOURCES':
-        this.sources = action.sources;
-        this.status = action.response;
-        this.emit('sourceChange');
-        break;
-      case 'SET_CATEGORY':
-        this.getSourceUrl.category = action.text;
-        this.sources = action.sources;
-        this.status = action.response;
-        this.selectedCategory[0] = action.text;
-        this.emit('sourceChange');
-        break;
-      case 'SET_LANGUAGE':
-        this.getSourceUrl.language = action.text;
-        this.sources = action.sources;
-        this.status = action.response;
-        this.emit('sourceChange');
-        break;
+    case 'FETCH_SOURCES':
+      this.sources = action.sources;
+      this.status = action.response;
+      this.firstSourceInArray = action.firstSourceInArray;
+      this.allCategory = action.sources;
+      this.errorMsg = action.error;
+      this.emit('sourceChange');
+      break;
+    case 'SET_CATEGORY':
+      this.getSourceUrl.category = action.text;
+      this.sources = action.sources;
+      this.status = action.response;
+      this.selectedCategory[0] = action.text;
+      this.errorMsg = action.error;
+      this.emit('sourceChange');
+      break;
+    case 'ERROR_FETCH_SOURCES':
+      this.errorMsg = action.error;
+      this.emit('error_in_sources');
+      break;
+    default:
+      this.emit('ActionTypeNotAvailable');
     }
   }
 }
