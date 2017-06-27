@@ -28,7 +28,7 @@ class AllSources extends EventEmitter {
     this.selectedCategory = ['all'];
     this.firstSourceInArray = '';
 
-    this.errorMsg = null;
+    this.sourcesErrorMsg = 'loading';
   }
 
   /**
@@ -44,7 +44,7 @@ class AllSources extends EventEmitter {
    * @return {object} contains available sources in the store
    */
   getErrorMsg() {
-    return this.errorMsg;
+    return this.sourcesErrorMsg;
   }
 
   /**
@@ -83,7 +83,7 @@ class AllSources extends EventEmitter {
       this.status = action.response;
       this.firstSourceInArray = action.firstSourceInArray;
       this.allCategory = action.sources;
-      this.errorMsg = action.error;
+      this.sourcesErrorMsg = action.error;
       this.emit('sourceChange');
       break;
     case 'SET_CATEGORY':
@@ -91,12 +91,8 @@ class AllSources extends EventEmitter {
       this.sources = action.sources;
       this.status = action.response;
       this.selectedCategory[0] = action.text;
-      this.errorMsg = action.error;
+      this.sourcesErrorMsg = action.error;
       this.emit('sourceChange');
-      break;
-    case 'ERROR_FETCH_SOURCES':
-      this.errorMsg = action.error;
-      this.emit('error_in_sources');
       break;
     default:
       this.emit('ActionTypeNotAvailable');

@@ -95,36 +95,4 @@ describe('Sources Store', () => {
       expect(SourcesStore.getAllSources()).toEqual({});
     });
   });
-
-  describe('Test for ERROR_FETCH_SOURCES action type in store', () => {
-    let error;
-    let dispatcherMock;
-    beforeEach(() => {
-      dispatcherMock = dispatcher.register.mock.calls[0][0];
-      error = 'Could not connect to the internet';
-    });
-
-    afterEach(() => {
-      SourcesStore.handleAction({ type: 'ERROR_FETCH_SOURCES', error: {} });
-    });
-
-    it('should return an empty object on first call', () => {
-      expect(SourcesStore.getErrorMsg()).toEqual(undefined);
-    });
-
-    it('should be registered to a dispatcher', () => {
-      dispatcherMock({ type: 'ERROR_FETCH_SOURCES', error, });
-      expect(SourcesStore.getErrorMsg()).toEqual(error);
-    });
-
-    it('should return an updated Articles after receiving an action', () => {
-      SourcesStore.handleAction({ type: 'ERROR_FETCH_SOURCES', error, });
-      expect(SourcesStore.getErrorMsg()).toEqual(error);
-    });
-
-    it('should not respond to an action not registered to it', () => {
-      SourcesStore.handleAction({ type: 'ERROR_FETCH', error, });
-      expect(SourcesStore.getErrorMsg()).toEqual({});
-    });
-  });
 });

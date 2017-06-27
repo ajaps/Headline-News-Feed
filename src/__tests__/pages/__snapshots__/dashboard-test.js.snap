@@ -17,13 +17,13 @@ exports[`Dashboard page should render as expected 1`] = `
     className="row articlesSourcesContainer"
   >
     <SourcesComponent
-      error={null}
+      error="loading"
       sourceSelected="all"
       sources={Array []}
     />
     <ArticleComponent
       articles={Array []}
-      error={null}
+      error="loading"
     />
   </div>
 </div>

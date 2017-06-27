@@ -16,10 +16,14 @@ const fetchSources = (url) => {
       response: data.status,
       sources: data.sources,
       firstSourceInArray: data.sources[0].id,
+      error: null,
     });
   }).catch((error) => {
     Dispatcher.dispatch({
-      type: 'ERROR_FETCH_SOURCES',
+      type: 'FETCH_SOURCES',
+      response: null,
+      sources: [],
+      firstSourceInArray: null,
       error: error.message,
     });
   });
@@ -50,7 +54,10 @@ const setCategory = (url, category) => {
     });
   }).catch((error) => {
     Dispatcher.dispatch({
-      type: 'ERROR_FETCH_SOURCES',
+      type: 'SET_CATEGORY',
+      text: ['all'],
+      response: null,
+      sources: [],
       error: error.message,
     });
   });
@@ -83,7 +90,10 @@ const sortBy = (url, sortValue) => {
     });
   }).catch((error) => {
     Dispatcher.dispatch({
-      type: 'ERROR_FETCH_SOURCES',
+      type: 'SET_SORTBY',
+      text: '',
+      response: null,
+      articles: [],
       error: error.message,
     });
   });
@@ -112,7 +122,11 @@ const fetchArticles = (url, source, sortAvailable) => {
     });
   }).catch((error) => {
     Dispatcher.dispatch({
-      type: 'ERROR_FETCH_ARTICLES',
+      type: 'GOT_NEW_ARTICLES',
+      text: '',
+      sort: [],
+      response: null,
+      articles: [],
       error: error.message,
     });
   });
