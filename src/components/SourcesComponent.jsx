@@ -89,8 +89,3 @@ SourcesComponent.propTypes = {
   error: PropTypes.string,
   sources: PropTypes.array.isRequired,
 };
-
-SourcesComponent.defaultProps = {
-  error: 'loading'
-};
-
