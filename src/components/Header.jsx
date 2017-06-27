@@ -34,7 +34,7 @@ export default class Header extends React.Component {
           <div id="navbar" className="navbar-collapse collapse">
             <ol className="nav navbar-nav navbar-right">
               <li className={showLogoutBtn}><a className="disableClick">
-                {/* {`Welcome:   ${ }`} */}
+                 {`Welcome:   ${this.props.user}`}
               </a></li>
               <li className={showLogoutBtn}>
                 <a onClick={this.initiateLogout} ref="logout">
@@ -51,10 +51,12 @@ export default class Header extends React.Component {
 
 Header.propTypes = {
   containLogoutBtn: PropTypes.bool,
-  userName: PropTypes.string
+  userName: PropTypes.string,
+  user: PropTypes.string,
 };
 
 Header.defaultProps = {
   containLogoutBtn: false,
-  userName: ''
+  userName: '',
+  user: '',
 };

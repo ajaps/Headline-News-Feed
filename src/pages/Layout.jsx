@@ -8,7 +8,7 @@ import firebaseAuth from '../config/firebase';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
 import Login from './Login.jsx';
-import Page404 from './Page404.jsx';
+import PageNotFound from './PageNotFound.jsx';
 import { PrivateRoute } from '../components/PrivateRoute';
 import { PublicRoute } from '../components/PublicRoute';
 
@@ -25,7 +25,8 @@ class Layout extends React.Component {
   componentDidMount() {
     this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ authenticated: true, loading: false, });
+        const name = user.displayName;
+        this.setState({ authenticated: true, loading: false, user: name });
       } else {
         this.setState({ authenticated: false, loading: false, });
       }
@@ -37,12 +38,13 @@ class Layout extends React.Component {
   }
 
   render() {
+    const name = this.state.user;
     return this.state.loading === true ?
     <ReactLoading className="spinner" width="150px"
     type="spin" color="#3b5998"/> :
     (
       <div>
-        <Header containLogoutBtn={this.state.authenticated} />
+        <Header containLogoutBtn={this.state.authenticated} user={name} />
         <Router history={history}>
           <Switch>
             <PublicRoute authenticated={this.state.authenticated}
@@ -54,7 +56,7 @@ class Layout extends React.Component {
             <PrivateRoute authenticated={this.state.authenticated}
             path="/dashboard" component={Dashboard} />
 
-            <Route path="*" component={Page404} />
+            <Route path="*" component={PageNotFound} />
           </Switch>
         </Router>
         <Footer />

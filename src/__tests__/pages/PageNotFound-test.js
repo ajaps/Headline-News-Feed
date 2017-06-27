@@ -1,12 +1,12 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import Page404 from '../../pages/Page404.jsx';
+import PageNotFound from '../../pages/PageNotFound.jsx';
 
 describe('404 page', () => {
   let app;
   beforeEach(() => {
-    app = shallow(<Page404 />);
+    app = shallow(<PageNotFound />);
   });
 
   it('should render as expected', () => {
