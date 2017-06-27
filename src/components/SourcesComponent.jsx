@@ -4,6 +4,7 @@ import React from 'react';
 import ReactLoading from 'react-loading';
 import * as myActions from '../actions/HeadlineActions';
 import ArticleStore from '../stores/Articles';
+import Error from '../components/ErrorComponent.jsx';
 /**
  * Represents a Source.
  */
@@ -44,26 +45,33 @@ export default class SourcesComponent extends React.Component {
   render() {
     const error = this.props.error;
     const sources = this.props.sources;
-     // Search through sources, return all if search term is empty('')
-    const sourcesComponents = sources.map((sourcesItem) => {
-      // sets class name based on user source selection using classnames module
-      const btnClass = classNames({
-        sourceBorder: this.props.sourceSelected === sourcesItem.id,
+    let sourcesComponents;
+
+    // If an error was encountered while gettin data via the API
+    if (error) {
+      sourcesComponents = <Error error={error} />;
+    } else {
+      // Search through sources, return all if search term is empty('')
+      sourcesComponents = sources.map((sourcesItem) => {
+        // sets class name based on user source selection - classnames module
+        const btnClass = classNames({
+          sourceBorder: this.props.sourceSelected === sourcesItem.id,
+        });
+        const reg = RegExp(this.state.searchTerm, 'gi');
+        if (sourcesItem.name.search(reg) !== -1) {
+          return (
+            <li className={btnClass} key={sourcesItem.id}>
+              <a onClick={this.setSources} data-id={sourcesItem.id}
+              data-sort={sourcesItem.sortBysAvailable}> {sourcesItem.name} </a>
+            </li>
+          );
+        }
+        return null;
       });
-      const reg = RegExp(this.state.searchTerm, 'gi');
-      if (sourcesItem.name.search(reg) !== -1) {
-        return (
-          <li className={btnClass} key={sourcesItem.id}>
-            <a onClick={this.setSources} data-id={sourcesItem.id}
-            data-sort={sourcesItem.sortBysAvailable}> {sourcesItem.name} </a>
-          </li>
-        );
-      }
-      return null;
-    });
+    }
 
     return (
-      error ?
+      error === 'loading' ?
       <div className="col-sm-3 col-md-2 sidebar well">
         <h4 className="sourcesHeader"> News Sources </h4>
         <input type="text" className="form-control"
@@ -85,7 +93,7 @@ export default class SourcesComponent extends React.Component {
 }
 
 SourcesComponent.propTypes = {
-  sourceSelected: PropTypes.string.isRequired,
+  sourceSelected: PropTypes.string,
   error: PropTypes.string,
-  sources: PropTypes.array.isRequired,
+  sources: PropTypes.array,
 };

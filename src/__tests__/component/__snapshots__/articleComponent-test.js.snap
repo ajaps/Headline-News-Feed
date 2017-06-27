@@ -4,13 +4,13 @@ exports[`Category should render as expected 1`] = `
 <div
   className="container well outerArticleCountainer"
 >
-  <Loading
-    className="spin"
-    color="#3b5998"
-    delay={1000}
-    height={64}
-    type="spin"
-    width="99px"
-  />
+  <div
+    className="row article-Container"
+  >
+    <Error
+      error="error"
+    />
+     
+  </div>
 </div>
 `;

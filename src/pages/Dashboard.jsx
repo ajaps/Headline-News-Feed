@@ -20,7 +20,8 @@ class Dashboard extends React.Component {
     // calls functions to get default values from store
     this.showArticlesOnFirstLoad = this.showArticlesOnFirstLoad.bind(this);
     this.fetchArticles = this.fetchArticles.bind(this);
-    this.errorFetchingSources = this.errorFetchingSources.bind(this);
+    // this.errorFetchingSources = this.errorFetchingSources.bind(this);
+    // this.errorFetchingArticle = this.errorFetchingArticle.bind(this);
 
     // Sets state with the available data in the store
     this.state = {
@@ -31,6 +32,7 @@ class Dashboard extends React.Component {
       CurrentCategory: SourcesStore.getCurrentCategory(),
       userSelectedSource: ArticlesStore.getSelectedSourceID(),
       sourcesError: SourcesStore.getErrorMsg(),
+      articlesError: ArticlesStore.getErrorMsg(),
       allCategories: SourcesStore.getAllCategory(),
     };
   }
@@ -38,13 +40,15 @@ class Dashboard extends React.Component {
   componentWillMount() {
     this.fetchSources();
     SourcesStore.on('sourceChange', this.showArticlesOnFirstLoad);
-    SourcesStore.on('error_in_sources', this.errorFetchingSources);
+    // SourcesStore.on('error_in_sources', this.errorFetchingSources);
+    // ArticlesStore.on('error_in_articles', this.errorFetchingArticle);
     ArticlesStore.on('articleChange', this.fetchArticles);
   }
 
   componentWillUnmount() {
     SourcesStore.removeListener('sourceChange', this.showArticlesOnFirstLoad);
-    SourcesStore.removeListener('error_in_sources', this.errorFetchingSources);
+    // SourcesStore.removeListener('error_in_sources', this.errorFetchingSources);
+    // ArticlesStore.removeListener('error_in_articles', this.errorFetchingArticle);
     ArticlesStore.removeListener('articleChange', this.fetchArticles);
   }
 
@@ -58,16 +62,25 @@ class Dashboard extends React.Component {
       sources: SourcesStore.getAllSources(),
       userSelectedSource: SourcesStore.firstSourceInArray,
       allCategories: SourcesStore.getAllCategory(),
-    });
-    myActions.fetchArticles(ArticlesStore.getArticleUrl,
-      this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
-  }
-
-  errorFetchingSources() {
-    this.setState({
       sourcesError: SourcesStore.getErrorMsg(),
     });
+    if (this.state.sources.length > 0) {
+      myActions.fetchArticles(ArticlesStore.getArticleUrl,
+      this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
+    }
   }
+
+  // errorFetchingArticle() {
+  //   this.setState({
+  //     articlesError: ArticlesStore.getErrorMsg(),
+  //   });
+  // }
+
+  // errorFetchingSources() {
+  //   this.setState({
+  //     sourcesError: SourcesStore.getErrorMsg(),
+  //   });
+  // }
   /**
    * sets component state to the article store values and sets the filter
    * available for the source
@@ -78,6 +91,7 @@ class Dashboard extends React.Component {
       articles: ArticlesStore.getAllArticles(),
       sortFilter: ArticlesStore.getAvailableSorts(),
       userSelectedSource: ArticlesStore.getSelectedSourceID(),
+      articlesError: ArticlesStore.getErrorMsg(),
     });
   }
 
@@ -91,7 +105,8 @@ class Dashboard extends React.Component {
 
   render() {
     const { articles, sources, allCategories, CurrentCategory } = this.state;
-    const error = this.state.sourcesError;
+    const sourceError = this.state.sourcesError;
+    const articlesError = this.state.articlesError;
     const sourceSelected = this.state.userSelectedSource;
     return (
       <div>
@@ -99,9 +114,9 @@ class Dashboard extends React.Component {
         allCategory={allCategories} />
         <SortFilter sortFilter={this.state.sortFilter} />
         <div className="row articlesSourcesContainer">
-          <SourcesComponent sources={sources} error={error}
+          <SourcesComponent sources={sources} error={sourceError}
           sourceSelected={sourceSelected} />
-          <ArticleComponent articles={articles} error={error} />
+          <ArticleComponent articles={articles} error={articlesError} />
         </div>
       </div>
     );
