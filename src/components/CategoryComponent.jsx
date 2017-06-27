@@ -44,7 +44,7 @@ export default class CategoryComponent extends React.Component {
         return (
           <li key={eachCategory} className={btnClass}>
             <a onClick={this.setCategory} data-category={eachCategory}
-            ref={eachCategory}>{eachCategory}</a>
+            ref={eachCategory}>{eachCategory.split('-')[0]}</a>
           </li>
         );
       }

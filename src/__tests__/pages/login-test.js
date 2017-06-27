@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import toJson from 'enzyme-to-json';
-import Login from '../../pages/Login';
+import Login from '../../pages/Login.jsx';
 
 jest.mock('../../config/authentication', () => ({
   login: () => Promise.resolve('logged In')

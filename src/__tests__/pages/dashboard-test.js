@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import toJson from 'enzyme-to-json';
-import Dashboard from '../../pages/Dashboard';
+import Dashboard from '../../pages/Dashboard.jsx';
 
 jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')

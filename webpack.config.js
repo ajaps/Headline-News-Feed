@@ -43,8 +43,8 @@ module.exports = {
       path: '.env',
       safe: false,
     }),
-    // new webpack.optimize.OccurrenceOrderPlugin(),
-    // new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin('styles.css'),
     new webpack.DefinePlugin({
       'process.env': {
@@ -55,7 +55,7 @@ module.exports = {
         STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
         MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID),
         NEWS_API_KEY: JSON.stringify(process.env.NEWS_API_KEY),
-       // NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production')
       }
     }),
   ]

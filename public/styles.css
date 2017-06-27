@@ -167,7 +167,8 @@ p.publishedAt {
 .navbar2 {
   margin-bottom: 1vw;
   margin-left: 2vw;
-  width: 96vw; }
+  width: 96vw;
+  text-transform: capitalize; }
 
 .sortByFeature {
   width: 15vw;
