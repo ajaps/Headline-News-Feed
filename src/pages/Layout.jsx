@@ -8,7 +8,7 @@ import firebaseAuth from '../config/firebase';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
 import Login from './Login.jsx';
-import Page404 from './Page404.jsx';
+import PageNotFound from './PageNotFound.jsx';
 import { PrivateRoute } from '../components/PrivateRoute';
 import { PublicRoute } from '../components/PublicRoute';
 
@@ -54,7 +54,7 @@ class Layout extends React.Component {
             <PrivateRoute authenticated={this.state.authenticated}
             path="/dashboard" component={Dashboard} />
 
-            <Route path="*" component={Page404} />
+            <Route path="*" component={PageNotFound} />
           </Switch>
         </Router>
         <Footer />
