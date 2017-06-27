@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --coverage -u",
     "build": "webpack",
-    "start": "npm run build && node index.js",
+    "dev": "npm run build && node index.js",
+    "start": "node index.js",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "author": "Ajaps Franklin",

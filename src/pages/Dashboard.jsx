@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navbar from '../components/HeadlineNavbar.jsx';
+import CategoryComponent from '../components/CategoryComponent.jsx';
 import SortFilter from '../components/SortFilter.jsx';
 
 import ArticleComponent from '../components/ArticleComponent.jsx';
@@ -31,6 +31,7 @@ class Dashboard extends React.Component {
       CurrentCategory: SourcesStore.getCurrentCategory(),
       userSelectedSource: ArticlesStore.getSelectedSourceID(),
       sourcesError: SourcesStore.getErrorMsg(),
+      allCategories: SourcesStore.getAllCategory(),
     };
   }
 
@@ -56,6 +57,7 @@ class Dashboard extends React.Component {
     this.setState({
       sources: SourcesStore.getAllSources(),
       userSelectedSource: SourcesStore.firstSourceInArray,
+      allCategories: SourcesStore.getAllCategory(),
     });
     myActions.fetchArticles(ArticlesStore.getArticleUrl,
       this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
@@ -88,12 +90,13 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { articles, sources } = this.state;
+    const { articles, sources, allCategories, CurrentCategory } = this.state;
     const error = this.state.sourcesError;
     const sourceSelected = this.state.userSelectedSource;
     return (
       <div>
-        <Navbar category={this.state.CurrentCategory} />
+        <CategoryComponent currentcategory={CurrentCategory}
+        allCategory={allCategories} />
         <SortFilter sortFilter={this.state.sortFilter} />
         <div className="row articlesSourcesContainer">
           <SourcesComponent sources={sources} error={error}

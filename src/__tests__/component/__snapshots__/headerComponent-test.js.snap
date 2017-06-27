@@ -29,7 +29,9 @@ exports[`Header should render as expected 1`] = `
         >
           <a
             className="disableClick"
-          />
+          >
+            Welcome:   
+          </a>
         </li>
         <li
           className=""

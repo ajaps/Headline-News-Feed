@@ -11,6 +11,7 @@ describe('Category', () => {
   const source = 'bbc-sport';
   const sortAvailable = 'top, popular';
   const sortValue = null;
+  const category = 'sport';
   const getArticleUrl = {
     sortBy: '',
     source: '',
@@ -32,5 +33,9 @@ describe('Category', () => {
 
   it('should call sortBy without error', () => {
     app = allActions.sortBy(getArticleUrl, sortValue);
+  });
+
+  it('should call setCategory without error', () => {
+    app = allActions.setCategory(getArticleUrl, category);
   });
 });

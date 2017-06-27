@@ -1,7 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import sinon from 'sinon';
 import CategoryComponent from '../../components/CategoryComponent.jsx';
 
 jest.mock('../../api/NewsApi', () => ({
@@ -9,16 +8,11 @@ jest.mock('../../api/NewsApi', () => ({
 }));
 
 describe('Category', () => {
+  const sources = [{ category: 'general' }, { category: 'sport' }];
   let app;
-  const onButtonClick = sinon.spy();
-  // // const mockFn = jest.fn();
-  // // mockFn();
-  // // expect(mockFn).toHaveBeenCalled();
   beforeEach(() => {
-    // const fetch = jest.fn();
-    const categoryItem = { id: 'games', name: 'Games' };
-    app = shallow(<CategoryComponent onClick={onButtonClick}
-      key={categoryItem.id}{...categoryItem} category={['games']} />);
+    app = shallow(<CategoryComponent currentcategory={['general']}
+    allCategory={sources} />);
   });
 
   it('should render as expected', () => {
@@ -26,16 +20,12 @@ describe('Category', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should have extacly one anchor element', () => {
-    expect(app.find('a').length).toEqual(1);
+  it('should same number of a tag element as the lenght of the array', () => {
+    expect(app.find('a').length).toEqual(2);
   });
 
-  it('should have a displayed text called Games', () => {
-    expect(app.text()).toBe('Games');
+  it('should have only 1 active class set to the current category', () => {
+    expect(app.find('li.active').length).toBe(1);
   });
-
-  it('should call the setCategory function on click the anchor element', () => {
-    app.find('a').simulate('click');
-    expect(app).toBeTruthy();
-  });
+    // expect(app).toBeTruthy();
 });

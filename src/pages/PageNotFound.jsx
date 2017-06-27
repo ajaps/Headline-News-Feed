@@ -4,7 +4,7 @@ import React from 'react';
  * return component that displays 404 page
  * @return {ReactElement} Markup
  */
-const Page404 = () => {
+const PageNotFound = () => {
   return (
     <div className="page404">
       <h1 className="p404Header">PAGE NOT FOUND </h1>
@@ -16,4 +16,4 @@ const Page404 = () => {
     </div>
   );
 };
-export default Page404;
+export default PageNotFound;
