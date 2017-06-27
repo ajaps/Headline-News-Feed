@@ -43,6 +43,7 @@ export default class SourcesComponent extends React.Component {
  */
   render() {
     const error = this.props.error;
+    console.log(error);
     const sources = this.props.sources;
      // Search through sources, return all if search term is empty('')
     const sourcesComponents = sources.map((sourcesItem) => {
@@ -88,9 +89,5 @@ SourcesComponent.propTypes = {
   sourceSelected: PropTypes.string.isRequired,
   error: PropTypes.string,
   sources: PropTypes.array.isRequired,
-};
-
-SourcesComponent.defaultProps = {
-  error: 'loading'
 };
 
