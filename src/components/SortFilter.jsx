@@ -29,12 +29,16 @@ export default class SortFilter extends React.Component {
   render() {
     // Enable or Disable the Sort dropdown button based on available sort
     const articleSortFilters = this.props.sortFilter;
-    const allAvailableSortFilter = articleSortFilters.map(eachSortItem =>
-      <li className={eachSortItem} key={eachSortItem}>
-        <a onClick={this.bySort} data-sort={eachSortItem} ref={eachSortItem}>
-          { eachSortItem } </a>
-      </li>
-    );
+    let allAvailableSortFilter;
+
+    if (articleSortFilters) {
+      allAvailableSortFilter = articleSortFilters.map(eachSortItem =>
+        <li className={eachSortItem} key={eachSortItem}>
+          <a onClick={this.bySort} data-sort={eachSortItem} ref={eachSortItem}>
+            { eachSortItem } </a>
+        </li>
+      );
+    }
 
     return (
       <div className=" container navbar2">
@@ -52,5 +56,5 @@ export default class SortFilter extends React.Component {
 }
 
 SortFilter.propTypes = {
-  sortFilter: PropTypes.array.isRequired,
+  sortFilter: PropTypes.array,
 };

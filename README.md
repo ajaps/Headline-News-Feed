@@ -1,7 +1,7 @@
 ### Headline News - A user friendly news app!
 
 [![Build Status](https://travis-ci.org/framky007/Headline-News-Feed.svg?branch=master)](https://travis-ci.org/framky007/Headline-News-Feed) 
-[![Coverage Status](https://coveralls.io/repos/github/framky007/Headline-News-Feed/badge.svg?branch=master)](https://coveralls.io/github/framky007/Headline-News-Feed?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/framky007/Headline-News-Feed/badge.svg?branch=develop)](https://coveralls.io/github/framky007/Headline-News-Feed?branch=develop)
 [![Code Climate](https://codeclimate.com/github/framky007/Headline-News-Feed/badges/gpa.svg)](https://codeclimate.com/github/framky007/Headline-News-Feed) 
 
 ----

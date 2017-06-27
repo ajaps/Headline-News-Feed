@@ -24,6 +24,7 @@ class AllArticle extends EventEmitter {
     this.sortAvailable = [];
     this.highlightedSource = 'all';
     this.articles = [];
+    this.articlesErrorMsg = 'loading';
   }
 
   /**
@@ -32,6 +33,14 @@ class AllArticle extends EventEmitter {
    */
   getAllArticles() {
     return this.articles;
+  }
+
+   /**
+   * returns Article object
+   * @return {object} contains available articles in the store
+   */
+  getErrorMsg() {
+    return this.articlesErrorMsg;
   }
 
   /**
@@ -63,12 +72,23 @@ class AllArticle extends EventEmitter {
       this.status = action.response;
       this.articles = action.articles;
       this.highlightedSource = action.text;
+      this.articlesErrorMsg = action.error;
       this.emit('articleChange');
       break;
     case 'SET_SORTBY':
       this.getArticleUrl.sortBy = action.text;
       this.articles = action.articles;
       this.status = action.response;
+      this.articlesErrorMsg = action.error;
+      this.emit('articleChange');
+      break;
+    case 'FETCH_SOURCES':
+      this.getArticleUrl.source = action.text;
+      this.sortAvailable = action.sort;
+      this.status = action.response;
+      this.articles = action.articles;
+      this.highlightedSource = action.text;
+      this.articlesErrorMsg = action.error;
       this.emit('articleChange');
       break;
     default:

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render as expected 1`] = `
+<div>
+  <p>
+     The App encoutered an error while fetching data
+  </p>
+  <br />
+  <p>
+    Ensure you're connected to the internet and try again
+  </p>
+  <p>
+     ERROR: 
+    Failed to fetch
+     
+  </p>
+</div>
+`;
