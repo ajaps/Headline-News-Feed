@@ -2,15 +2,11 @@
 
 exports[`Dashboard page should render as expected 1`] = `
 <div>
-  <Navbar
-    category={
+  <CategoryComponent
+    allCategory={Array []}
+    currentcategory={
       Array [
         "all",
-      ]
-    }
-    sortFilter={
-      Array [
-        "unavailable",
       ]
     }
   />

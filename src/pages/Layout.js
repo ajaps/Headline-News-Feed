@@ -2,14 +2,15 @@ import { createBrowserHistory } from 'history';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import ReactLoading from 'react-loading';
-import Login from './Login.jsx';
-import Dashboard from './Dashboard.jsx';
-import Page404 from './Page404.jsx';
+
+import Dashboard from './Dashboard';
+import firebaseAuth from '../config/firebase';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
-import { firebaseAuth } from '../config/firebase';
-import { PublicRoute } from '../components/PublicRoute';
+import Login from './Login';
+import Page404 from './Page404.jsx';
 import { PrivateRoute } from '../components/PrivateRoute';
+import { PublicRoute } from '../components/PublicRoute';
 
 
 const history = createBrowserHistory();

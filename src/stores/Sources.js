@@ -22,18 +22,7 @@ class AllSources extends EventEmitter {
     this.sources = [];
 
     // All Available categories for the application
-    this.allCategory = [
-      { id: 'all', name: 'All' },
-      { id: 'business', name: 'Business' },
-      { id: 'entertainment', name: 'Entertainment' },
-      { id: 'gaming', name: 'Gaming' },
-      { id: 'general', name: 'General' },
-      { id: 'music', name: 'Music' },
-      { id: 'politics', name: 'Politics' },
-      { id: 'science-and-nature', name: 'Science' },
-      { id: 'sport', name: 'Sport' },
-      { id: 'technology', name: 'Technology' },
-    ];
+    this.allCategory = [];
 
     // Selected category on each click
     this.selectedCategory = ['all'];
@@ -74,6 +63,14 @@ class AllSources extends EventEmitter {
     return this.selectedCategory;
   }
 
+/**
+   * returns current selected category
+   * @return {array} contains source url required to fetch data from API
+   */
+  getAllCategory() {
+    return this.allCategory;
+  }
+
   /**
    * handles to specified action type
    * @param {Object} action - the action type and text - Sources
@@ -85,6 +82,7 @@ class AllSources extends EventEmitter {
       this.sources = action.sources;
       this.status = action.response;
       this.firstSourceInArray = action.firstSourceInArray;
+      this.allCategory = action.sources;
       this.errorMsg = action.error;
       this.emit('sourceChange');
       break;

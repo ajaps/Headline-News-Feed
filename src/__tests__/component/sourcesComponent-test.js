@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import toJson from 'enzyme-to-json';
 import SourcesComponent from '../../components/SourcesComponent.jsx';
 

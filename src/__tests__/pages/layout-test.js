@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import Layout from '../../pages/Layout.jsx';
+import Layout from '../../pages/Layout';
 
 jest.mock('../../config/firebase', () => ({
 }));

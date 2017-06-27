@@ -1,13 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Category should render as expected 1`] = `
-<li
-  className="active"
+<div
+  className=" container navbar2"
 >
-  <a
-    onClick={[Function]}
+  <div
+    className="masthead"
   >
-    Games
-  </a>
-</li>
+    <h3
+      className="text-muted"
+    >
+      Category
+    </h3>
+    <nav>
+      <ul
+        className="nav nav-justified"
+      >
+        <li
+          className="active"
+        >
+          <a
+            data-category="general"
+            onClick={[Function]}
+          >
+            general
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            data-category="sport"
+            onClick={[Function]}
+          >
+            sport
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
 `;

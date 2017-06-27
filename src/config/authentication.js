@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { ref, firebaseAuth } from './firebase';
+import firebaseAuth from './firebase';
 
 /**
  * logs out from firebase
@@ -23,18 +23,4 @@ export function login(providerName) {
   }
 
   return firebase.auth().signInWithPopup(provider);
-}
-
-/**
- * logs into firebase
- * @param {object} user The users information
- * @return {function}
- */
-export function saveUser(user) {
-  return ref.child(`users/${user.uid}/info`)
-    .set({
-      email: user.email,
-      uid: user.uid
-    })
-    .then(() => user);
 }
