@@ -4,9 +4,9 @@
   "description": "An App that allows users view headlines from different news sources and link to the original artices on those sources",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage -u",
+    "test": "jest --coverage",
     "build": "webpack",
-    "start": "npm run build && node index.js",
+    "start": "node index.js",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "author": "Ajaps Franklin",

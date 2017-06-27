@@ -7,7 +7,7 @@ import Dashboard from './Dashboard';
 import firebaseAuth from '../config/firebase';
 import Footer from '../components/Footer.jsx';
 import Header from '../components/Header.jsx';
-import Login from './Login';
+import Login from './Login.jsx';
 import Page404 from './Page404.jsx';
 import { PrivateRoute } from '../components/PrivateRoute';
 import { PublicRoute } from '../components/PublicRoute';
