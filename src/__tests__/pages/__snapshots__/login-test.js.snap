@@ -7,13 +7,16 @@ exports[`Login page should render as expected 1`] = `
   <div
     className="loginBackgroundImg"
   />
+  <p
+    className="alert-danger errorMsg"
+  />
   <div
     className=" container-fluid all-available-login-button"
   >
     <h2
       className="loginHeader"
     >
-      Headline News Feed
+      Headline RSS Feed
     </h2>
     <button
       className="loginBtn btn loginBtn--github"

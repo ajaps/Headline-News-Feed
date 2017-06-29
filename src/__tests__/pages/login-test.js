@@ -38,4 +38,18 @@ describe('Login page', () => {
     const loginBtn = renderedDoc.refs.googleBtn;
     ReactTestUtils.Simulate.click(loginBtn);
   });
+
+  it('component should get data from sources store without error', () => {
+    const renderedDoc = ReactTestUtils.renderIntoDocument(
+      <Login />
+    );
+    renderedDoc.getLoginError();
+  });
+
+  it('component should unmount without error', () => {
+    const renderedDoc = ReactTestUtils.renderIntoDocument(
+      <Login />
+    );
+    renderedDoc.componentWillUnmount();
+  });
 });

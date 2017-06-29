@@ -1,5 +1,6 @@
 import Dispatcher from '../dispatcher/HeadlineDispatcher';
 import getNewsData from '../api/NewsApi';
+import { login } from '../config/authentication';
 
 /**
 * Gets Sources from News API using the url built from the params
@@ -132,9 +133,20 @@ const fetchArticles = (url, source, sortAvailable) => {
   });
 };
 
+const firebaseLogIn = (provider) => {
+  login(provider)
+    .catch((error) => {
+      Dispatcher.dispatch({
+        type: 'LOGIN_ERROR',
+        error: error.message,
+      });
+    });
+};
+
 module.exports = {
   fetchSources,
   setCategory,
   sortBy,
   fetchArticles,
+  firebaseLogIn,
 };

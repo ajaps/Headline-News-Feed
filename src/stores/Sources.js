@@ -29,6 +29,8 @@ class AllSources extends EventEmitter {
     this.firstSourceInArray = '';
 
     this.sourcesErrorMsg = 'loading';
+
+    this.loginErrorMessage = '';
   }
 
   /**
@@ -37,6 +39,10 @@ class AllSources extends EventEmitter {
    */
   getAllSources() {
     return this.sources;
+  }
+
+  getErrorMessage() {
+    return this.loginErrorMessage;
   }
 
  /**
@@ -93,6 +99,10 @@ class AllSources extends EventEmitter {
       this.selectedCategory[0] = action.text;
       this.sourcesErrorMsg = action.error;
       this.emit('sourceChange');
+      break;
+    case 'LOGIN_ERROR':
+      this.loginErrorMessage = action.error;
+      this.emit('loginError');
       break;
     default:
       this.emit('ActionTypeNotAvailable');
