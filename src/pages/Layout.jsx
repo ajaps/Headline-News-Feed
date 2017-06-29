@@ -54,7 +54,7 @@ class Layout extends React.Component {
             path="/login" component={Login} />
 
             <PrivateRoute authenticated={this.state.authenticated}
-            path="/dashboard" component={Dashboard} />
+            exact path="/dashboard" component={Dashboard} />
 
             <Route path="*" component={PageNotFound} />
           </Switch>

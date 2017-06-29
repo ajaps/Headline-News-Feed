@@ -20,8 +20,6 @@ class Dashboard extends React.Component {
     // calls functions to get default values from store
     this.showArticlesOnFirstLoad = this.showArticlesOnFirstLoad.bind(this);
     this.fetchArticles = this.fetchArticles.bind(this);
-    // this.errorFetchingSources = this.errorFetchingSources.bind(this);
-    // this.errorFetchingArticle = this.errorFetchingArticle.bind(this);
 
     // Sets state with the available data in the store
     this.state = {
@@ -40,15 +38,11 @@ class Dashboard extends React.Component {
   componentWillMount() {
     this.fetchSources();
     SourcesStore.on('sourceChange', this.showArticlesOnFirstLoad);
-    // SourcesStore.on('error_in_sources', this.errorFetchingSources);
-    // ArticlesStore.on('error_in_articles', this.errorFetchingArticle);
     ArticlesStore.on('articleChange', this.fetchArticles);
   }
 
   componentWillUnmount() {
     SourcesStore.removeListener('sourceChange', this.showArticlesOnFirstLoad);
-    // SourcesStore.removeListener('error_in_sources', this.errorFetchingSources);
-    // ArticlesStore.removeListener('error_in_articles', this.errorFetchingArticle);
     ArticlesStore.removeListener('articleChange', this.fetchArticles);
   }
 
@@ -70,17 +64,6 @@ class Dashboard extends React.Component {
     }
   }
 
-  // errorFetchingArticle() {
-  //   this.setState({
-  //     articlesError: ArticlesStore.getErrorMsg(),
-  //   });
-  // }
-
-  // errorFetchingSources() {
-  //   this.setState({
-  //     sourcesError: SourcesStore.getErrorMsg(),
-  //   });
-  // }
   /**
    * sets component state to the article store values and sets the filter
    * available for the source
