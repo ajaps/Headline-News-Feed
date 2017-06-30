@@ -1,6 +1,3 @@
-/**
- * Represents News Api.
- */
 class getNewsData {
 
 /**

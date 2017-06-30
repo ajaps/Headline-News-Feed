@@ -9,7 +9,6 @@ import { login } from '../config/authentication';
 */
 const fetchSources = (url) => {
   const newUrl = url.URL_SOURCE;
-  // calls class with url to 'fetch' data from API
   getNewsData.getData(newUrl)
   .then((data) => {
     Dispatcher.dispatch({
@@ -43,7 +42,6 @@ const setCategory = (url, category) => {
   if (url.category !== 'all') {
     newUrl += `&category=${url.category}`;
   }
-  // calls class with url to 'fetch' data from API
   getNewsData.getData(newUrl)
   .then((data) => {
     Dispatcher.dispatch({
@@ -73,13 +71,12 @@ const setCategory = (url, category) => {
 const sortBy = (url, sortValue) => {
   // Builds the url necessary to get relevant data from API
   url.sortBy = sortValue;
-  let newUrl = `${url.URL_ARTICLES}?source=${url.source}`;
+  let newUrl = `${url.URL_ARTICLE}?source=${url.source}`;
   if (url.sortBy) {
     newUrl += `&sortBy=${url.sortBy}&apiKey=${url.API_KEY}`;
   } else {
     newUrl += `&apiKey=${url.API_KEY}`;
   }
-  // calls class with url to 'fetch' data from API
   getNewsData.getData(newUrl)
   .then((data) => {
     Dispatcher.dispatch({
@@ -107,16 +104,15 @@ const sortBy = (url, sortValue) => {
 *@param {String} sortAvailable The sort available for the source
 * @returns {void}
 */
-const fetchArticles = (url, source, sortAvailable) => {
+const fetchArticles = (url, source) => {
   // Builds the url necessary to get relevant data from API
-  const newUrl = `${url.URL_ARTICLES}?source=${source}&apiKey=${url.API_KEY}`;
-  // calls class with url to 'fetch' data from API
+  const newUrl = `${url.URL_ARTICLE}?source=${source.id}&apiKey=${url.API_KEY}`;
   getNewsData.getData(newUrl)
   .then((data) => {
     Dispatcher.dispatch({
       type: 'GOT_NEW_ARTICLES',
-      text: source,
-      sort: sortAvailable,
+      text: source.id,
+      sort: source.sortBysAvailable,
       response: data.status,
       articles: data.articles,
       error: null,

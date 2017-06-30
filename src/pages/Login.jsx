@@ -2,7 +2,7 @@ import React from 'react';
 import SourcesStore from '../stores/Sources';
 import * as myActions from '../actions/HeadlineActions';
 /**
- * Represents a component Login/Home page.
+ * Represents Login/Home component.
  */
 export default class Login extends React.Component {
   constructor() {
@@ -21,7 +21,7 @@ export default class Login extends React.Component {
 
   getLoginError() {
     this.setState({
-      error: SourcesStore.getErrorMessage(),
+      error: SourcesStore.getLoginErrorMessage(),
     });
   }
 
@@ -32,11 +32,6 @@ export default class Login extends React.Component {
  */
   handleLogin(e) {
     myActions.firebaseLogIn(e.target.name);
-    // login(e.target.name)
-    // .catch((error) => {
-    //   const loginError = error.message;
-    //   this.setState({ error: loginError });
-    // });
   }
 
   render() {
