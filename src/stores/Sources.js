@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher/HeadlineDispatcher';
 
 /**
- * Represents Source's store/data.
+ * Represents Source's store
  */
 class AllSources extends EventEmitter {
 
@@ -41,12 +41,16 @@ class AllSources extends EventEmitter {
     return this.sources;
   }
 
-  getErrorMessage() {
+   /**
+   * returns login Error message object
+   * @return {object} contains available sources in the store
+   */
+  getLoginErrorMessage() {
     return this.loginErrorMessage;
   }
 
  /**
-   * returns Sources object
+   * returns error encountered when fetching source object
    * @return {object} contains available sources in the store
    */
   getErrorMsg() {
@@ -70,7 +74,7 @@ class AllSources extends EventEmitter {
   }
 
 /**
-   * returns current selected category
+   * returns ALL available categories
    * @return {array} contains source url required to fetch data from API
    */
   getAllCategory() {

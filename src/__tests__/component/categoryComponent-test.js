@@ -27,5 +27,4 @@ describe('Category', () => {
   it('should have only 1 active class set to the current category', () => {
     expect(app.find('li.active').length).toBe(1);
   });
-    // expect(app).toBeTruthy();
 });

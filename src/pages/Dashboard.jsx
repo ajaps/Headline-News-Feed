@@ -12,12 +12,12 @@ import SourcesStore from '../stores/Sources';
 import * as myActions from '../actions/HeadlineActions';
 
 /**
- * Represents an user's Dsiplay page.
+ * Represents the parent component for all
+ * components when the user is authenticated.
  */
 class Dashboard extends React.Component {
   constructor() {
     super();
-    // calls functions to get default values from store
     this.showArticlesOnFirstLoad = this.showArticlesOnFirstLoad.bind(this);
     this.fetchArticles = this.fetchArticles.bind(this);
 
@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
     });
     if (this.state.sources.length > 0) {
       myActions.fetchArticles(ArticlesStore.getArticleUrl,
-      this.state.sources[0].id, this.state.sources[0].sortBysAvailable);
+      this.state.sources[0]);
     }
   }
 

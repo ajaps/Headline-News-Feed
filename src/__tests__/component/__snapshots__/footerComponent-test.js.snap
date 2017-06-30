@@ -4,6 +4,6 @@ exports[`Footer should render as expected 1`] = `
 <footer
   className="footer"
 >
-  Headline News App (c) 2017 
+  Headline RSS Feed App (c) 2017 
 </footer>
 `;

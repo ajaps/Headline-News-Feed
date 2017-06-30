@@ -6,7 +6,7 @@ import * as myActions from '../actions/HeadlineActions';
 import ArticleStore from '../stores/Articles';
 import Error from '../components/ErrorComponent.jsx';
 /**
- * Represents a Source.
+ * Represents Source template.
  */
 export default class SourcesComponent extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class SourcesComponent extends React.Component {
   }
 
 /**
-   * sets the an object in the state to the value of the search string
+   * sets the the searchTerm in component state to the input from the user
    * @param {Object} e The calling object property
    * @return {void}
    */
@@ -36,7 +36,8 @@ export default class SourcesComponent extends React.Component {
   setSources(e) {
     const sort = e.target.dataset.sort.split(',');
     const url = ArticleStore.getArticleUrl;
-    myActions.fetchArticles(url, e.target.dataset.id, sort);
+    const articleData = { id: e.target.dataset.id, sortBysAvailable: sort };
+    myActions.fetchArticles(url, articleData);
   }
 
 /**
