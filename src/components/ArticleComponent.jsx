@@ -6,7 +6,7 @@ import TextTruncate from 'react-text-truncate';
 import Error from '../components/ErrorComponent.jsx';
 
 /**
- * Represents an Article.
+ * Represents Article template.
  */
 export default class ArticleComponent extends React.Component {
 
@@ -25,6 +25,7 @@ export default class ArticleComponent extends React.Component {
       // change custom date to a more readable date
         const articlePublishDate = new Date(articleItem.publishedAt);
         const getFormateDate = dateFormat(articlePublishDate);
+
         return (
           <div key={articleItem.url}>
             <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -35,7 +36,7 @@ export default class ArticleComponent extends React.Component {
                     <p className="title">{articleItem.title} </p>
                     <div className="article-description ">
                       <TextTruncate
-                      line={2}
+                      line={3}
                       truncateText="....."
                       text={articleItem.description}
                       />

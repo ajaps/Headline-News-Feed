@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher/HeadlineDispatcher';
 
 /**
- * Represents Article's store/data.
+ * Represents Article's store.
  */
 class AllArticle extends EventEmitter {
 
@@ -17,7 +17,7 @@ class AllArticle extends EventEmitter {
     this.getArticleUrl = {
       sortBy: '',
       source: '',
-      URL_ARTICLES: 'https://newsapi.org/v1/articles',
+      URL_ARTICLE: 'https://newsapi.org/v1/articles',
       API_KEY: process.env.NEWS_API_KEY,
     };
     this.status = 'ok';
@@ -36,7 +36,7 @@ class AllArticle extends EventEmitter {
   }
 
    /**
-   * returns Article object
+   * returns Article Error message
    * @return {object} contains available articles in the store
    */
   getErrorMsg() {
@@ -60,7 +60,7 @@ class AllArticle extends EventEmitter {
   }
 
   /**
-   * handles to specified action type
+   * handles actions based on specified action type
    * @param {Object} action - the action type and text - Articles
    * @return {void}
    */

@@ -25,10 +25,6 @@ export default class CategoryComponent extends React.Component {
     myActions.setCategory(url, selectedCategory);
   }
 
-/**
- * @returns {component} A component containing the nav bar with categories
- * and sort drop-down.
- */
   render() {
     // Get all unique categories deep in the JSON object
     const categoryObj = {};

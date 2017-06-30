@@ -16,6 +16,6 @@ describe('Footer', () => {
   });
 
   it('contains name of the app "Healine News" ', () => {
-    expect(app.exists('Headline News')).toBe(true);
+    expect(app.exists('Headline RSS Feed App (c) 2017 ')).toBe(true);
   });
 });

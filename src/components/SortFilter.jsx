@@ -5,7 +5,7 @@ import * as myActions from '../actions/HeadlineActions';
 import ArticleStore from '../stores/Articles';
 
 /**
- * Represents a navigation bar containing different categories
+ * Represents the Available sort filter
  */
 export default class SortFilter extends React.Component {
   constructor() {
@@ -23,11 +23,7 @@ export default class SortFilter extends React.Component {
     myActions.sortBy(url, sortBy);
   }
 
-/**
- * @returns {component} Navbar Component housing categories and sort drop-down.
- */
   render() {
-    // Enable or Disable the Sort dropdown button based on available sort
     const articleSortFilters = this.props.sortFilter;
     let allAvailableSortFilter;
 
