@@ -9,7 +9,6 @@ describe('Category', () => {
   let app;
   const url = 'https://newsapi.org/v1/sources?language=en';
   const source = 'bbc-sport';
-  const sortAvailable = 'top, popular';
   const sortValue = null;
   const category = 'sport';
   const getArticleUrl = {
@@ -19,7 +18,7 @@ describe('Category', () => {
   };
 
   it('should call fetchArticles without error', () => {
-    app = allActions.fetchArticles(url, source, sortAvailable);
+    app = allActions.fetchArticles(url, source);
     const tree = toJson(app);
     expect(tree).toMatchSnapshot();
   });
@@ -28,7 +27,7 @@ describe('Category', () => {
     jest.mock('../../api/NewsApi', () => ({
       getData: () => Promise.error('could not fetch')
     }));
-    app = allActions.fetchArticles(url, source, sortAvailable);
+    app = allActions.fetchArticles(url, source);
   });
 
   it('should call sortBy without error', () => {

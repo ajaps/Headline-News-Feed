@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactLoading from 'react-loading';
 import TextTruncate from 'react-text-truncate';
-import Error from '../components/ErrorComponent.jsx';
+import Error from '../components/Error.jsx';
 
 /**
  * Represents Article template.
@@ -28,12 +28,14 @@ export default class ArticleComponent extends React.Component {
 
         return (
           <div key={articleItem.url}>
-            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-              <a href={articleItem.url}target="_Blank"rel="noopener noreferrer">
+            <div className="col-lg-3 col-md-3 col-sm-2 col-xs-1">
                 <div className="thumbnail well text-center">
                   <img src={articleItem.urlToImage} alt="Not Available" />
                   <div className="caption">
-                    <p className="title">{articleItem.title} </p>
+                    <a href={articleItem.url} target="_Blank"
+                    rel="noopener noreferrer">
+                      <p className="title">{articleItem.title} </p>
+                    </a>
                     <div className="article-description ">
                       <TextTruncate
                       line={3}
@@ -44,7 +46,6 @@ export default class ArticleComponent extends React.Component {
                     <p className="publishedAt">{getFormateDate} </p>
                   </div>
                 </div>
-              </a>
             </div>
           </div>
         );

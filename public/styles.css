@@ -29,8 +29,26 @@ a {
   font-family: "Comic Sans MS", "Comic Sans", cursive; }
 
 .appHeader {
-  margin-left: 3vw;
-  margin-right: 3vw; }
+  background: #333;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 94%; }
+
+.userInfo {
+  padding-top: 4%;
+  margin-left: 40%; }
+
+.logoutBtn {
+  color: #9d9d9d; }
+  .logoutBtn:hover {
+    color: #3b5998; }
+
+.appTitle {
+  color: #9d9d9d;
+  font-size: 200%;
+  padding-top: 1.3%; }
+  .appTitle:hover {
+    color: #3b5998; }
 
 .loginBackgroundImg {
   background-image: url(6d20af80bf782a4946baf6fd096387c8.jpg);
@@ -88,13 +106,11 @@ p.publishedAt {
 
 .Source-Container {
   padding: 1vw;
-  overflow: scroll;
-  height: 29vw; }
+  overflow: scroll; }
 
 .article-Container {
   padding: 1vw;
-  overflow: scroll;
-  height: 37vw; }
+  overflow: scroll; }
 
 .outerArticleCountainer {
   height: 39.2vw;
@@ -123,7 +139,7 @@ p.publishedAt {
   margin-left: 3vw; }
 
 .footer {
-  position: absolute;
+  position: relative;
   text-align: left;
   margin-left: 3vw; }
 
@@ -179,13 +195,13 @@ p.publishedAt {
   width: 96vw;
   text-transform: capitalize; }
 
+.categoryList {
+  margin-left: 3%;
+  margin-right: 3%;
+  text-transform: capitalize; }
+
 .sortByFeature {
-  width: 15vw;
-  margin-left: 78vw;
-  margin-top: 0.7vw;
-  height: 1vw;
-  font-weight: bold;
-  text-align: center; }
+  font-weight: bold; }
 
 .dropdown-toggle {
   color: #3b5998; }

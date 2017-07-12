@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import Error from '../../components/ErrorComponent.jsx';
+import Error from '../../components/Error.jsx';
 
 
 describe('Footer', () => {

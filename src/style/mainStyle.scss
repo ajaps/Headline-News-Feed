@@ -13,6 +13,8 @@ $login_google_btn_background:royalblue;
 $login_when_active: rgba(0,0,0,0.1);
 $grey: grey;
 $source_border: #dfe3ee;
+$header_color: #333;
+$headerText: #9d9d9d;
 
 //fonts
 $font_0: "Roboto";
@@ -32,11 +34,13 @@ $url_2: url("../img/GitHub-Mark.jpg");
 }
 
 body {
+  // font-size: 20%;
 	overflow: auto;
 }
 a {
 	cursor: pointer;
 }
+
 .spinner{
   margin-left: 40vw;
   margin-top: 20vw;
@@ -57,8 +61,28 @@ a {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 .appHeader{
-  margin-left: 3vw;
-  margin-right: 3vw;
+  background: $header_color;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 94%;
+}
+.userInfo{
+  padding-top: 4%;
+  margin-left: 40%;
+}
+.logoutBtn{
+  color: $headerText;
+  &:hover{
+    color:$color_tapa_approx;
+  }
+}
+.appTitle{
+  color: $headerText;
+  font-size: 200%;
+  padding-top: 1.3%;
+  &:hover{
+    color:$color_tapa_approx;
+  }
 }
 .loginBackgroundImg{
   background-image: $url_0;
@@ -120,12 +144,12 @@ p {
 .Source-Container {
 	padding: 1vw;
 	overflow: scroll;
-	height: 29vw;
+	// height: 29;
 }
 .article-Container {
 	padding: 1vw;
 	overflow: scroll;
-	height: 37vw;
+	// height: 37vw;
 }
 .outerArticleCountainer {
 	height: 39.2vw;
@@ -154,7 +178,7 @@ p {
   margin-left: 3vw;
 }
 .footer{
-  position: absolute;
+  position: relative;
   text-align: left;
   margin-left: 3vw;
 }
@@ -233,13 +257,15 @@ p {
   width: 96vw;
   text-transform: capitalize;
 }
+.categoryList{
+  margin-left: 3%;
+  margin-right: 3%;
+  text-transform: capitalize;
+}
 .sortByFeature {
-	width: 15vw;
-	margin-left: 78vw;
-	margin-top: 0.7vw;
-	height: 1vw;
+  // margin-left: 85%;
+	// height: 1vw;
 	font-weight: bold;
-	text-align: center;
 }
 .dropdown-toggle{
   color: $color_tapa_approx;

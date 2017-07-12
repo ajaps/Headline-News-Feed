@@ -38,7 +38,9 @@ export default class Login extends React.Component {
     return (
       <div className="login-page">
         <div className="loginBackgroundImg" />
-        <p className="alert-danger errorMsg">{this.state.error}</p>
+        <p className="errorMsg">
+          <span className="alert-danger">{this.state.error}</span>
+        </p>
         <div className=" container-fluid all-available-login-button">
           <h2 className="loginHeader">Headline RSS Feed</h2>
           <button name={'github'} onClick={this.handleLogin} href="login"
