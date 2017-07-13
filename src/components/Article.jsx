@@ -16,7 +16,7 @@ export default class ArticleComponent extends React.Component {
   render() {
     const error = this.props.error;
     const articles = this.props.articles;
-    let articleComponents;
+    let articleComponents = null;
 
     if (error) {
       articleComponents = <Error error={error} />;
@@ -27,7 +27,7 @@ export default class ArticleComponent extends React.Component {
 
         return (
           <div key={articleItem.url}>
-          <div className="row featurette each-article">
+          <div className="row each-article">
             <div className="col-md-7 col-md-push-5">
               <a href={articleItem.url} rel="noopener noreferrer"
                   target="_Blank"

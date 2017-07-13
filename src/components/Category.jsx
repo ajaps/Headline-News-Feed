@@ -21,8 +21,7 @@ export default class CategoryComponent extends React.Component {
  */
   setCategory(e) {
     const selectedCategory = e.target.dataset.category;
-    const url = SourcesStore.getSourceUrl;
-    myActions.setCategory(url, selectedCategory);
+    myActions.setApiCategory(selectedCategory);
   }
 
   render() {

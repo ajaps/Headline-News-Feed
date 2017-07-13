@@ -64,8 +64,7 @@ class Dashboard extends React.Component {
       sourcesError: SourcesStore.getErrorMsg(),
     });
     if (this.state.sources.length > 0) {
-      myActions.fetchArticles(ArticlesStore.getArticleUrl,
-      this.state.sources[0]);
+      myActions.fetchArticles(this.state.sources[0]);
     }
   }
 

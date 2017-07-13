@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer should render as expected 1`] = `
+exports[`Error component should render as expected 1`] = `
 <div>
   <p>
      The App encoutered an error while fetching data

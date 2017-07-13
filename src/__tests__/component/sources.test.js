@@ -7,9 +7,9 @@ jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')
 }));
 
-describe('Category', () => {
+describe('Sources component', () => {
   let app;
-  const error = null;
+  const err = null;
   const sourceSelected = 'bbc-sport';
   const sourceObject =
     [
@@ -51,8 +51,9 @@ describe('Category', () => {
     ];
 
   it('should render as expected', () => {
-    app = shallow(<SourcesComponent sources={sourceObject} error={error}
-          sourceSelected={sourceSelected} />);
+    app = shallow(<SourcesComponent error={err} sourceSelected={sourceSelected}
+        sources={sourceObject}
+                  />);
     const tree = toJson(app);
     expect(tree).toMatchSnapshot();
   });

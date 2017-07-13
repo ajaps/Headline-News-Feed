@@ -3,7 +3,7 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import PageNotFound from '../../pages/PageNotFound.jsx';
 
-describe('404 page', () => {
+describe('404 componenet', () => {
   let app;
   beforeEach(() => {
     app = shallow(<PageNotFound />);

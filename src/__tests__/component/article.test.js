@@ -3,7 +3,7 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import ArticleComponent from '../../components/Article.jsx';
 
-describe('Category', () => {
+describe('Article component', () => {
   let app;
   const mockArticle =
     [
@@ -36,5 +36,10 @@ describe('Category', () => {
 
   it('should have extacly two div element if an Error occured', () => {
     expect(app.find('div').length).toEqual(2);
+  });
+
+  it('should have two images representing the number of articles', () => {
+    const app1 = shallow(<ArticleComponent articles={mockArticle} />);
+    expect(app1.find('img').length).toEqual(2);
   });
 });

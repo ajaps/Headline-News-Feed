@@ -3,8 +3,8 @@ import dispatcher from '../../dispatcher/Headlines';
 
 jest.mock('../../dispatcher/Headlines');
 
-describe('Sources Store', () => {
-  describe('Test for FETCH_SOURCES action type in store', () => {
+describe('For sources Store', () => {
+  describe('When an action type of FETCH_SOURCES is dispatched', () => {
     let sources;
     let dispatcherMock;
     beforeEach(() => {
@@ -25,37 +25,23 @@ describe('Sources Store', () => {
       SourcesStore.handleAction({ type: 'FETCH_SOURCES', sources: {} });
     });
 
-    it('should return an empty object on first call', () => {
-      expect(SourcesStore.getAllSources()).toEqual([]);
-    });
-    it('should return ["all] on first call for current category', () => {
-      expect(SourcesStore.getCurrentCategory()).toEqual(['all']);
+    it('it should return an empty string for current category', () => {
+      expect(SourcesStore.getCurrentCategory()).toEqual([]);
     });
 
-    it('should be registered to a dispatcher', () => {
-      dispatcherMock({ type: 'FETCH_SOURCES', sources, });
-      expect(SourcesStore.getAllSources()).toEqual(sources);
-    });
-
-    it('should return an updated Articles after receiving an action', () => {
+    it('it should return updated Articles after receiving an action', () => {
       SourcesStore.handleAction({ type: 'FETCH_SOURCES', sources, });
       expect(SourcesStore.getAllCategory()).toEqual(sources);
     });
 
-    it('should not respond to an action not registered to it', () => {
+    it('it should not respond to an action not registered to it', () => {
       SourcesStore.handleAction({ type: 'FETCH_SOURCE', sources, });
       expect(SourcesStore.getAllSources()).toEqual({});
-    });
-
-    it('should always return the default url', () => {
-      const url = { URL_SOURCE: 'https://newsapi.org/v1/sources?language=en',
-        category: 'all' };
-      expect(SourcesStore.getUrl()).toEqual(url);
     });
   });
 
 
-  describe('Test for SET_CATEGORY action type in store', () => {
+  describe('When an action type of SET_CATEGORY is dispatched', () => {
     let sources;
     let dispatcherMock;
     beforeEach(() => {
@@ -76,21 +62,17 @@ describe('Sources Store', () => {
       SourcesStore.handleAction({ type: 'SET_CATEGORY', sources: {} });
     });
 
-    it('should return an empty object on first call', () => {
-      expect(SourcesStore.getAllSources()).toEqual({});
-    });
-
-    it('should be registered to a dispatcher', () => {
+    it('it should be registered to a dispatcher', () => {
       dispatcherMock({ type: 'SET_CATEGORY', sources, });
       expect(SourcesStore.getAllSources()).toEqual(sources);
     });
 
-    it('should return an updated Articles after receiving an action', () => {
+    it('it should return updated Articles after receiving an action', () => {
       SourcesStore.handleAction({ type: 'SET_CATEGORY', sources, });
       expect(SourcesStore.getAllSources()).toEqual(sources);
     });
 
-    it('should not respond to an action not registered to it', () => {
+    it('it should not respond to an action not registered to it', () => {
       SourcesStore.handleAction({ type: 'SET_ALL_CATEGORY', sources, });
       expect(SourcesStore.getAllSources()).toEqual({});
     });

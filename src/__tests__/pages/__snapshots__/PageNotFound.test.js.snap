@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`404 page should render as expected 1`] = `
+exports[`404 componenet should render as expected 1`] = `
 <div
   className="page404"
 >

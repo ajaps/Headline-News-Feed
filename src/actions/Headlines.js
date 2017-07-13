@@ -3,12 +3,11 @@ import getNewsData from '../api/NewsApi';
 import { login } from '../config/authentication';
 
 /**
-* Gets Sources from News API using the url built from the params
-* @param {String} url The url for all sources.
+* Gets Sources from News API
 * @returns {void}
 */
 const fetchSources = () => {
-  getNewsData.getData('source')
+  getNewsData.fetchApiSources()
   .then((data) => {
     Dispatcher.dispatch({
       type: 'FETCH_SOURCES',
@@ -29,18 +28,12 @@ const fetchSources = () => {
 };
 
 /**
-* Gets Sources from News API using the url built from the params
-* @param {object} url An object containing the building blocks for the API url
-* @param {String} category The category selected.
+* Gets Sources from News API from the specified category
+* @param {String} category the prefered category.
 * @returns {void}
 */
-const setCategory = (category) => {
-  url.category = category;
-  let newUrl = url.URL_SOURCE;
-  if (url.category !== 'all') {
-    newUrl += `&category=${url.category}`;
-  }
-  getNewsData.getData(newUrl)
+const setApiCategory = (category) => {
+  getNewsData.fetchApiSources(category)
   .then((data) => {
     Dispatcher.dispatch({
       type: 'SET_CATEGORY',
@@ -61,20 +54,13 @@ const setCategory = (category) => {
 };
 
 /**
-* Gets Articles from News API using the url built from the params
-* @param {String} url An object containing the building blocks for the API url
+* Gets Articles from using selected sourceId and sortValue
+* @param {String} sourceId - the preferred source
 * @param {String} sortValue The sort value selected.
 * @returns {void}
 */
-const sortBy = (url, sortValue) => {
-  url.sortBy = sortValue;
-  let newUrl = `${url.URL_ARTICLE}?source=${url.source}`;
-  if (url.sortBy) {
-    newUrl += `&sortBy=${url.sortBy}&apiKey=${url.API_KEY}`;
-  } else {
-    newUrl += `&apiKey=${url.API_KEY}`;
-  }
-  getNewsData.getData(newUrl)
+const setApiSortBy = (sourceId, sortValue) => {
+  getNewsData.fetchApiArticles(sourceId, sortValue)
   .then((data) => {
     Dispatcher.dispatch({
       type: 'SET_SORTBY',
@@ -96,14 +82,11 @@ const sortBy = (url, sortValue) => {
 
 /**
 * Gets Articles from News API using the url built from the params
-* @param {String} url An object containing the building blocks for the API url
 * @param {String} source The source id
-*@param {String} sortAvailable The sort available for the source
 * @returns {void}
 */
-const fetchArticles = (url, source) => {
-  const newUrl = `${url.URL_ARTICLE}?source=${source.id}&apiKey=${url.API_KEY}`;
-  getNewsData.getData(newUrl)
+const fetchArticles = (source) => {
+  getNewsData.fetchApiArticles(source.id)
   .then((data) => {
     Dispatcher.dispatch({
       type: 'GOT_NEW_ARTICLES',
@@ -137,8 +120,8 @@ const firebaseLogIn = (provider) => {
 
 module.exports = {
   fetchSources,
-  setCategory,
-  sortBy,
+  setApiCategory,
+  setApiSortBy,
   fetchArticles,
   firebaseLogIn,
 };

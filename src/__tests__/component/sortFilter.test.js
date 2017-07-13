@@ -7,14 +7,12 @@ jest.mock('../../stores/Articles', () => ({
   getArticleUrl: {
     sortBy: '',
     source: 'all',
-    URL_ARTICLES: 'https://newsapi.org/v1/articles',
-    API_KEY: process.env.NEWS_API_KEY,
   }
 }));
 const myMock = jest.fn();
 myMock('bySort');
 
-describe('SortFiler', () => {
+describe('SortFiler component', () => {
   let app;
   const filter = ['top', 'latest'];
   beforeEach(() => {
@@ -26,7 +24,7 @@ describe('SortFiler', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should have dropdown children equal to length of array passed', () => {
+  it('should have dropdown children equal to length of props', () => {
     expect(app.find('li').length).toEqual(2);
   });
 });

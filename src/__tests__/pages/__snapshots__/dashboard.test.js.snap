@@ -1,14 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dashboard page should render as expected 1`] = `
+exports[`Dashboard component should render as expected 1`] = `
 <div>
   <CategoryComponent
     allCategory={Array []}
-    currentcategory={
-      Array [
-        "all",
-      ]
-    }
+    currentcategory={Array []}
   />
   <p
     className="pull-left visible-xs"
@@ -34,7 +30,7 @@ exports[`Dashboard page should render as expected 1`] = `
       <div>
         <SourcesComponent
           error="loading"
-          sourceSelected="all"
+          sourceSelected=""
           sources={Array []}
         />
       </div>

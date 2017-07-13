@@ -1,18 +1,30 @@
 import getNewsData from '../../api/NewsApi';
 
 describe('News Api', () => {
-  const url = 'https://newsapi.org/v1/sources?language=en';
   beforeEach(() => {
     global.fetch = jest.fn().mockImplementation(() => {
       const p = new Promise((resolve) => {
-        resolve('getPromise');
+        resolve({ data: 'getPromise' });
       });
       return p;
     });
   });
 
-  it('should call getData without error', () => {
-    const app = getNewsData.getData(url);
+  it('should get sources when category param is missing', () => {
+    const app = getNewsData.fetchApiSources();
+    expect(typeof (app)).toEqual('object');
+  });
+  it('should get sources when category param is set', () => {
+    const app = getNewsData.fetchApiSources('sport');
+    expect(typeof (app)).toEqual('object');
+  });
+
+  it('should get articles when sort type param is missing', () => {
+    const app = getNewsData.fetchApiArticles('bbc-sport');
+    expect(typeof (app)).toEqual('object');
+  });
+  it('should get articles when sort type param is set', () => {
+    const app = getNewsData.fetchApiArticles('bbc-sport', 'top');
     expect(typeof (app)).toEqual('object');
   });
 });

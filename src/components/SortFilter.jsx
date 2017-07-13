@@ -19,8 +19,8 @@ export default class SortFilter extends React.Component {
  */
   bySort(e) {
     const sortBy = e.target.dataset.sort;
-    const url = ArticleStore.getArticleUrl;
-    myActions.sortBy(url, sortBy);
+    const SourceId = ArticleStore.getSourceId();
+    myActions.setApiSortBy(SourceId, sortBy);
   }
 
   render() {
