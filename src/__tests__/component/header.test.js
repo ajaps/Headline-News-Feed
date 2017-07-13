@@ -8,7 +8,7 @@ jest.mock('../../config/authentication', () => ({
   logout: () => Promise.resolve('getPromise')
 }));
 
-describe('Header', () => {
+describe('Header component', () => {
   let app;
   beforeEach(() => {
     const isLoggedIn = true;
@@ -30,7 +30,7 @@ describe('Header', () => {
     expect(app.exists('hidden')).toBe(true);
   });
 
-  it('logout button calls logout function', () => {
+  it('should process logout when user clicks logout', () => {
     const isLoggedIn = true;
     const renderedDoc = ReactTestUtils.renderIntoDocument(
       <Header containLogoutBtn={isLoggedIn} />

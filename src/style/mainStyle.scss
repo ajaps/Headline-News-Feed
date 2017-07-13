@@ -38,7 +38,6 @@ body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 body {
-  padding-top: 1%;
   padding-right: 2.7%;
 }
 footer {
@@ -138,7 +137,7 @@ a {
 }
 .each-article{
   height: 4%;
-  border-bottom: 10px solid white;
+  border-bottom: 22px solid white;
 }
 .show-sources{
   margin-left: 140%;
@@ -169,13 +168,14 @@ p {
   max-height: 50vh;
 }
 .article-Container {
-	padding: 1vw;
+	padding-top: 1vw;
 	overflow-y: scroll;
 }
 .outerSourceBorder{
   width: 17%;
   min-height: 51vh;
   max-height: 51vh;
+  padding-bottom: 1px;
 }
 .outerArticleCountainer {
   margin-left: 17vw;
@@ -224,7 +224,7 @@ p {
 }
 .p404Link{
   font-size: 1vw;
-  margin-bottom: 29vw;
+  margin-bottom: 14vw;
 }
 .articlesSourcesContainer{
   margin-left: 3vw;

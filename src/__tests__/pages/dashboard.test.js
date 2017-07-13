@@ -5,11 +5,11 @@ import toJson from 'enzyme-to-json';
 import Dashboard from '../../pages/Dashboard.jsx';
 
 jest.mock('../../api/NewsApi', () => ({
-  getData: () => Promise.resolve('getPromise')
+  fetchApiSources: () => Promise.resolve('getPromise')
 }));
 const sortBysAvailable = ['top', 'latest'];
 
-describe('Dashboard page', () => {
+describe('Dashboard component', () => {
   let app;
   it('should render as expected', () => {
     app = shallow(<Dashboard />);
@@ -31,7 +31,7 @@ describe('Dashboard page', () => {
     .toBe(true);
   });
 
-  it('component should unmount without error', () => {
+  it('should unmount without error', () => {
     const renderedDoc = ReactTestUtils.renderIntoDocument(
       <Dashboard />
     );

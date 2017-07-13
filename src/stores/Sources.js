@@ -22,7 +22,7 @@ class AllSources extends EventEmitter {
 
     this.allCategory = [];
 
-    this.selectedCategory = ['all'];
+    this.selectedCategory = [];
     this.firstSourceInArray = '';
 
     this.sourcesErrorMsg = 'loading';

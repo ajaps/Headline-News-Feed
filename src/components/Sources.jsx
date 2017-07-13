@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import * as myActions from '../actions/Headlines';
-import ArticleStore from '../stores/Articles';
 /**
  * Represents Source template.
  */
@@ -33,9 +32,8 @@ export default class SourcesComponent extends React.Component {
  */
   setSources(e) {
     const sort = e.target.dataset.sort.split(',');
-    const url = ArticleStore.getArticleUrl;
     const articleData = { id: e.target.dataset.id, sortBysAvailable: sort };
-    myActions.fetchArticles(url, articleData);
+    myActions.fetchArticles(articleData);
   }
 
 /**

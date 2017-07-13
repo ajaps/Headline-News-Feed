@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import Footer from '../../components/Footer.jsx';
 
 
-describe('Footer', () => {
+describe('Footer component', () => {
   let app;
   beforeEach(() => {
     app = shallow(<Footer />);
@@ -15,7 +15,7 @@ describe('Footer', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('contains name of the app "Healine News" ', () => {
+  it('should contain name of the app "Healine News" ', () => {
     expect(app.exists('Headline RSS Feed App (c) 2017 ')).toBe(true);
   });
 });

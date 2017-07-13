@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Category should render as expected 1`] = `
+exports[`Category component should render as expected 1`] = `
 <nav
   className="navbar navbar-default categoryList"
 >

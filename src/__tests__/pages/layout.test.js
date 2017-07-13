@@ -3,6 +3,7 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import Layout from '../../pages/Layout.jsx';
 
+
 jest.mock('../../config/firebase', () => ({
 }));
 
