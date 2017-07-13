@@ -1,4 +1,4 @@
-import Dispatcher from '../dispatcher/HeadlineDispatcher';
+import Dispatcher from '../dispatcher/Headlines';
 import getNewsData from '../api/NewsApi';
 import { login } from '../config/authentication';
 
@@ -7,9 +7,8 @@ import { login } from '../config/authentication';
 * @param {String} url The url for all sources.
 * @returns {void}
 */
-const fetchSources = (url) => {
-  const newUrl = url.URL_SOURCE;
-  getNewsData.getData(newUrl)
+const fetchSources = () => {
+  getNewsData.getData('source')
   .then((data) => {
     Dispatcher.dispatch({
       type: 'FETCH_SOURCES',
@@ -35,8 +34,7 @@ const fetchSources = (url) => {
 * @param {String} category The category selected.
 * @returns {void}
 */
-const setCategory = (url, category) => {
-  // Builds the url necessary to get relevant data from API
+const setCategory = (category) => {
   url.category = category;
   let newUrl = url.URL_SOURCE;
   if (url.category !== 'all') {
@@ -69,7 +67,6 @@ const setCategory = (url, category) => {
 * @returns {void}
 */
 const sortBy = (url, sortValue) => {
-  // Builds the url necessary to get relevant data from API
   url.sortBy = sortValue;
   let newUrl = `${url.URL_ARTICLE}?source=${url.source}`;
   if (url.sortBy) {
@@ -105,7 +102,6 @@ const sortBy = (url, sortValue) => {
 * @returns {void}
 */
 const fetchArticles = (url, source) => {
-  // Builds the url necessary to get relevant data from API
   const newUrl = `${url.URL_ARTICLE}?source=${source.id}&apiKey=${url.API_KEY}`;
   getNewsData.getData(newUrl)
   .then((data) => {

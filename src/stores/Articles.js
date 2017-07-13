@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-import Dispatcher from '../dispatcher/HeadlineDispatcher';
+import Dispatcher from '../dispatcher/Headlines';
 
 /**
  * Represents Article's store.
@@ -17,7 +17,6 @@ class AllArticle extends EventEmitter {
     this.getArticleUrl = {
       sortBy: '',
       source: '',
-      URL_ARTICLE: 'https://newsapi.org/v1/articles',
       API_KEY: process.env.NEWS_API_KEY,
     };
     this.status = 'ok';

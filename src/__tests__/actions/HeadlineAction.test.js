@@ -1,5 +1,5 @@
 import toJson from 'enzyme-to-json';
-import * as allActions from '../../actions/HeadlineActions';
+import * as allActions from '../../actions/Headlines';
 
 jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')

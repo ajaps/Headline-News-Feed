@@ -35,22 +35,6 @@ The news sources and articles are gotten from [here](https://newsapi.org)
   *  **[sinon](https://www.npmjs.com/package/sinon)** - Used with mocha and enzyme for mocking React components during test
   *  **[url-loader](https://www.npmjs.com/package/url-loader)** - It enables the app to use background images in the scss files
 
-### Dependencies
-*  **[babel-core](https://www.npmjs.com/package/babel-core)** - It compiles es6 used in the app to es5
-*  **[babel-eslint](https://www.npmjs.com/package/babel-eslint)** - Used with ESlint to lint syntax errors
-*  **[babel-loader](https://www.npmjs.com/package/babel-loader)** - Used with Webpack to transpile javascript codes
-*  **[babel-plugin-react-html-attrs](https://www.npmjs.com/package/babel-plugin-react-html-attrs)** - It help convert JSX `class` attribute into `className` 
-*  **[coveralls](https://www.npmjs.com/package/coveralls)** - Display test coverage
-*  **[express](https://www.npmjs.com/package/express)** - Used as the web server for this application
-*  **[extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin)** - Moves the app's css into a separate file
-*  **[flux](https://www.npmjs.com/package/flux)** - It enables the app to implement the flux architecture
-*  **[history](https://www.npmjs.com/package/history)** - Allows the app to implement history in routes.
-*  **[react](https://www.npmjs.com/package/react)** - It enables the app to use the React architecture
-*  **[react](https://www.npmjs.com/package/react)** - Used with **[react-dom](https://www.npmjs.com/package/react-dom)** enables the app to use the React architecture
-*  **[react-router-dom](https://www.npmjs.com/package/react-router-dom)** - Used to perform app routing
-*  **[webpack](https://www.npmjs.com/package/react-router-dom)** - Used to bundle the app's js and scss files for usage in the browser
-
-
 ## Technology
 
 This project uses a host of modern technologies. The core ones are:

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import * as myActions from '../actions/HeadlineActions';
+import * as myActions from '../actions/Headlines';
 import ArticleStore from '../stores/Articles';
 /**
  * Represents Source template.
@@ -42,22 +42,23 @@ export default class SourcesComponent extends React.Component {
  * @returns {component} A component with relevant source.
  */
   render() {
-    // number of siteration missed during search
     let sourcesFoundInSearch = 0;
     const sources = this.props.sources;
 
-      // Search through sources, return all if search term is empty('')
     const sourcesComponents = sources.map((sourcesItem) => {
-        // sets class name based on user source selection - classnames module
       const btnClass = classNames({
         sourceBorder: this.props.sourceSelected === sourcesItem.id,
       });
       const reg = RegExp(this.state.searchTerm, 'gi');
       if (sourcesItem.name.search(reg) !== -1) {
         return (
-            <li className={btnClass} key={sourcesItem.id}>
-              <a onClick={this.setSources} data-id={sourcesItem.id}
-              data-sort={sourcesItem.sortBysAvailable}> {sourcesItem.name} </a>
+            <li
+                className={btnClass} key={sourcesItem.id}
+            >
+              <a data-id={sourcesItem.id}
+                  data-sort={sourcesItem.sortBysAvailable}
+                  onClick={this.setSources}
+              > {sourcesItem.name} </a>
             </li>
         );
       }
@@ -66,21 +67,29 @@ export default class SourcesComponent extends React.Component {
     });
     return (
       sourcesComponents.length === sourcesFoundInSearch ?
-      <div className="col-sm-3 col-md-2 sidebar well">
+      <div className="container pull-left outerSourceBorder">
+      <div className="sidebar-offcanvas" id="sidebar">
         <h4 className="sourcesHeader"> News Sources </h4>
-        <input type="text" className="form-control"
-        placeholder="Search Sources..." onChange={this.searchSource} /><br/>
+        <input
+            className="form-control" onChange={this.searchSource}
+            placeholder="Search Sources..." type="text"
+        /><br/>
         <ul className="nav nav-sidebar Source-Container">
           <p> No Source found matching the search query </p>
         </ul>
+      </div>
       </div> :
-      <div className="col-sm-3 col-md-2 sidebar well">
+      <div className="container pull-left outerSourceBorder">
+      <div className="sidebar-offcanvas" id="sidebar">
         <h4 className="sourcesHeader"> News Sources </h4>
-        <input type="text" className="form-control"
-        placeholder="Search Sources..." onChange={this.searchSource} /><br/>
+        <input
+            className="form-control" onChange={this.searchSource}
+            placeholder="Search Sources..." type="text"
+        /><br/>
         <ul className="nav nav-sidebar Source-Container">
           {sourcesComponents}
         </ul>
+      </div>
       </div>
     );
   }
