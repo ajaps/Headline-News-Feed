@@ -60,10 +60,4 @@ describe('Category', () => {
   it('should have the same number of list element as the array length', () => {
     expect(app.find('li').length).toEqual(2);
   });
-
-  it('should show the spinner component when data is being fetched', () => {
-    const appWhileLoading = shallow(<SourcesComponent sources={sourceObject}
-    error={'loading'} sourceSelected={sourceSelected} />);
-    expect(appWhileLoading.find('div').length).toEqual(1);
-  });
 });

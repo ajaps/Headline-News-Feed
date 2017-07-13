@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as myActions from '../actions/HeadlineActions';
+import * as myActions from '../actions/Headlines';
 import SourcesStore from '../stores/Sources';
 
 /**
@@ -26,7 +26,6 @@ export default class CategoryComponent extends React.Component {
   }
 
   render() {
-    // Get all unique categories deep in the JSON object
     const categoryObj = {};
     const currentCategory = this.props.currentcategory[0];
     const allSources = this.props.allCategory;
@@ -38,9 +37,10 @@ export default class CategoryComponent extends React.Component {
       if (!(eachCategory in categoryObj)) {
         categoryObj[eachCategory] = eachCategory;
         return (
-          <li key={eachCategory} className={btnClass}>
-            <a onClick={this.setCategory} data-category={eachCategory}
-            ref={eachCategory}>{eachCategory.split('-')[0]}</a>
+          <li className={btnClass} key={eachCategory} >
+            <a data-category={eachCategory} onClick={this.setCategory}
+                ref={eachCategory}
+            >{eachCategory.split('-')[0]}</a>
           </li>
         );
       }
@@ -51,16 +51,17 @@ export default class CategoryComponent extends React.Component {
       <nav className="navbar navbar-default categoryList">
         <div className="container-fluid">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed"
-            data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-            aria-controls="navbar">
+            <button aria-controls="navbar" aria-expanded="false"
+                className="navbar-toggle collapsed" data-target="#navbar"
+                data-toggle="collapse" type="button"
+            >
               <span className="sr-only">Toggle navigation</span>
               <span className="icon-bar" />
               <span className="icon-bar" />
               <span className="icon-bar" />
             </button>
           </div>
-          <div id="navbar" className="navbar-collapse collapse">
+          <div className="navbar-collapse collapse" id="navbar" >
             <ul className="nav nav-justified">
               { filterCategoryInSource }
             </ul>

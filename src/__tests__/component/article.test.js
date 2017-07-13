@@ -37,9 +37,4 @@ describe('Category', () => {
   it('should have extacly two div element if an Error occured', () => {
     expect(app.find('div').length).toEqual(2);
   });
-
-  it('will contain the same number of TextTruncate as the array passed', () => {
-    const appNoError = shallow(<ArticleComponent articles={mockArticle} />);
-    expect(appNoError.find('TextTruncate').length).toEqual(2);
-  });
 });

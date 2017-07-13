@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-import Dispatcher from '../dispatcher/HeadlineDispatcher';
+import Dispatcher from '../dispatcher/Headlines';
 
 /**
  * Represents Source's store
@@ -16,15 +16,12 @@ class AllSources extends EventEmitter {
 
     this.getSourceUrl = {
       category: 'all',
-      URL_SOURCE: 'https://newsapi.org/v1/sources?language=en',
     };
     this.status = 'ok';
     this.sources = [];
 
-    // All Available categories for the application
     this.allCategory = [];
 
-    // Selected category on each click
     this.selectedCategory = ['all'];
     this.firstSourceInArray = '';
 

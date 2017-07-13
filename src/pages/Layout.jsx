@@ -40,25 +40,34 @@ class Layout extends React.Component {
   render() {
     const name = this.state.user;
     return this.state.loading === true ?
-    <ReactLoading className="spinner" width="150px"
-    type="spin" color="#3b5998"/> :
+    <ReactLoading
+        className="spinner" color="#3b5998" type="spin" width="150px"
+    /> :
     (
       <div>
         <Header containLogoutBtn={this.state.authenticated} user={name} />
+        <section>
         <Router history={history}>
           <Switch>
-            <PublicRoute authenticated={this.state.authenticated}
-            exact path="/" component={Login} />
+            <PublicRoute
+                authenticated={this.state.authenticated}
+                component={Login} exact path="/"
+            />
 
-            <PublicRoute authenticated={this.state.authenticated}
-            path="/login" component={Login} />
+            <PublicRoute
+                authenticated={this.state.authenticated}
+                component={Login} path="/login"
+            />
 
-            <PrivateRoute authenticated={this.state.authenticated}
-            exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute
+                authenticated={this.state.authenticated}
+                component={Dashboard} exact path="/dashboard"
+            />
 
-            <Route path="*" component={PageNotFound} />
+            <Route component={PageNotFound} path="*" />
           </Switch>
         </Router>
+        </section>
         <Footer />
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as myActions from '../actions/HeadlineActions';
+import * as myActions from '../actions/Headlines';
 
 import ArticleStore from '../stores/Articles';
 
@@ -30,7 +30,7 @@ export default class SortFilter extends React.Component {
     if (articleSortFilters) {
       allAvailableSortFilter = articleSortFilters.map(eachSortItem =>
         <li className={eachSortItem} key={eachSortItem}>
-          <a onClick={this.bySort} data-sort={eachSortItem} ref={eachSortItem}>
+          <a data-sort={eachSortItem} onClick={this.bySort} ref={eachSortItem}>
             { eachSortItem } </a>
         </li>
       );
@@ -39,8 +39,9 @@ export default class SortFilter extends React.Component {
     return (
       <div className="container">
           <div className="dropdown pull-right sortByFeature">
-            <a className="dropdown-toggle" data-toggle="dropdown" role="button"
-            aria-haspopup="true" aria-expanded="false"> Sort Articles By
+            <a aria-expanded="false" aria-haspopup="true"
+                className="dropdown-toggle" data-toggle="dropdown" role="button"
+            > Sort Articles By
             <span className="caret" /></a>
             <ul className="dropdown-menu">
               {allAvailableSortFilter}

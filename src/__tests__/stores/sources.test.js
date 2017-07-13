@@ -1,7 +1,7 @@
 import SourcesStore from '../../stores/Sources';
-import dispatcher from '../../dispatcher/HeadlineDispatcher';
+import dispatcher from '../../dispatcher/Headlines';
 
-jest.mock('../../dispatcher/HeadlineDispatcher');
+jest.mock('../../dispatcher/Headlines');
 
 describe('Sources Store', () => {
   describe('Test for FETCH_SOURCES action type in store', () => {
