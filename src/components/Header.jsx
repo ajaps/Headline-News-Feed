@@ -26,25 +26,18 @@ export default class Header extends React.Component {
     });
 
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top appHeader">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="/">Headlines RSS Feed</a>
-          </div>
-          <div id="navbar" className="navbar-collapse collapse">
-            <ol className="nav navbar-nav navbar-right">
-              <li className={showLogoutBtn}><a className="disableClick">
-                 {`Welcome:   ${this.props.user}`}
-              </a></li>
-              <li className={showLogoutBtn}>
-                <a onClick={this.initiateLogout} ref="logout">
-                  <span className={'logoutBtn'}>Logout</span>
-                </a>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </nav>
+      <div className="container appHeader">
+        <a href="/"><span className="appTitle pull-left">
+          Headlines RSS Feed </span>
+        </a>
+        <span className="userInfo pull-right">
+          <span className={showLogoutBtn}>
+            <a onClick={this.initiateLogout} ref="logout">
+              <span className={'logoutBtn'}>Logout</span>
+            </a>
+          </span>
+        </span>
+      </div>
     );
   }
 }

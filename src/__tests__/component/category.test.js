@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import CategoryComponent from '../../components/CategoryComponent.jsx';
+import CategoryComponent from '../../components/Category.jsx';
 
 jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')

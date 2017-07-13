@@ -1,10 +1,10 @@
 import React from 'react';
 
-import CategoryComponent from '../components/CategoryComponent.jsx';
+import CategoryComponent from '../components/Category.jsx';
 import SortFilter from '../components/SortFilter.jsx';
 
-import ArticleComponent from '../components/ArticleComponent.jsx';
-import SourcesComponent from '../components/SourcesComponent.jsx';
+import ArticleComponent from '../components/Article.jsx';
+import SourcesComponent from '../components/Sources.jsx';
 
 import ArticlesStore from '../stores/Articles';
 import SourcesStore from '../stores/Sources';
@@ -97,9 +97,13 @@ class Dashboard extends React.Component {
         allCategory={allCategories} />
         <SortFilter sortFilter={this.state.sortFilter} />
         <div className="row articlesSourcesContainer">
-          <SourcesComponent sources={sources} error={sourceError}
-          sourceSelected={sourceSelected} />
-          <ArticleComponent articles={articles} error={articlesError} />
+          <div >
+            <SourcesComponent sources={sources} error={sourceError}
+            sourceSelected={sourceSelected} />
+          </div>
+          <div>
+            <ArticleComponent articles={articles} error={articlesError} />
+          </div>
         </div>
       </div>
     );

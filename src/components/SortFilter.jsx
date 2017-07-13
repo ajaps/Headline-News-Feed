@@ -37,8 +37,8 @@ export default class SortFilter extends React.Component {
     }
 
     return (
-      <div className=" container navbar2">
-          <div className="dropdown sortByFeature">
+      <div className="container">
+          <div className="dropdown pull-right sortByFeature">
             <a className="dropdown-toggle" data-toggle="dropdown" role="button"
             aria-haspopup="true" aria-expanded="false"> Sort Articles By
             <span className="caret" /></a>
