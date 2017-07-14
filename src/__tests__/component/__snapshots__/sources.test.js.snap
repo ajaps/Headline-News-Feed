@@ -5,7 +5,7 @@ exports[`Sources component should render as expected 1`] = `
   className="container pull-left outerSourceBorder"
 >
   <div
-    className="sidebar-offcanvas"
+    className="well sidebar-offcanvas"
     id="sidebar"
   >
     <h4

@@ -66,7 +66,7 @@ export default class SourcesComponent extends React.Component {
     return (
       sourcesComponents.length === sourcesFoundInSearch ?
       <div className="container pull-left outerSourceBorder">
-      <div className="sidebar-offcanvas" id="sidebar">
+      <div className="well sidebar-offcanvas" id="sidebar">
         <h4 className="sourcesHeader"> News Sources </h4>
         <input
             className="form-control" onChange={this.searchSource}
@@ -78,7 +78,7 @@ export default class SourcesComponent extends React.Component {
       </div>
       </div> :
       <div className="container pull-left outerSourceBorder">
-      <div className="sidebar-offcanvas" id="sidebar">
+      <div className="well sidebar-offcanvas" id="sidebar">
         <h4 className="sourcesHeader"> News Sources </h4>
         <input
             className="form-control" onChange={this.searchSource}

@@ -68,8 +68,6 @@ a {
 }
 .appHeader{
   background: $header_color;
-  margin-left: 3%;
-  margin-right: 3%;
   width: 94%;
 }
 .userInfo{
@@ -141,6 +139,8 @@ a {
 }
 .show-sources{
   margin-left: 140%;
+  background: $color_celeste_approx;
+  color: $color_tapa_approx;
 }
 img.resize {
   max-width: 38%;
@@ -165,7 +165,7 @@ p {
 }
 .Source-Container {
 	overflow-y: scroll;
-  max-height: 50vh;
+  max-height: 44vh;;
 }
 .article-Container {
 	padding-top: 1vw;
@@ -182,6 +182,7 @@ p {
   max-height: 71vh;
   min-height: 71vh;
   overflow-y: scroll;
+  margin-right: 5%;
 }
 /* Featurettes
 ------------------------- */
@@ -429,4 +430,57 @@ p {
     top: 0;
     width: 50%; /* 6 columns */
   }
+}
+@media (max-width: 688px) {
+  .show-sources {
+    margin-left: 97%;
+  }
+}
+@media (max-width: 580px) {
+  .show-sources {
+    margin-left: 80%;
+  }
+}
+@media (max-width: 261px) {
+  .show-sources {
+    margin-left: 80%;
+  }
+}
+@media (max-width: 349px){
+  .sortByFeature {
+    margin-left: 30%;
+  }
+}
+@media (min-width: 767px){
+   .Source-Container {
+    max-height: 52vh;
+  }
+}
+@media (max-width: 767px){
+  .outerArticleCountainer {
+    margin-left: 30%;
+  }
+  .show-sources {
+    margin-left: 30%;
+  }
+  .outerSourceBorder{
+    background-color: #f5f5f5;
+    width: 28%;
+    min-height: 72vh;
+    max-height: 51vh;
+    padding-bottom: 1px;
+  }
+}
+@media (min-width: 1366px){
+  .Source-Container {
+    max-height: 54vh;
+  }
+}
+@media (min-width: 767px){
+  .navbar-default {
+    display: inline;
+  }
+}
+li > a{
+  font-size: 100%;
 }

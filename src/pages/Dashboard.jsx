@@ -109,7 +109,7 @@ class Dashboard extends React.Component {
             >View News Sources</button>
           </p>
         <SortFilter sortFilter={this.state.sortFilter} />
-        <div className="container">
+        <div className="well container">
         <div className="row row-offcanvas row-offcanvas-left">
           <div >
             <SourcesComponent error={sourceError}

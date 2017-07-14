@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import * as myActions from '../actions/Headlines';
-import SourcesStore from '../stores/Sources';
 
 /**
  * Represents a navigation bar containing different categories
