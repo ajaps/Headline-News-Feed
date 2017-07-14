@@ -3,7 +3,7 @@ import dispatcher from '../../dispatcher/Headlines';
 
 jest.mock('../../dispatcher/Headlines');
 
-describe('For sources Store', () => {
+describe('In sources Store', () => {
   describe('When an action type of FETCH_SOURCES is dispatched', () => {
     let sources;
     let dispatcherMock;
@@ -60,11 +60,6 @@ describe('For sources Store', () => {
 
     afterEach(() => {
       SourcesStore.handleAction({ type: 'SET_CATEGORY', sources: {} });
-    });
-
-    it('it should be registered to a dispatcher', () => {
-      dispatcherMock({ type: 'SET_CATEGORY', sources, });
-      expect(SourcesStore.getAllSources()).toEqual(sources);
     });
 
     it('it should return updated Articles after receiving an action', () => {

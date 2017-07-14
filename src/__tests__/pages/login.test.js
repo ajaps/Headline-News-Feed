@@ -19,14 +19,6 @@ describe('Login component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should contian Google+ login button', () => {
-    expect(app.find('Login with Google')).toBeTruthy();
-  });
-
-  it('should contian Github login button', () => {
-    expect(app.find('Login with Github')).toBeTruthy();
-  });
-
   it('should contian two buttons', () => {
     expect(app.find('button').length).toBe(2);
   });

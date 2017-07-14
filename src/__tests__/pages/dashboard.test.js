@@ -17,14 +17,6 @@ describe('Dashboard component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should contain one Article component', () => {
-    expect(app.find('ArticleComponent').length).toBe(1);
-  });
-
-  it('should contain one Source component', () => {
-    expect(app.find('SourcesComponent').length).toBe(1);
-  });
-
   it('should pass dashboard sortfilter state to sortFilter component', () => {
     app.setState({ sortFilter: sortBysAvailable });
     expect(app.exists('<SortFilter sortFilter={Array ["top", "latest",]}/>'))

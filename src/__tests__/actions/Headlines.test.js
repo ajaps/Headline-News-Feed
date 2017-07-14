@@ -11,15 +11,15 @@ describe('A specific action', () => {
   const sortValue = null;
   const category = 'sport';
 
-  it('should call fetchArticles successfully', () => {
+  it('should call fetchArticles method successfully', () => {
     app = allActions.fetchArticles(source);
   });
 
-  it('should call sortBy successfully', () => {
+  it('should call sortBy method successfully', () => {
     app = allActions.setApiSortBy(source, sortValue);
   });
 
-  it('should call setCategory successfully', () => {
+  it('should call setCategory method successfully', () => {
     app = allActions.setApiCategory(category);
   });
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Layout page should render as expected 1`] = `
+exports[`Layout component should render as expected 1`] = `
 <Loading
   className="spinner"
   color="#3b5998"
