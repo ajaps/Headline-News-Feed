@@ -22,7 +22,7 @@ exports[`Dashboard component should render as expected 1`] = `
     sortFilter={Array []}
   />
   <div
-    className="container"
+    className="well container"
   >
     <div
       className="row row-offcanvas row-offcanvas-left"

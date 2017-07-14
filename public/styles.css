@@ -105,7 +105,9 @@ a {
   border-bottom: 22px solid white; }
 
 .show-sources {
-  margin-left: 140%; }
+  margin-left: 140%;
+  background: #ccc;
+  color: #3b5998; }
 
 img.resize {
   max-width: 38%;
