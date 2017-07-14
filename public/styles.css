@@ -135,17 +135,18 @@ p.publishedAt {
   overflow-y: scroll; }
 
 .outerSourceBorder {
-  width: 17%;
+  width: 21%;
   min-height: 51vh;
   max-height: 51vh;
   padding-bottom: 1px; }
 
 .outerArticleCountainer {
-  margin-left: 17vw;
+  margin-left: 26%;
   max-height: 71vh;
   min-height: 71vh;
   overflow-y: scroll;
-  margin-right: 5%; }
+  margin-right: 5%;
+  width: 70%; }
 
 /* Featurettes
 ------------------------- */
@@ -368,10 +369,20 @@ p.publishedAt {
 
 @media (max-width: 767px) {
   .outerArticleCountainer {
-    margin-left: 30%; }
+    margin-left: 30%;
+    width: 67%; }
+  .show-sources {
+    margin-left: 30%; } }
+
+@media (max-width: 767px) and (min-width: 900px) {
+  .outerArticleCountainer {
+    margin-left: 30%;
+    width: 67%; } }
+
+@media (max-width: 767px) {
   .show-sources {
     margin-left: 30%; }
-  .outerSourceBorder {
+  905 .outerSourceBorder {
     background-color: #f5f5f5;
     width: 28%;
     min-height: 72vh;
