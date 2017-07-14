@@ -3,7 +3,7 @@ import dispatcher from '../../dispatcher/Headlines';
 
 jest.mock('../../dispatcher/Headlines');
 
-describe('For Articles Store', () => {
+describe('In Articles Store', () => {
   describe('When an action type of FETCH_SOURCES is dispatched', () => {
     let articles;
     let dispatcherMock;
@@ -29,18 +29,13 @@ describe('For Articles Store', () => {
       expect(ArticlesStore.getSelectedSourceID()).toEqual('');
     });
 
-    it('it should be registered to a dispatcher', () => {
-      dispatcherMock({ type: 'GOT_NEW_ARTICLES', articles, });
-      expect(ArticlesStore.getAllArticles()).toEqual(articles);
-    });
-
     it('it should return an updated Articles after receiving an action', () => {
       ArticlesStore.handleAction({ type: 'GOT_NEW_ARTICLES', articles, });
       expect(ArticlesStore.getAllArticles()).toEqual(articles);
     });
 
     it('it should not respond to an action not registered to it', () => {
-      ArticlesStore.handleAction({ type: 'GOT_ARTICLES', articles, });
+      ArticlesStore.handleAction({ type: 'GET_ARTICLES', articles, });
       expect(ArticlesStore.getAllArticles()).toEqual({});
     });
   });
@@ -64,10 +59,6 @@ describe('For Articles Store', () => {
 
     afterEach(() => {
       ArticlesStore.handleAction({ type: 'SET_SORTBY', articles: {} });
-    });
-
-    it('it should return an empty object on first call', () => {
-      expect(ArticlesStore.getAllArticles()).toEqual({});
     });
 
     it('it should return updated Articles after receiving an action', () => {

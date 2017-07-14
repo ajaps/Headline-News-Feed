@@ -7,7 +7,7 @@ import Layout from '../../pages/Layout.jsx';
 jest.mock('../../config/firebase', () => ({
 }));
 
-describe('Layout page', () => {
+describe('Layout component', () => {
   let app;
   beforeEach(() => {
     app = shallow(<Layout />);
@@ -16,10 +16,5 @@ describe('Layout page', () => {
   it('should render as expected', () => {
     const tree = toJson(app);
     expect(tree).toMatchSnapshot();
-  });
-
-  it('should render only loading element at initial page load', () => {
-    expect(app.find('Loading').length).toBe(1);
-    expect(app.find('div').length).toBe(0);
   });
 });
