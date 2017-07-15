@@ -1,6 +1,6 @@
 import React from 'react';
 import SourcesStore from '../stores/Sources';
-import * as myActions from '../actions/HeadlineActions';
+import * as myActions from '../actions/Headlines';
 /**
  * Represents Login/Home component.
  */
@@ -38,16 +38,26 @@ export default class Login extends React.Component {
     return (
       <div className="login-page">
         <div className="loginBackgroundImg" />
-        <p className="alert-danger errorMsg">{this.state.error}</p>
+        <p className="errorMsg">
+          <span className="alert-danger">{this.state.error}</span>
+        </p>
         <div className=" container-fluid all-available-login-button">
           <h2 className="loginHeader">Headline RSS Feed</h2>
-          <button name={'github'} onClick={this.handleLogin} href="login"
-            ref="githubBtn" className="loginBtn btn loginBtn--github">
+
+          <button
+              className="loginBtn btn loginBtn--github"
+              href="login"
+              name={'github'} onClick={this.handleLogin}
+              ref="githubBtn"
+          >
             <span className="fa fa-github" />Login with Github
           </button><br />
 
-          <button name={'google+'} onClick={this.handleLogin} href="login"
-            className="loginBtn btn loginBtn--google" ref="googleBtn">
+          <button
+              className="loginBtn btn loginBtn--google" href="login"
+              name={'google+'} onClick={this.handleLogin}
+              ref="googleBtn"
+          >
             Login with Google
           </button>
         </div>

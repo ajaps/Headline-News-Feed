@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-import Dispatcher from '../dispatcher/HeadlineDispatcher';
+import Dispatcher from '../dispatcher/Headlines';
 
 /**
  * Represents Article's store.
@@ -17,12 +17,11 @@ class AllArticle extends EventEmitter {
     this.getArticleUrl = {
       sortBy: '',
       source: '',
-      URL_ARTICLE: 'https://newsapi.org/v1/articles',
-      API_KEY: process.env.NEWS_API_KEY,
     };
+    this.sourceId = '';
     this.status = 'ok';
     this.sortAvailable = [];
-    this.highlightedSource = 'all';
+    this.highlightedSource = '';
     this.articles = [];
     this.articlesErrorMsg = 'loading';
   }
@@ -35,6 +34,13 @@ class AllArticle extends EventEmitter {
     return this.articles;
   }
 
+  /**
+   * returns current source ID
+   * @return {string} contains available articles in the store
+   */
+  getSourceId() {
+    return this.sourceId;
+  }
    /**
    * returns Article Error message
    * @return {object} contains available articles in the store
@@ -67,7 +73,7 @@ class AllArticle extends EventEmitter {
   handleAction(action) {
     switch (action.type) {
     case 'GOT_NEW_ARTICLES':
-      this.getArticleUrl.source = action.text;
+      this.sourceId = action.text;
       this.sortAvailable = action.sort;
       this.status = action.response;
       this.articles = action.articles;
@@ -83,7 +89,7 @@ class AllArticle extends EventEmitter {
       this.emit('articleChange');
       break;
     case 'FETCH_SOURCES':
-      this.getArticleUrl.source = action.text;
+      this.sourceId = action.text;
       this.sortAvailable = action.sort;
       this.status = action.response;
       this.articles = action.articles;

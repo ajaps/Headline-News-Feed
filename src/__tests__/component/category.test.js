@@ -1,18 +1,20 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import CategoryComponent from '../../components/CategoryComponent.jsx';
+import CategoryComponent from '../../components/Category.jsx';
 
 jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')
 }));
 
-describe('Category', () => {
+describe('Category component', () => {
   const sources = [{ category: 'general' }, { category: 'sport' }];
   let app;
   beforeEach(() => {
-    app = shallow(<CategoryComponent currentcategory={['general']}
-    allCategory={sources} />);
+    app = shallow(
+      <CategoryComponent allCategory={sources}
+          currentcategory={['general']}
+      />);
   });
 
   it('should render as expected', () => {
@@ -20,7 +22,7 @@ describe('Category', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should same number of a tag element as the lenght of the array', () => {
+  it('should have same number of "a" tag as the lenght of the array', () => {
     expect(app.find('a').length).toEqual(2);
   });
 

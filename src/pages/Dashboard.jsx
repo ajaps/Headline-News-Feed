@@ -1,15 +1,15 @@
 import React from 'react';
 
-import CategoryComponent from '../components/CategoryComponent.jsx';
+import CategoryComponent from '../components/Category.jsx';
 import SortFilter from '../components/SortFilter.jsx';
 
-import ArticleComponent from '../components/ArticleComponent.jsx';
-import SourcesComponent from '../components/SourcesComponent.jsx';
+import ArticleComponent from '../components/Article.jsx';
+import SourcesComponent from '../components/Sources.jsx';
 
 import ArticlesStore from '../stores/Articles';
 import SourcesStore from '../stores/Sources';
 
-import * as myActions from '../actions/HeadlineActions';
+import * as myActions from '../actions/Headlines';
 
 /**
  * Represents the parent component for all
@@ -20,8 +20,8 @@ class Dashboard extends React.Component {
     super();
     this.showArticlesOnFirstLoad = this.showArticlesOnFirstLoad.bind(this);
     this.fetchArticles = this.fetchArticles.bind(this);
+    this.hideSidebar = this.hideSidebar.bind(this);
 
-    // Sets state with the available data in the store
     this.state = {
       articles: ArticlesStore.getAllArticles(),
       sources: SourcesStore.getAllSources(),
@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
-    this.fetchSources();
+    this.callFetchSources();
     SourcesStore.on('sourceChange', this.showArticlesOnFirstLoad);
     ArticlesStore.on('articleChange', this.fetchArticles);
   }
@@ -46,6 +46,11 @@ class Dashboard extends React.Component {
     ArticlesStore.removeListener('articleChange', this.fetchArticles);
   }
 
+  hideSidebar() {
+    $('[data-toggle="offcanvas"]').click(() => {
+      $('.row-offcanvas').toggleClass('active');
+    });
+  }
   /**
    * sets the state of the component to store values and sends the
    * first source id to generate articles on first load
@@ -59,8 +64,7 @@ class Dashboard extends React.Component {
       sourcesError: SourcesStore.getErrorMsg(),
     });
     if (this.state.sources.length > 0) {
-      myActions.fetchArticles(ArticlesStore.getArticleUrl,
-      this.state.sources[0]);
+      myActions.fetchArticles(this.state.sources[0]);
     }
   }
 
@@ -79,11 +83,11 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * gets sources at initial page load
+   * gets sources on on first access to the application
    * @return {void}
    */
-  fetchSources() {
-    myActions.fetchSources(SourcesStore.getSourceUrl);
+  callFetchSources() {
+    myActions.fetchSources();
   }
 
   render() {
@@ -93,13 +97,29 @@ class Dashboard extends React.Component {
     const sourceSelected = this.state.userSelectedSource;
     return (
       <div>
-        <CategoryComponent currentcategory={CurrentCategory}
-        allCategory={allCategories} />
+        <CategoryComponent
+            allCategory={allCategories}
+            currentcategory={CurrentCategory}
+        />
+        <p className="pull-left visible-xs">
+            <button
+                className="btn btn-primary btn-xs show-sources"
+                data-toggle="offcanvas"
+                onClick={this.hideSidebar} type="button"
+            >View News Sources</button>
+          </p>
         <SortFilter sortFilter={this.state.sortFilter} />
-        <div className="row articlesSourcesContainer">
-          <SourcesComponent sources={sources} error={sourceError}
-          sourceSelected={sourceSelected} />
-          <ArticleComponent articles={articles} error={articlesError} />
+        <div className="well container">
+        <div className="row row-offcanvas row-offcanvas-left">
+          <div >
+            <SourcesComponent error={sourceError}
+                sourceSelected={sourceSelected} sources={sources}
+            />
+          </div>
+          <div className="row">
+            <ArticleComponent articles={articles} error={articlesError} />
+          </div>
+        </div>
         </div>
       </div>
     );

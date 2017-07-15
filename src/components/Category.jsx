@@ -2,8 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as myActions from '../actions/HeadlineActions';
-import SourcesStore from '../stores/Sources';
+import * as myActions from '../actions/Headlines';
 
 /**
  * Represents a navigation bar containing different categories
@@ -21,12 +20,10 @@ export default class CategoryComponent extends React.Component {
  */
   setCategory(e) {
     const selectedCategory = e.target.dataset.category;
-    const url = SourcesStore.getSourceUrl;
-    myActions.setCategory(url, selectedCategory);
+    myActions.setApiCategory(selectedCategory);
   }
 
   render() {
-    // Get all unique categories deep in the JSON object
     const categoryObj = {};
     const currentCategory = this.props.currentcategory[0];
     const allSources = this.props.allCategory;
@@ -38,9 +35,10 @@ export default class CategoryComponent extends React.Component {
       if (!(eachCategory in categoryObj)) {
         categoryObj[eachCategory] = eachCategory;
         return (
-          <li key={eachCategory} className={btnClass}>
-            <a onClick={this.setCategory} data-category={eachCategory}
-            ref={eachCategory}>{eachCategory.split('-')[0]}</a>
+          <li className={btnClass} key={eachCategory} >
+            <a data-category={eachCategory} onClick={this.setCategory}
+                ref={eachCategory}
+            >{eachCategory.split('-')[0]}</a>
           </li>
         );
       }
@@ -48,16 +46,26 @@ export default class CategoryComponent extends React.Component {
     });
 
     return (
-      <div className=" container navbar2">
-        <div className="masthead">
-          <h3 className="text-muted">Category</h3>
-          <nav>
+      <nav className="navbar navbar-default categoryList">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false"
+                className="navbar-toggle collapsed" data-target="#navbar"
+                data-toggle="collapse" type="button"
+            >
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+              <span className="icon-bar" />
+            </button>
+          </div>
+          <div className="navbar-collapse collapse" id="navbar" >
             <ul className="nav nav-justified">
               { filterCategoryInSource }
             </ul>
-          </nav>
+          </div>
         </div>
-      </div>
+      </nav>
     );
   }
 }

@@ -1,13 +1,13 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import Error from '../../components/ErrorComponent.jsx';
+import Footer from '../../components/Footer.jsx';
 
 
-describe('Footer', () => {
+describe('Footer component', () => {
   let app;
   beforeEach(() => {
-    app = shallow(<Error error={'Failed to fetch'}/>);
+    app = shallow(<Footer />);
   });
 
   it('should render as expected', () => {
@@ -15,7 +15,7 @@ describe('Footer', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('contains the props that was passed "Failed to fetch" ', () => {
-    expect(app.exists('Failed to fetch')).toBe(true);
+  it('should contain name of the app "Healine News" ', () => {
+    expect(app.exists('Headline RSS Feed App (c) 2017 ')).toBe(true);
   });
 });

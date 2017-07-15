@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sources component should render as expected 1`] = `
+<div
+  className="container pull-left outerSourceBorder"
+>
+  <div
+    className="well sidebar-offcanvas"
+    id="sidebar"
+  >
+    <h4
+      className="sourcesHeader"
+    >
+       News Sources 
+    </h4>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Search Sources..."
+      type="text"
+    />
+    <br />
+    <ul
+      className="nav nav-sidebar Source-Container"
+    >
+      <li
+        className="sourceBorder"
+      >
+        <a
+          data-id="bbc-sport"
+          data-sort={
+            Array [
+              "popular",
+              "latest",
+            ]
+          }
+          onClick={[Function]}
+        >
+           
+          BBC SPORT
+           
+        </a>
+      </li>
+      <li
+        className=""
+      >
+        <a
+          data-id="abc-news-au"
+          data-sort={
+            Array [
+              "top",
+            ]
+          }
+          onClick={[Function]}
+        >
+           
+          ABC News (AU)
+           
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

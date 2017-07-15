@@ -1,13 +1,12 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import Footer from '../../components/Footer.jsx';
+import PageNotFound from '../../pages/PageNotFound.jsx';
 
-
-describe('Footer', () => {
+describe('404 componenet', () => {
   let app;
   beforeEach(() => {
-    app = shallow(<Footer />);
+    app = shallow(<PageNotFound />);
   });
 
   it('should render as expected', () => {
@@ -15,7 +14,7 @@ describe('Footer', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('contains name of the app "Healine News" ', () => {
-    expect(app.exists('Headline RSS Feed App (c) 2017 ')).toBe(true);
+  it('should contian', () => {
+    expect(app.find('Page not found')).toBeTruthy();
   });
 });

@@ -1,15 +1,15 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import SourcesComponent from '../../components/SourcesComponent.jsx';
+import SourcesComponent from '../../components/Sources.jsx';
 
 jest.mock('../../api/NewsApi', () => ({
   getData: () => Promise.resolve('getPromise')
 }));
 
-describe('Category', () => {
+describe('Sources component', () => {
   let app;
-  const error = null;
+  const err = null;
   const sourceSelected = 'bbc-sport';
   const sourceObject =
     [
@@ -51,19 +51,14 @@ describe('Category', () => {
     ];
 
   it('should render as expected', () => {
-    app = shallow(<SourcesComponent sources={sourceObject} error={error}
-          sourceSelected={sourceSelected} />);
+    app = shallow(<SourcesComponent error={err} sourceSelected={sourceSelected}
+        sources={sourceObject}
+                  />);
     const tree = toJson(app);
     expect(tree).toMatchSnapshot();
   });
 
   it('should have the same number of list element as the array length', () => {
     expect(app.find('li').length).toEqual(2);
-  });
-
-  it('should show the spinner component when data is being fetched', () => {
-    const appWhileLoading = shallow(<SourcesComponent sources={sourceObject}
-    error={'loading'} sourceSelected={sourceSelected} />);
-    expect(appWhileLoading.find('div').length).toEqual(1);
   });
 });

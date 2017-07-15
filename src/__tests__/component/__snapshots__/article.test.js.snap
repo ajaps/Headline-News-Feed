@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Category should render as expected 1`] = `
+exports[`Article component should render as expected 1`] = `
 <div
-  className="container well outerArticleCountainer"
+  className="outerArticleCountainer well"
 >
   <div
     className="row article-Container"

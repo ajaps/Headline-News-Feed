@@ -1,20 +1,20 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import PageNotFound from '../../pages/PageNotFound.jsx';
+import Layout from '../../pages/Layout.jsx';
 
-describe('404 page', () => {
+
+jest.mock('../../config/firebase', () => ({
+}));
+
+describe('Layout component', () => {
   let app;
   beforeEach(() => {
-    app = shallow(<PageNotFound />);
+    app = shallow(<Layout />);
   });
 
   it('should render as expected', () => {
     const tree = toJson(app);
     expect(tree).toMatchSnapshot();
-  });
-
-  it('should contian', () => {
-    expect(app.find('Page not found')).toBeTruthy();
   });
 });

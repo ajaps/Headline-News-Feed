@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard component should render as expected 1`] = `
+<div>
+  <CategoryComponent
+    allCategory={Array []}
+    currentcategory={Array []}
+  />
+  <p
+    className="pull-left visible-xs"
+  >
+    <button
+      className="btn btn-primary btn-xs show-sources"
+      data-toggle="offcanvas"
+      onClick={[Function]}
+      type="button"
+    >
+      View News Sources
+    </button>
+  </p>
+  <SortFilter
+    sortFilter={Array []}
+  />
+  <div
+    className="well container"
+  >
+    <div
+      className="row row-offcanvas row-offcanvas-left"
+    >
+      <div>
+        <SourcesComponent
+          error="loading"
+          sourceSelected=""
+          sources={Array []}
+        />
+      </div>
+      <div
+        className="row"
+      >
+        <ArticleComponent
+          articles={Array []}
+          error="loading"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SortFiler should render as expected 1`] = `
+exports[`SortFiler component should render as expected 1`] = `
 <div
-  className=" container navbar2"
+  className="container"
 >
   <div
-    className="dropdown sortByFeature"
+    className="dropdown pull-right sortByFeature"
   >
     <a
       aria-expanded="false"

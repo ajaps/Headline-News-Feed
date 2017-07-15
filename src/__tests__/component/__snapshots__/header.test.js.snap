@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should render as expected 1`] = `
+<div
+  className="container appHeader"
+>
+  <a
+    href="/"
+  >
+    <span
+      className="appTitle pull-left"
+    >
+      Headlines RSS Feed 
+    </span>
+  </a>
+  <span
+    className="userInfo pull-right"
+  >
+    <span
+      className=""
+    >
+      <a
+        onClick={[Function]}
+      >
+        <span
+          className="logoutBtn"
+        >
+          Logout
+        </span>
+      </a>
+    </span>
+  </span>
+</div>
+`;
