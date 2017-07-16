@@ -2,7 +2,7 @@
 
 exports[`Dashboard component should render as expected 1`] = `
 <div>
-  <CategoryComponent
+  <Categories
     allCategory={Array []}
     currentcategory={Array []}
   />
@@ -15,20 +15,20 @@ exports[`Dashboard component should render as expected 1`] = `
       onClick={[Function]}
       type="button"
     >
-      View News Sources
+      List News Sources
     </button>
   </p>
   <SortFilter
     sortFilter={Array []}
   />
   <div
-    className="well container"
+    className="well container articleSourceContainer"
   >
     <div
       className="row row-offcanvas row-offcanvas-left"
     >
       <div>
-        <SourcesComponent
+        <Sources
           error="loading"
           sourceSelected=""
           sources={Array []}
@@ -37,7 +37,7 @@ exports[`Dashboard component should render as expected 1`] = `
       <div
         className="row"
       >
-        <ArticleComponent
+        <Articles
           articles={Array []}
           error="loading"
         />
