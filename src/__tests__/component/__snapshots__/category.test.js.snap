@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category component should render as expected 1`] = `
+<li
+  className="active"
+>
+  <a
+    onClick={[Function]}
+  >
+    sport
+  </a>
+</li>
+`;

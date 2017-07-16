@@ -1,10 +1,10 @@
 import React from 'react';
 
-import CategoryComponent from '../components/Categories.jsx';
+import Categories from '../components/Categories.jsx';
 import SortFilter from '../components/SortFilter.jsx';
 
-import ArticleComponent from '../components/Article.jsx';
-import SourcesComponent from '../components/Sources.jsx';
+import Articles from '../components/Articles.jsx';
+import Sources from '../components/Sources.jsx';
 
 import ArticlesStore from '../stores/Articles';
 import SourcesStore from '../stores/Sources';
@@ -97,7 +97,7 @@ class Dashboard extends React.Component {
     const sourceSelected = this.state.userSelectedSource;
     return (
       <div>
-        <CategoryComponent
+        <Categories
             allCategory={allCategories}
             currentcategory={CurrentCategory}
         />
@@ -112,12 +112,12 @@ class Dashboard extends React.Component {
         <div className="well container articleSourceContainer">
         <div className="row row-offcanvas row-offcanvas-left">
           <div >
-            <SourcesComponent error={sourceError}
+            <Sources error={sourceError}
                 sourceSelected={sourceSelected} sources={sources}
             />
           </div>
           <div className="row">
-            <ArticleComponent articles={articles} error={articlesError} />
+            <Articles articles={articles} error={articlesError} />
           </div>
         </div>
         </div>

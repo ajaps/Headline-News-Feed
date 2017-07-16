@@ -8,7 +8,7 @@ import Error from '../components/Error.jsx';
 /**
  * Represents Article template.
  */
-export default class ArticleComponent extends React.Component {
+export default class Articles extends React.Component {
 
 /**
  * @returns {component} A component with relevant article details.
@@ -64,7 +64,7 @@ export default class ArticleComponent extends React.Component {
   }
 }
 
-ArticleComponent.propTypes = {
+Articles.propTypes = {
   articles: PropTypes.array,
   error: PropTypes.string,
 };

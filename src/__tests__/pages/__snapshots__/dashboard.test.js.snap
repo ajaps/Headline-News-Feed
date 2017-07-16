@@ -2,7 +2,7 @@
 
 exports[`Dashboard component should render as expected 1`] = `
 <div>
-  <CategoryComponent
+  <Categories
     allCategory={Array []}
     currentcategory={Array []}
   />
@@ -28,7 +28,7 @@ exports[`Dashboard component should render as expected 1`] = `
       className="row row-offcanvas row-offcanvas-left"
     >
       <div>
-        <SourcesComponent
+        <Sources
           error="loading"
           sourceSelected=""
           sources={Array []}
@@ -37,7 +37,7 @@ exports[`Dashboard component should render as expected 1`] = `
       <div
         className="row"
       >
-        <ArticleComponent
+        <Articles
           articles={Array []}
           error="loading"
         />

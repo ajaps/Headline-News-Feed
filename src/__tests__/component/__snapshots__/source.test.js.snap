@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sources component should render as expected 1`] = `
+<li
+  className="sourceBorder"
+>
+  <a
+    onClick={[Function]}
+  >
+    BBC SPORT
+  </a>
+</li>
+`;

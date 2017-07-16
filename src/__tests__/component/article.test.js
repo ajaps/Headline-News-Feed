@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import ArticleComponent from '../../components/Article.jsx';
+import ArticleComponent from '../../components/Articles.jsx';
 
 describe('Article component', () => {
   let app;
