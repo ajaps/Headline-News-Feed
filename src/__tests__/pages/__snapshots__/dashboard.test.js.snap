@@ -15,14 +15,14 @@ exports[`Dashboard component should render as expected 1`] = `
       onClick={[Function]}
       type="button"
     >
-      View News Sources
+      List News Sources
     </button>
   </p>
   <SortFilter
     sortFilter={Array []}
   />
   <div
-    className="well container"
+    className="well container articleSourceContainer"
   >
     <div
       className="row row-offcanvas row-offcanvas-left"

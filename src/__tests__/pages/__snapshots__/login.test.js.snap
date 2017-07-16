@@ -2,46 +2,53 @@
 
 exports[`Login component should render as expected 1`] = `
 <div
-  className="login-page"
+  className="well login-page "
 >
   <div
+    className="col-md-9 pull-left"
+  />
+  <img
     className="loginBackgroundImg"
   />
-  <p
-    className="errorMsg"
-  >
-    <span
-      className="alert-danger"
-    />
-  </p>
   <div
-    className=" container-fluid all-available-login-button"
+    className="pull-right col-md-3 displayMsg"
   >
-    <h2
-      className="loginHeader"
-    >
-      Headline RSS Feed
-    </h2>
-    <button
-      className="loginBtn btn loginBtn--github"
-      href="login"
-      name="github"
-      onClick={[Function]}
+    <p
+      className="errorMsg col-md-3 "
     >
       <span
-        className="fa fa-github"
+        className="warningText col-md-6"
       />
-      Login with Github
-    </button>
-    <br />
-    <button
-      className="loginBtn btn loginBtn--google"
-      href="login"
-      name="google+"
-      onClick={[Function]}
+    </p>
+    <div
+      className="all-available-login-button"
     >
-      Login with Google
-    </button>
+      <p
+        className="loginHeader"
+      >
+        Headline RSS Feed
+      </p>
+      <button
+        className="loginBtn btn loginBtn--github"
+        href="login"
+        name="github"
+        onClick={[Function]}
+      >
+        <span
+          className="fa fa-github"
+        />
+        Login with Github
+      </button>
+      <br />
+      <button
+        className="loginBtn btn loginBtn--google"
+        href="login"
+        name="google+"
+        onClick={[Function]}
+      >
+        Login with Google
+      </button>
+    </div>
   </div>
 </div>
 `;

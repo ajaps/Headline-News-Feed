@@ -10,6 +10,11 @@ exports[`Category component should render as expected 1`] = `
     <div
       className="navbar-header"
     >
+      <h5
+        className="text-muted hidden"
+      >
+        News Category
+      </h5>
       <button
         aria-controls="navbar"
         aria-expanded="false"

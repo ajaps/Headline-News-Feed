@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryComponent from '../components/Category.jsx';
+import CategoryComponent from '../components/Categories.jsx';
 import SortFilter from '../components/SortFilter.jsx';
 
 import ArticleComponent from '../components/Article.jsx';
@@ -106,10 +106,10 @@ class Dashboard extends React.Component {
                 className="btn btn-primary btn-xs show-sources"
                 data-toggle="offcanvas"
                 onClick={this.hideSidebar} type="button"
-            >View News Sources</button>
+            >List News Sources</button>
           </p>
         <SortFilter sortFilter={this.state.sortFilter} />
-        <div className="well container">
+        <div className="well container articleSourceContainer">
         <div className="row row-offcanvas row-offcanvas-left">
           <div >
             <SourcesComponent error={sourceError}

@@ -23,6 +23,7 @@ exports[`404 componenet should render as expected 1`] = `
     className="p404Link"
   >
     <a
+      className="linkText"
       href="/"
     >
       Go to Home Page

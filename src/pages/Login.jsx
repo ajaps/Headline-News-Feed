@@ -36,30 +36,33 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className="login-page">
-        <div className="loginBackgroundImg" />
-        <p className="errorMsg">
-          <span className="alert-danger">{this.state.error}</span>
-        </p>
-        <div className=" container-fluid all-available-login-button">
-          <h2 className="loginHeader">Headline RSS Feed</h2>
+      <div className="well login-page ">
+        <div className="col-md-9 pull-left" />
+        <img className="loginBackgroundImg" />
+        <div className="pull-right col-md-3 displayMsg">
+          <p className="errorMsg col-md-3 ">
+            <span className="warningText col-md-6">{this.state.error}</span>
+          </p>
+          <div className="all-available-login-button">
+            <p className="loginHeader">Headline RSS Feed</p>
 
-          <button
-              className="loginBtn btn loginBtn--github"
-              href="login"
-              name={'github'} onClick={this.handleLogin}
-              ref="githubBtn"
-          >
-            <span className="fa fa-github" />Login with Github
-          </button><br />
+            <button
+                className="loginBtn btn loginBtn--github"
+                href="login"
+                name={'github'} onClick={this.handleLogin}
+                ref="githubBtn"
+            >
+              <span className="fa fa-github" />Login with Github
+            </button><br />
 
-          <button
-              className="loginBtn btn loginBtn--google" href="login"
-              name={'google+'} onClick={this.handleLogin}
-              ref="googleBtn"
-          >
-            Login with Google
-          </button>
+            <button
+                className="loginBtn btn loginBtn--google" href="login"
+                name={'google+'} onClick={this.handleLogin}
+                ref="googleBtn"
+            >
+              Login with Google
+            </button>
+          </div>
         </div>
       </div>
     );
