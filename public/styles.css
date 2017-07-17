@@ -425,7 +425,7 @@ li > a {
 
 @media (max-height: 680px) {
   .Source-Container {
-    max-height: 54vh; } }
+    max-height: 45vh; } }
 
 .text-muted {
   padding-bottom: -9%;

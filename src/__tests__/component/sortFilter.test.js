@@ -12,7 +12,7 @@ jest.mock('../../stores/Articles', () => ({
 const myMock = jest.fn();
 myMock('bySort');
 
-describe('SortFiler component', () => {
+describe('SortFilter component', () => {
   let app;
   const filter = ['top', 'latest'];
   beforeEach(() => {

@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Category from '../components/Category.jsx';
+
 /**
  * Represents a navigation bar containing different categories
+ * @param {props} props react props
+ * @return {React} returns react componenet
  */
 const Categories = (props) => {
   const categoryObj = {};
@@ -19,6 +22,7 @@ const Categories = (props) => {
         />);
     }
   });
+
   return (
     <nav className="navbar navbar-default categoryList">
       <div className="container-fluid">
