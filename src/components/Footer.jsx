@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-    <footer className="footer">Headline RSS Feed App (c) 2017 </footer>
+    <p className="footer">Headline RSS Feed App (c) 2017 </p>
   );
 
 export default Footer;

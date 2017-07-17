@@ -1,16 +1,16 @@
 import classNames from 'classnames';
-import React from 'react';
 import PropTypes from 'prop-types';
-
+import React from 'react';
 import * as myActions from '../actions/Headlines';
 
 /**
- * Represents a navigation bar containing different categories
+ * Represents the Header section, contains language preference and logout button
  */
-export default class CategoryComponent extends React.Component {
-  constructor() {
-    super();
-    this.setCategory = this.setCategory.bind(this);
+export default class Category extends React.Component {
+  constructor(props) {
+    super(props);
+    const categoryName = this.props.category.category;
+    this.setCategory = this.setCategory.bind(this, categoryName);
   }
 
 /**
@@ -18,59 +18,27 @@ export default class CategoryComponent extends React.Component {
  * @param {object} e The selected category
  * @return {void}
  */
-  setCategory(e) {
-    const selectedCategory = e.target.dataset.category;
-    myActions.setApiCategory(selectedCategory);
+  setCategory(categoryId) {
+    myActions.setApiCategory(categoryId);
   }
 
   render() {
-    const categoryObj = {};
-    const currentCategory = this.props.currentcategory[0];
-    const allSources = this.props.allCategory;
-    const filterCategoryInSource = allSources.map((categoryItem) => {
-      const eachCategory = categoryItem.category;
-      const btnClass = classNames({
-        active: currentCategory === eachCategory,
-      });
-      if (!(eachCategory in categoryObj)) {
-        categoryObj[eachCategory] = eachCategory;
-        return (
-          <li className={btnClass} key={eachCategory} >
-            <a data-category={eachCategory} onClick={this.setCategory}
-                ref={eachCategory}
-            >{eachCategory.split('-')[0]}</a>
-          </li>
-        );
-      }
-      return null;
+    const currentCategory = this.props.currentCategory;
+    const categoryName = this.props.category.category;
+    const btnClass = classNames({
+      active: currentCategory === categoryName,
     });
-
     return (
-      <nav className="navbar navbar-default categoryList">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <button aria-controls="navbar" aria-expanded="false"
-                className="navbar-toggle collapsed" data-target="#navbar"
-                data-toggle="collapse" type="button"
-            >
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-            </button>
-          </div>
-          <div className="navbar-collapse collapse" id="navbar" >
-            <ul className="nav nav-justified">
-              { filterCategoryInSource }
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <li className={btnClass} key={categoryName}>
+        <a onClick={this.setCategory}ref="category">
+          {categoryName.split('-')[0]}
+        </a>
+      </li>
     );
   }
 }
 
-CategoryComponent.propTypes = {
-  allCategory: PropTypes.array,
-  currentcategory: PropTypes.array,
+Category.propTypes = {
+  currentCategory: PropTypes.string,
+  category: PropTypes.object,
 };

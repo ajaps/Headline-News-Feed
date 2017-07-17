@@ -1,19 +1,23 @@
 import { shallow } from 'enzyme';
 import React from 'react';
+import ReactTestUtils from 'react-dom/test-utils';
 import toJson from 'enzyme-to-json';
-import CategoryComponent from '../../components/Category.jsx';
+import Category from '../../components/Category.jsx';
 
 jest.mock('../../api/NewsApi', () => ({
-  getData: () => Promise.resolve('getPromise')
+  fetchApiSources: () => Promise.resolve('getPromise')
 }));
 
 describe('Category component', () => {
-  const sources = [{ category: 'general' }, { category: 'sport' }];
+  const categoryItem = { category: 'sport' };
+  const currentCategory = 'sport';
   let app;
   beforeEach(() => {
     app = shallow(
-      <CategoryComponent allCategory={sources}
-          currentcategory={['general']}
+      <Category
+          category={categoryItem}
+          currentCategory={currentCategory}
+          key={categoryItem.category}
       />);
   });
 
@@ -22,11 +26,15 @@ describe('Category component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should have same number of "a" tag as the lenght of the array', () => {
-    expect(app.find('a').length).toEqual(2);
-  });
-
-  it('should have only 1 active class set to the current category', () => {
-    expect(app.find('li.active').length).toBe(1);
+  it('should call the set category function', () => {
+    const renderedDoc = ReactTestUtils.renderIntoDocument(
+      <Category
+          category={categoryItem}
+          currentCategory={currentCategory}
+          key={categoryItem.category}
+      />
+    );
+    const setCategoryBtn = renderedDoc.refs.category;
+    ReactTestUtils.Simulate.click(setCategoryBtn);
   });
 });

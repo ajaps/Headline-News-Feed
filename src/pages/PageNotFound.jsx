@@ -12,7 +12,9 @@ const PageNotFound = () => {
       the requested page cannot be found or it has been moved</p>
       <p className="p404Body">Click on the link below to go back to Home page
       or click 'back' in the navigation bar to go to the previos page</p>
-      <p className="p404Link"><a href="/">Go to Home Page</a></p>
+      <p className="p404Link">
+        <a className="linkText" href="/">Go to Home Page</a>
+      </p>
     </div>
   );
 };
