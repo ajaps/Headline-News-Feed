@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SortFiler component should render as expected 1`] = `
+exports[`SortFilter component should render as expected 1`] = `
 <div
   className="container"
 >
