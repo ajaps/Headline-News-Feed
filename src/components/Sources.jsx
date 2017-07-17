@@ -27,11 +27,13 @@ export default class Sources extends React.Component {
  * @returns {component} A component with relevant source.
  */
   render() {
+    let sourcesLength = 0;
     const sources = this.props.sources;
     const searchQuery = this.state.searchTerm;
     const sourcesComponents = sources.map((sourcesItem) => {
       const reg = RegExp(searchQuery, 'gi');
       if ((sourcesItem.name.search(reg) !== -1)) {
+        sourcesLength += 1;
         return (
           <Source
               activeSource={this.props.sourceSelected}
@@ -43,7 +45,7 @@ export default class Sources extends React.Component {
     });
 
     return (
-      sourcesComponents.length < 1 ?
+      sourcesLength < 1 ?
       <div className="container pull-left outerSourceBorder">
       <div className="well sidebar-offcanvas" id="sidebar">
         <h4 className="sourcesHeader"> News Sources </h4>
